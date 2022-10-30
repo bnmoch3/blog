@@ -6,6 +6,7 @@ excerpt_separator: <!--start-->
 ---
 
 <!--start-->
+
 The classic paper
 ['End-to-End arguments in System Design'](https://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf)
 presents the end-to-end argument, a design principle that states functionality
@@ -43,22 +44,14 @@ Some of these functionalities include:
   deduplication) [4]
 - e.t.c
 
-In order to decide which level to implement the functionality, we have to keep
-the following in mind:
-
-> The function in question can completely and correctly be implemented only with
-> the knowledge and help of the application standing at the end points of the
-> communication system. Therefore, providing that questioned function as a
-> feature of the communication system itself is not possible.
-
 The authors are not entirely against implementing functionalities at lower
 levels, just that we shouldn't expect (and burden) these levels with capturing
 and reliably guaranteeing all the different kinds of requirements that our
-applications at endpoints have. Implementing some functionality in the lower
-layers can be useful for optimizing performance (in some carefully evaluated
-cases). However, we should proceed with caution since applications that don't
-need that functionality still have to pay for it. Furthermore, certain
-functionalities require information that can only be surfaced at the endpoints.
+applications have. Implementing some functionality in the lower layers can be
+useful for optimizing performance (in some carefully evaluated cases). However,
+we should proceed with caution since applications that don't need that
+functionality still have to pay for it. Furthermore, certain functionalities
+require information that can only be surfaced at the endpoints.
 
 ## Reference
 
