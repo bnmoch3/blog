@@ -4,8 +4,8 @@ title:  "End-to-End Arguments in System Design"
 category: Distributed Systems
 excerpt_separator: <!--start-->
 ---
-<!--start-->
 
+<!--start-->
 The classic paper
 ['End-to-End arguments in System Design'](https://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf)
 presents the end-to-end argument, a design principle that states functionality
