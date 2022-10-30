@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Distributed Reference Counting"
-tag: ["foo", "bar", "quz"]
 category: Distributed Systems
 excerpt_separator: <!--start-->
 ---
