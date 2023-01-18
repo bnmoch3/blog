@@ -3,7 +3,7 @@ layout: post
 title:  "Getting started with TLA+"
 date:   2023-01-14 12:00:00 +0000
 tag: ["TLA"]
-categories: distributed systems
+categories: "Distributed Systems"
 excerpt_separator: <!--start-->
 ---
 
@@ -74,12 +74,12 @@ if there's any mistake it's definitely mine:
 
 ## References
 
-- Thinking Above the Code - Leslie Lamport
+- Thinking Above the Code - Leslie Lamport:
   [link](https://www.youtube.com/watch?v=-4Yp3j_jk8Q)
-- Tackling Concurrency Bugs with TLA+ - Hillel Wayne
-  [video](https://www.youtube.com/watch?v=_9B__0S21y8&t=209s)
-- Learn TLA+ - Hillel Wayne [link](https://learntla.com/)
-- The TLA+ Video Course
+- Tackling Concurrency Bugs with TLA+ - Hillel Wayne:
+  [video](https://www.youtube.com/watch?v=_9B__0S21y8)
+- Learn TLA+ - Hillel Wayne: [link](https://learntla.com/)
+- The TLA+ Video Course:
   [videos](https://lamport.azurewebsites.net/video/videos.html)
-- Specifying Systems - Leslie Lamport
+- Specifying Systems - Leslie Lamport:
   [book](https://lamport.azurewebsites.net/tla/book.html)
