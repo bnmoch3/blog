@@ -3,7 +3,7 @@ layout: post
 title:  "Getting started with TLA+"
 date:   2023-01-14 12:00:00 +0000
 tag: ["TLA"]
-categories: "Distributed Systems"
+category: Distributed Systems
 excerpt_separator: <!--start-->
 ---
 

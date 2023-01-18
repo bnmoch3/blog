@@ -55,11 +55,11 @@ require information that can only be surfaced at the endpoints.
 
 ## Reference
 
-1. End-To-End Arguments In System Design - Saltzer, Reed, Clark
-   [link](https://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf)
-2. Paper Summary: End-to_end Arguments in System Design - Dominik Tornow
-   [link](https://temporal.io/blog/paper-summary-end-to-end-arguments-in-system-design)
-3. End-to-End arguments in System Design - The Morning Paper - Adrian Coyler
-   [link](https://blog.acolyer.org/2014/11/14/end-to-end-arguments-in-system-design/)
+1. End-To-End Arguments In System Design - Saltzer, Reed, Clark:
+   [pdf](https://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf)
+2. Paper Summary: End-to_end Arguments in System Design - Dominik Tornow:
+   [post](https://temporal.io/blog/paper-summary-end-to-end-arguments-in-system-design)
+3. End-to-End arguments in System Design - The Morning Paper - Adrian Coyler:
+   [post](https://blog.acolyer.org/2014/11/14/end-to-end-arguments-in-system-design/)
 4. The End-to-End Arguments for Databases - Designing Data-Intensive
-   Applications - Martin Kleppmann
+   Applications - Martin Kleppmann - Book

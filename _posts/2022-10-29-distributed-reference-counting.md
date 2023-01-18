@@ -167,17 +167,18 @@ ways:
 
 ## References
 
-1. Garbage Collector Design - Python Developer's Guide
+1. Garbage Collector Design - Python Developer's Guide:
    [link](https://devguide.python.org/internals/garbage-collector/)
-2. NeXeme: A Distributed Scheme Based on Nexus - Luc Moreau, David De Roure, Ian
-   Foster [link](https://link.springer.com/content/pdf/10.1007/BFb0002787.pdf)
-3. Distributed Garbage Collection Algorithms - Stefan Brunthaler
+2. NeXeme: A Distributed Scheme Based on Nexus - Luc Moreau, David De Roure,
+   Ian: Foster
+   [pdf](https://link.springer.com/content/pdf/10.1007/BFb0002787.pdf)
+3. Distributed Garbage Collection Algorithms - Stefan Brunthaler:
    [link](https://www.semanticscholar.org/paper/Distributed-Garbage-Collection-Algorithms-Brunthaler/66e5dc537ac205ee73c9d907620df2ec9646f139)
-4. Reference counting - Weighted Reference Counting - Wikipedia
+4. Reference counting - Weighted Reference Counting - Wikipedia:
    [link](https://en.wikipedia.org/wiki/Reference_counting#Weighted_reference_counting)
-5. Weighted Reference Counting - jimsynz
+5. Weighted Reference Counting - jimsynz:
    [link](https://gist.github.com/jimsynz/bf0983f2d9fdc65554bcbe2a6c2042ea)
-6. Distributed Garbage Collection - Memory Management Reference
+6. Distributed Garbage Collection - Memory Management Reference:
    [link](https://www.memorymanagement.org/glossary/d.html#term-distributed-garbage-collection)
 7. A Survey of Distributed Garbage Collection Techniques - David Plainfoss, Marc
-   Shapiro [link](https://hal.inria.fr/hal-01248224/file/SDGC_iwmm95.pdf)
+   Shapiro: [pdf](https://hal.inria.fr/hal-01248224/file/SDGC_iwmm95.pdf)
