@@ -12,23 +12,28 @@ excerpt_separator: <!--start-->
 I've been picking up some TLA+. Partly to learn writing my own specifications
 for model-checking, partly to be able to work through the specifications for
 distributed systems that I am interested in. I started off with
-[LearnTLA+](https://learntla.com/) by Hillel Wayne. While Pluscal is easy to
-read, I found it a bit hard to use it to write my own specifications. Almost
-every hurdle or error I encountered required some knowledge of TLA+. Therefore I
-had to dip my toes into TLA+. I started off with the first 8 chapters of the
-book [Specifying Systems](https://lamport.azurewebsites.net/tla/book.html) by
-Leslie Lamport. It wasn't as complex as I assumed (except for Chapter 8, which
-I'll get to). I supplemented the book with Lamport's
+[LearnTLA+](https://learntla.com/) by Hillel Wayne. It uses Pluscal instead of
+TLA+ to introduce formal modelling which can then be transpiled to TLA. Pluscal
+is supposed to be easier for engineers to learn since it's closer to normal
+(imperative) code whereas TLA+ is more _mathematical_. True, I did find Pluscal
+easier to grok though I found it a bit harder to use it to write my own
+specifications. Almost every hurdle or error I encountered required some
+knowledge of TLA+. Therefore I had to dip my toes into TLA+.
+
+I started off with the first 8 chapters of the book
+[Specifying Systems](https://lamport.azurewebsites.net/tla/book.html) by Leslie
+Lamport. It wasn't as complex as I assumed (except for Chapter 8, which I'll get
+to). I supplemented the book with Lamport's
 [video course](https://lamport.azurewebsites.net/video/videos.html) on the same.
 The videos IMO are certainly the most approachable beginner resource and I'd
 recommend them to anyone starting out. They also have mini-exercises that you
 can use to test out your understanding as you go along. With some TLA+ know-how,
-revisiting the Pluscal in Hillel Wayne's resource was quite a breeze. The part I
-struggled with in both these three resources were on temporal formulas
+revisiting the Pluscal in Hillel Wayne's resource was quite a breeze. The parts
+I struggled with in both these three resources all entailed temporal formulas
 specifically for liveness which I'll be looking to getting into next (though as
 Lamport advises, safety properties are more important). The following are some
-notes I took along (mostly for my review). All credits go to Lamport and if
-there's any mistake it's definitely mine:
+notes I took along (mostly for my future review). All credits go to Lamport and
+if there's any mistake it's definitely mine:
 
 ## Some notes
 
@@ -47,10 +52,10 @@ there's any mistake it's definitely mine:
   a sequence of discrete steps.
   - step: a change from one state to the next, a pair of successive states
   - execution: a sequence of states
-  - state: assignment of values to variables
+  - state: an assignment of values to variables
   - behavior: a sequence of states. A behavior describes a potential history of
     the universe.
-- **State Machine** is described by:
+- A **State Machine** is described by:
   1. What the variables are
   2. Possible initial values of variables (all possible initial states)
   3. The relation between the state machine's values in the current state and
