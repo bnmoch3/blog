@@ -3,7 +3,7 @@ layout: post
 title:  "SQL: Grouping sets, Rollups & Cube"
 date:   2023-06-22 12:00:00 +0000
 tag: ["sql", "duckdb", "postgres"]
-categories: sql
+categories: SQL
 excerpt_separator: <!--start-->
 ---
 
@@ -216,7 +216,7 @@ grouping sets (
 )
 ```
 
-## grouping aggregate function
+## Grouping aggregate function
 
 As an aside, consider the following case: if a column within that grouping set
 has a null, it cannot be distinguished from the columns outside the group (since
@@ -240,7 +240,7 @@ order by facility, month
 
 We get:
 
-```sql
+```
 ┌─────────────────┬───────────┬────────────────┬────────────┐
 │    facility     │   month   │ in_group_month │ sum(slots) │
 │     varchar     │  varchar  │     int64      │   int128   │
