@@ -13,7 +13,7 @@ Let's motivate grouping sets with an example. Both the dataset and prompt are
 sourced from
 [pgexercises](https://pgexercises.com/questions/aggregates/fachoursbymonth3.html) -
 an excellent resource for learning and practicing Postgres-flavoured SQL. I'll
-also be using DuckDB (it's SQL is also Postgres-flavoured) along the way.
+also be using DuckDB along the way (it too is Postgres-flavoured).
 
 We've got a country club which has a couple of facilities such as tennis courts
 and pool tables. We're using a database to keep track of members and bookings.
