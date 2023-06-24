@@ -3,7 +3,7 @@ layout: post
 title:  "Lateral Joins & Iterators in SQL"
 date:   2023-06-25 12:00:00 +0000
 tag: ["sql", "postgres"]
-categories: sql
+categories: SQL
 excerpt_separator: <!--start-->
 ---
 
