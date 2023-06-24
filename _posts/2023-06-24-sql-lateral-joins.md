@@ -79,7 +79,7 @@ from (
 Bob is one of the users Alice follows. This is how we get his top 5 most played
 songs in the past week:
 
-```
+```sql
 select
     song_id,
     count(*) as num_plays
@@ -94,7 +94,7 @@ limit 5;
 
 We also have to keep track of the songs Alice has already played:
 
-```
+```sql
 select
     distinct song_id
 from song_plays
@@ -254,8 +254,9 @@ then `joins` then the `where clause` and so on:
 
 ![SQL query order](https://jvns.ca/images/sql-queries.jpeg)
 
-The image above is Julia Evans', all credits to her blog post
-[SQL queries don't start with SELECT](https://jvns.ca/blog/2019/10/03/sql-queries-don-t-start-with-select/)
+The image above is from Julia Evans' blog post
+[SQL queries don't start with SELECT](https://jvns.ca/blog/2019/10/03/sql-queries-don-t-start-with-select/),
+all credits due.
 
 Loosely speaking, before a subquery is joined with another table, it is
 evaluated once fully into a single table.
