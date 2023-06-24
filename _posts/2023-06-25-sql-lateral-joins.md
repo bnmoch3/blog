@@ -1,4 +1,13 @@
-# Lateral joins
+---
+layout: post
+title:  "Lateral Joins & Iterators in SQL"
+date:   2023-06-25 12:00:00 +0000
+tag: ["sql", "postgres"]
+categories: sql
+excerpt_separator: <!--start-->
+---
+
+<!--start-->
 
 First thing's first, lateral joins are not quite a different type of joins -
 it's a way for sneaking in for-loops into SQL. With that in mind, let's use a
@@ -17,7 +26,8 @@ Let's first flesh out the tables, nothing too fancy:
 ```sql
 create table users(
     user_id int primary key,
-    name varchar not null
+    name varchar not null,
+    joined_on date
 );
 
 create table follow_list(
@@ -239,10 +249,10 @@ etc). Rather, `lateral` is a keyword that when appended before a subquery or
 function in the `from` section, let's it 'access' the columns from the prior
 table expressions.
 
-Let's wind back a bit and revist the order of SQL queries: We start with `from`
+Let's wind back a bit and revisit the order of SQL queries: We start with `from`
 then `joins` then the `where clause` and so on:
 
-[TODO IMAGE HERE]
+![SQL query order](https://jvns.ca/images/sql-queries.jpeg)
 
 The image above is Julia Evans', all credits to her blog post
 [SQL queries don't start with SELECT](https://jvns.ca/blog/2019/10/03/sql-queries-don-t-start-with-select/)
@@ -256,7 +266,8 @@ need for the lateral keyword. With lateral, the subquery or function is
 evaluated iteratively for every row in from the prior result set. The
 subquery/function can also reference columns from the prior result set such as
 in a `where` clause to filter out songs a user has already listened to. The rows
-from the subquery/function are then 'combined' back, since it's a `join`.
+from the subquery/function are then 'combined' back, since it's a `join` after
+all.
 
 We didn't use the lateral keyword for the `top_songs` function even though it
 refers to the `user_id` and `followee_id` columns since Postgres makes it
@@ -264,7 +275,7 @@ optional.
 
 However, for subqueries, we have to use `lateral`. Let's also make the cross
 join explicit and track the songs already played using a
-[Common Table Expression](https://www.postgresql.org/docs/current/queries-with.html)
+[Common Table Expression](https://www.postgresql.org/docs/current/queries-with.html).
 
 ```sql
 with already_played as (
@@ -305,4 +316,98 @@ order by followee_id asc, num_plays desc
 With this query, we get the entire result within a single round-trip, no more
 back and forth. And by using `lateral` with a subquery, we don't have to create
 and maintain a function within Postgres, everything's right there within the
-query. And that's it.
+query. Note, when subqueries are used in the above manner, they are referred to
+as _correlated subqueries_. From
+[wikipedia](https://en.wikipedia.org/wiki/Correlated_subquery), a correlated
+subquery is a 'subquery that uses values from the outer query'
+
+## Simplifying/Reusing expressions
+
+Additionally, the lateral keyword can also use it to simplify queries as
+highlighted in both
+[Vlad Mihalcea's Stack Overflow answer](https://stackoverflow.com/a/65847555)
+and this
+[PopSQL post](https://popsql.com/learn-sql/postgresql/how-to-use-lateral-joins-in-postgresql#data-set)
+that introduces Lateral Joins. I'll heavily borrow Mihalcea's example:
+
+In our `users` table above, we were also keeping track of the day the users
+created an account via the `joined_on` column. Suppose we want to send out some
+offers to users based on:
+
+- how many years they've been members
+- the date of their next anniversary
+- the number of days remaining until their next anniversary
+
+This query does the trick:
+
+```sql
+select
+    user_id,
+    name,
+    joined_on,
+    extract (year from age(now(), joined_on)) as years_active,
+    (joined_on +
+        (extract(year from age(now(), joined_on)) + 1)
+        * '1 year'::interval
+    )::date as next_anniversary,
+    (joined_on +
+        (extract(year from age(now(), joined_on)) + 1)
+        * '1 year'::interval)::date - now()::date
+    as days_remaining
+from users
+order by days_remaining asc;
+```
+
+Notice that some of the sub-expressions are repeated over and over again: we can
+polish it up by using a lateral join to abstract out the `years_active`
+expression:
+
+```sql
+select
+    user_id,
+    name,
+    joined_on,
+    years_active,
+    (joined_on + (years_active + 1) * '1 year'::interval)::date as next_anniversary,
+    (joined_on + (years_active + 1) * '1 year'::interval)::date - now()::date
+    as days_remaining
+from users,
+lateral (
+    select extract (year from age(now(), joined_on)) as years_active
+) as e1
+order by days_remaining asc;
+```
+
+We can polish it up further by using yet another lateral join:
+
+```sql
+select
+    user_id,
+    name,
+    joined_on,
+    years_active,
+    next_anniversary,
+    next_anniversary - now()::date as days_remaining
+from users,
+lateral (
+    select extract (year from age(now(), joined_on)) as years_active
+) as e1,
+lateral (
+    select (joined_on + (years_active + 1) * '1 year'::interval)::date as next_anniversary
+) as e2
+order by days_remaining asc;
+```
+
+Here are some links and posts for further reading:
+
+## Links/Acknowledgment
+
+- [PostgreSQL Documentation - SQL Commands - SELECT,TABLE,WITH](https://www.postgresql.org/docs/15/sql-select.html)
+- [PostgreSQL Documentation - Table Expressions](https://www.postgresql.org/docs/15/queries-table-expressions.html)
+- [PostgreSQL Documentation - Query Language (SQL) Functions](https://www.postgresql.org/docs/15/xfunc-sql.html#XFUNC-SQL-FUNCTIONS-RETURNING-SET)
+- [Dan Robinson - Heap - PostgreSQL's Powerful New Join Type:
+  Lateral](https://www.heap.io/blog/postgresqls-powerful-new-join-type-lateral)
+- [StackOverflow - What is the difference between a LATERAL JOIN and a subquery in PostgreSQL](https://stackoverflow.com/questions/28550679/what-is-the-difference-between-a-lateral-join-and-a-subquery-in-postgresql)
+- [PopSQL - How to Use Lateral Joins in PostgreSQL](https://popsql.com/learn-sql/postgresql/how-to-use-lateral-joins-in-postgresql#data-set)
+- [Steve Pousty - CrunchyData - Iterators in PostgreSQL with Lateral Joins](https://www.crunchydata.com/blog/iterators-in-postgresql-with-lateral-joins)
+- [lukaseder - jooq - Add LATERAL Joins or CROSS APPLY to Your SQL Tool Chain](https://blog.jooq.org/add-lateral-joins-or-cross-apply-to-your-sql-tool-chain/)
