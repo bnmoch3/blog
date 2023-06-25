@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lateral Joins & Iterators in SQL"
-date:   2023-06-24 12:00:00 +0000
+date:   2025-06-24 12:00:00 +0000
 tag: ["sql", "postgres"]
 categories: SQL
 excerpt_separator: <!--start-->
@@ -15,7 +15,7 @@ rather contrived example to introduce lateral joins.
 
 Suppose we're running a social music streaming app. Users can follow each other
 plus, of course, stream songs. We want to add the following feature (let me
-phrase it in Jira speak): 'as a user, I want to get the top 3 songs the people I
+phrase it in Jira speak): 'as a user, I want to get the top 5 songs the people I
 follow have been listening to in the past 1 week, that I haven't listened to
 yet - so that I can, uhh, listen to them?'
 
