@@ -3,7 +3,7 @@ layout: post
 title:  "Programmatically creating a DuckDB table from an Arrow schema"
 date:   2023-06-16 12:00:00 +0000
 tag: ["duckdb", "arrow", "sql", "python"]
-categories: sql
+categories: SQL
 excerpt_separator: <!--start-->
 ---
 
