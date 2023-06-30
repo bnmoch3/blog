@@ -424,8 +424,7 @@ with psycopg2.connect(dsn) as conn:
         send_csv_to_pg(cur, "bids", bids_tbl)
 ```
 
-For querying, we could use a
-[left lateral join](sql/2023/06/24/sql-lateral-joins):
+For querying, we could use a [left lateral join](sql-lateral-joins):
 
 ```sql
 select
@@ -496,7 +495,7 @@ left join lateral (
             else b.ts - a.ts
         end as threshold
     from asks a
-    order by dist asc
+    order by threshold asc
     limit 1
 ) as a on threshold <= '10 milliseconds'
 order by b.ts asc
@@ -508,11 +507,11 @@ There are other systems that implement ASOF joins (e.g.
 [Clickhouse](https://clickhouse.com/docs/en/sql-reference/statements/select/join#asof-join-usage)
 and [QuasarDB](https://blog.quasar.ai/timeseries-what-are-asof-joins)) but even
 if they don't, if they've got SQL, you can always use subqueries and/or lateral
-joins to do the same. I'm interested in Clickhouse, I just haven't had a good
-reason to use it yet beyond curiosity; every dataset I've worked with so far is
-DuckDB/SQLite sized. In future, I'd also love to go over the query plans and
-optimizations made by DuckDB, Postgres and Timescale when evaluating asof joins
-for larger datasets.
+joins to do the same. I'm particularly interested in Clickhouse, I just haven't
+had a good reason to use it yet beyond curiosity; every dataset I've worked with
+so far is DuckDB/SQLite sized. In future, I'd also love to go over the query
+plans and optimizations made by DuckDB, Postgres and Timescale when evaluating
+asof-style joins for larger datasets.
 
 ## References/Further Reading
 
