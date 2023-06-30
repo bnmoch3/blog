@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "SQL: Grouping sets, Rollups & Cube"
+title:  "SQL Grouping sets, Rollups & Cube"
 date:   2023-06-22 12:00:00 +0000
 tag: ["sql", "duckdb", "postgres"]
 categories: SQL
