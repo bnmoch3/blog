@@ -13,8 +13,8 @@ excerpt_separator: <!--start-->
 
 ### Ingesting from CSV using pyarrow
 
-The data we'll be using is the Github event data, specifically the Citus
-[events.csv](https://examples.citusdata.com/events.csv) that's smaller.
+The data we'll be using is the Github events data, specifically the Citus
+[events.csv](https://examples.citusdata.com/events.csv) version that's smaller.
 
 Let's insert the events data into the databases, I'll be using pyarrow's CSV
 module:
@@ -65,9 +65,9 @@ describe events;
 
 ### Alternative: DuckDB's CSV ingestion
 
-We could also have used DuckDB's `read_csv_auto`. I used pyarrow out of habit.
-For CSV, DuckDB has its advantages over pyarrow's. For example, it's able to
-detect that `event_public` is boolean and empty strings in `org` are null.
+We could also have used DuckDB's `read_csv_auto`. I used pyarrow purely out of
+habit. For CSV, DuckDB has its advantages over pyarrow. For example, it's able
+to detect that `event_public` is boolean and empty strings in `org` are null.
 
 ```sql
 create table events as
@@ -80,7 +80,6 @@ select * from read_csv_auto('datasets/gh-events.csv');
 
 ```sql
 select count(distinct event_type) from events;
-
 -- 14
 ```
 
@@ -180,8 +179,8 @@ This gives:
 └─────────┘
 ```
 
-Seems either there's a lot of empty strings, whitespace or newlines I'm not
-quite sure.
+Either there's a lot of empty strings, whitespace or newlines I'm not quite
+sure.
 
 Let's get rid of the whitespace (replace with empty strings):
 
@@ -256,7 +255,7 @@ And the shell command:
 duckdb -json events.db < query.sql  | jq .structure
 ```
 
-This outputs:
+For `org`, this outputs:
 
 ```json
 {
@@ -396,7 +395,7 @@ order by s_count desc;
 
 This results in:
 
-```sql
+```
 ┌───────────────────────────────┬─────────┬───────────────────────────────────────────┐
 │          event_type           │ s_count │                   keys                    │
 │          event_type           │  int64  │                 varchar[]                 │
@@ -427,8 +426,8 @@ documented payload's structure so as to understand it better.
 
 ## Querying JSON
 
-Let's query push events. Using `json_group_structure`, we get the following
-schema for Push events:
+Let's query the payloads for push events. Using `json_group_structure`, we get
+the following schema for Push events:
 
 ```json
 {
@@ -637,7 +636,7 @@ This results in 31 rows:
 
 There's lots of other queries to try out, especially on the full github dataset.
 Querying JSON can be tricky since it involves a lot of plucking fields and
-unnesting entries, plus different values probably have different schemas. DuckDB
+unnesting entries, plus different values might not have the same schema. DuckDB
 does make things a bit easier though by providing various functions and helpers.
 And some SQL know-how really goes a long way when dealing with JSON.
 
