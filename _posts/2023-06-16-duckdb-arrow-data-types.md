@@ -7,6 +7,9 @@ categories: Python
 excerpt_separator: <!--start-->
 ---
 
+PyArrow lets you create an empty table. Use that instead of custom mappings to
+create a DuckDB schema.
+
 <!--start-->
 
 DuckDB's python client already provides a straightforward API for interacting

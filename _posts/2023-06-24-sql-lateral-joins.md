@@ -7,6 +7,8 @@ categories: SQL
 excerpt_separator: <!--start-->
 ---
 
+Sneaking for-loops into SQL without anyone noticing
+
 <!--start-->
 
 First thing's first, lateral joins are not quite a different type of joins -

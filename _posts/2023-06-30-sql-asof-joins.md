@@ -7,6 +7,9 @@ categories: SQL
 excerpt_separator: <!--start-->
 ---
 
+Pairing up timeseries data when the timestamps don't match exactly (in Pandas,
+Polars, DuckDB, Postgres & QuestDB)
+
 <!--start-->
 
 ## Overview

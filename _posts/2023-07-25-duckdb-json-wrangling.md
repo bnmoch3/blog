@@ -7,6 +7,8 @@ categories: SQL
 excerpt_separator: <!--start-->
 ---
 
+For when you need to impose some structure on semi-structured data
+
 <!--start-->
 
 ## Setting up the data

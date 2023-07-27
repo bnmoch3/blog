@@ -7,6 +7,8 @@ categories: SQL
 excerpt_separator: <!--start-->
 ---
 
+Computing multiple Group-bys with less steps
+
 <!--start-->
 
 Let's motivate grouping sets with an example. Both the dataset and prompt are

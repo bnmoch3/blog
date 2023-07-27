@@ -7,6 +7,9 @@ categories: Python
 excerpt_separator: <!--start-->
 ---
 
+Often, parquet files have to be compressed. For fast compression, use LZ4 or
+Snappy. For the highest data compression ratio, use brotli. For both, zstd
+
 <!--start-->
 
 Here's the executive summary: if you're looking for a dataset format to use

@@ -7,7 +7,13 @@ categories: Golang
 excerpt_separator: <!--start-->
 ---
 
+It's one thing to handle a panic that's occured within a function. It's an
+entirely different affair to handle a panic that occured within a goroutine
+that's been spawned.
+
 <!--start-->
+
+## Overview
 
 I need to run a given function before exiting from a Go program, either during
 graceful shutdown or whenever a panic occurs. If a panic occurs within a
