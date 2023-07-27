@@ -170,7 +170,7 @@ for (name, udf) in udfs:
 After defining and registering the UDFs, we can now use them directly within
 SQL:
 
-```
+```python
 duckdb.sql(
     """
     select list(val) as vals from tbl union all
@@ -201,7 +201,7 @@ This prints:
 
 Nothing's stopping us from using Polars within UDFs though. Since
 pyarrow.compute doesn't have linear interpolation for filling NULLs, we can use
-Polars instead to create a Timescale-esque `interpolate` function:
+Polars within a UDF to create a Timescale-esque `interpolate` function:
 
 ```python
 def interpolate(vals):
