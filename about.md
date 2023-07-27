@@ -4,8 +4,4 @@ title: About
 permalink: /about/
 ---
 
-Nothing much to see here, yet
-
-
-
-
+Enjoyer of Go, Rust & Python. Currently going through a Database/SQL phase
