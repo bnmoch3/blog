@@ -7,8 +7,8 @@ categories: Python
 excerpt_separator: <!--start-->
 ---
 
-Last observation carried forward, median, linear interpolation, using the median
-etc.
+Gap filling using Last observation carried forward, median, linear
+interpolation, using the median etc.
 
 <!--start-->
 
@@ -20,14 +20,14 @@ for timeseries:
 - using the last value to fill forwards (Last observation carried forward)
 - using the next value to fill backwards
 - using an arbitrary expression such as the median
-- linear interpolation
 - filling in a specific value
+- linear interpolation
 
 Some databases (notably Timescale) avail these strategies natively. For the rest
-of the masses, it has to be implemented either through UDFs (user defined
-functions) or some hairy SQL. In the case of DuckDB though, it doesn't have to
-be too convoluted since we can either use Polars or pyarrow-based UDFs. Let's
-explore both methods.
+of the masses, it has to be implemented through UDFs (user defined functions) or
+via some hairy SQL. In the case of DuckDB though, it doesn't have to be too
+convoluted since we can either use Polars or pyarrow-based UDFs. Let's explore
+both methods.
 
 ## Some sample data
 
@@ -233,6 +233,33 @@ This outputs:
 │ 1970-01-08 │     8 │      8 │
 └────────────┴───────┴────────┘
 ```
+
+## Good old-fashioned SQL
+
+Pure SQL still packs a punch. Replacing NULLs with a literal value or with an
+expression is trivial in SQL.
+
+For filling forwards/backwards we have to use window functions with an extra
+keyword: `"ignore nulls"` within the expression so that we can pick the desired
+non-null value. Also note the frames for each:
+
+```sql
+select
+    dt,
+    val,
+    last_value(val ignore nulls) over (
+        order by dt asc
+        rows between unbounded preceding and current row
+    ) as filled_forward,
+    first_value(val ignore nulls) over (
+        order by dt asc
+        rows between current row and unbounded following
+    ) as filled_backward
+from tbl
+```
+
+As a parting shot, here's an excercise left to the reader: implement
+`interpolate` using only SQL :-D
 
 ## References/Further Reading
 
