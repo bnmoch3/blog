@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Handling panics from goroutines"
+slug: goroutine-panics
 date:   2023-05-11 12:00:00 +0000
 tag: ["Golang"]
 categories: Golang

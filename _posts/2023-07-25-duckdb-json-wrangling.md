@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Wrangling JSON with DuckDB"
+slug: wrangling-json-with-duckdb
 date:   2023-07-25 12:00:00 +0000
 tag: ["duckdb", "sql"]
 categories: SQL

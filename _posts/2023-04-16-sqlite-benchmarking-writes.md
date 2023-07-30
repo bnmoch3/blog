@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Benchmarking SQLite inserts"
+slug: sqlite-benchmarking-writes
 date:   2023-04-16 12:00:00 +0000
 tag: ["rust", "sql", "sqlite"]
 categories: Misc
@@ -159,8 +160,8 @@ too to see if it works, plus also read the docs to see if this is the case.
 Back to single-thread world; the roughly 750 inserts per second is still quite
 low. Let's try some optimizations
 
-1. Set journal mode to WAL. This immediately increases insert speeds from ~750 to
-   ~2500.
+1. Set journal mode to WAL. This immediately increases insert speeds from ~750
+   to ~2500.
 2. Set synchronous to `NORMAL`. This gets us to ~25,000 inserts per second.
 
 Other optimizations I've tried event though they don't seem to have a huge

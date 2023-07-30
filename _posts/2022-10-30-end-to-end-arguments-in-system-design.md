@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "End-to-End Arguments in System Design"
+slug: end-to-end-arguments-in-system-design
 category: Distributed Systems
 excerpt_separator: <!--start-->
 ---

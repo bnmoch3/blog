@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Distributed Reference Counting"
+slug: distributed-reference-counting
 category: Distributed Systems
 excerpt_separator: <!--start-->
 ---

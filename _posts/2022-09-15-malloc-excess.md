@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Malloc excess bytes"
+slug: malloc-excess
 date:   2022-09-15 12:00:00 +0000
 tag: ["C"]
 categories: Misc
