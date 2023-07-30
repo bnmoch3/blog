@@ -25,6 +25,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://bnm3k.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 domain: bnm3k.github.io
 github_username: bnm3k
+permalink: /:slug
 show_excerpts: true
 
 # Build settings
