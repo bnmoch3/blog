@@ -2,7 +2,6 @@
 layout: post
 title:  "SQL Grouping sets, Rollups & Cube"
 slug: sql-grouping-sets
-date:   2023-06-22
 tag: ["sql", "duckdb", "postgres"]
 categories: SQL
 excerpt_separator: <!--start-->

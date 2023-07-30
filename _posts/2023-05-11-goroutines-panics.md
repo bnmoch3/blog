@@ -2,7 +2,6 @@
 layout: post
 title:  "Handling panics from goroutines you've spawned"
 slug: goroutine-panics
-date:   2023-05-11
 tag: ["Golang"]
 categories: Golang
 excerpt_separator: <!--start-->

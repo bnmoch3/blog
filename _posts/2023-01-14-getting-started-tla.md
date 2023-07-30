@@ -2,7 +2,6 @@
 layout: post
 title:  "Getting started with TLA+"
 slug: getting-started-tla
-date:   2023-01-14
 tag: ["TLA"]
 category: Distributed Systems
 excerpt_separator: <!--start-->

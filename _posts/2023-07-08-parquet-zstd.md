@@ -2,7 +2,6 @@
 layout: post
 title:  "Parquet + Zstd: Smaller faster data formats"
 slug: parquet-zstd
-date:   2023-07-08
 tag: ["DuckDB", "Python", "Arrow"]
 categories: Python
 excerpt_separator: <!--start-->

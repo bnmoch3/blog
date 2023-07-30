@@ -2,7 +2,6 @@
 layout: post
 title:  "Benchmarking SQLite inserts"
 slug: sqlite-benchmarking-writes
-date:   2023-04-16
 tag: ["rust", "sql", "sqlite"]
 categories: Misc
 excerpt_separator: <!--start-->

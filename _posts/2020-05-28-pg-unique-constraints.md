@@ -2,7 +2,6 @@
 layout: post
 title: "Speeding up unique constraint checks in Postgres... or not"
 slug: pg-unique-constraints
-date:   2020-05-28
 tag: ["Postgres", "sql"]
 categories: SQL
 excerpt_separator: <!--start-->
