@@ -7,8 +7,8 @@ categories: Python
 excerpt_separator: <!--start-->
 ---
 
-Gap filling using Last observation carried forward, median, linear
-interpolation, using the median etc.
+Filling gaps using Last observation carried forward, next observation carried
+backwards, median & linear interpolation
 
 <!--start-->
 
