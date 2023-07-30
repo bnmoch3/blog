@@ -2,7 +2,7 @@
 layout: post
 title:  "Handling Missing Values in Timeseries Datasets"
 slug: timeseries-filling-missing-values
-date:   2023-07-27 12:00:00 +0000
+date:   2023-07-27
 tag: ["duckdb", "sql", "timeseries", "python"]
 categories: Timeseries
 excerpt_separator: <!--start-->

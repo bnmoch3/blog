@@ -2,7 +2,7 @@
 layout: post
 title:  "Timeseries and ASOF Joins"
 slug: sql-asof-joins
-date:   2023-06-30 12:00:00 +0000
+date:   2023-06-30
 tag: ["sql", "duckdb", "polars", "arrow", "python", "questdb", "pandas", "postgres"]
 categories: Timeseries
 excerpt_separator: <!--start-->
