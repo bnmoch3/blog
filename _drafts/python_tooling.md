@@ -7,3 +7,4 @@
 - black
 - pyenv
 - isort
+- debug: pdf breakpoint

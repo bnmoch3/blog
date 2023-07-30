@@ -2,21 +2,24 @@
 title: "Go channels suffice for synchronization"
 slug: go-channels-concurrency-sync
 date: 2020-07-21
-description: "Or how to implement Futures/Promises in Go without having to juggle locks and waitgroups"
 tags: ["Golang"]
+excerpt_separator: <!--start-->
 ---
 
-Next time, before juggling tons of locks and waitgroups to prevent data races in
-Golang, you might consider simply opting for good old-fashioned channels. When
-used for mutual exclusion, channels too provide correctness. Moreover they are
-arguably more readable and harder to get wrong. If you aren't fully familiar
-with the concurrency guarantees provided by Go channels (beyond allowing for
-concurrent sends & receives) read on.
+Or how to implement Futures/Promises in Go without having to juggle locks and
+waitgroups
 
-As a working example to compare and contrast with, let's consider the
+<!--start-->
+
+Still new to Go, I often find myself reaching out for locks and waitgroups where
+channels would suffice. Channels too can be used to provide mutual exclusion and
+are more idiomatic. So as an exercise, once in a while I try to switch code
+that's using Locks/Waitgroups into using channels, just to get used to them.
+
+For example, let's consider the
 [Workiva/go-datastructures/futures](github.com/Workiva/go-datastructures/tree/master/futures)
 package. I'd define a _future_ as a sort of placeholder for a result that's
-being computed asynchronously and will be accessed by multiple
+being computed asynchronously and might be accessed by multiple
 threads/go-routines concurrently. Here's a better and simpler definition though
 from Heather Miller & her students' book, _Programming Models for Distributed
 Computation_:
@@ -190,7 +193,7 @@ func (f *Future) GetResult() (interface{}, error) {
 As [specified](yourbasic.org/golang/broadcast-channel/), channels are safe for
 concurrent receives and all reads from a closed channel receive the zero value.
 Also note that `f.completed` is an empty `struct{}` channel to indicate that
-it'll be used solely for signalling rather than sending or receiving any actual
+it'll be used solely for signaling rather than sending or receiving any actual
 values.
 
 Now, for the locks. The `f.lock` is used to ensure that data races don't occur.
@@ -211,12 +214,12 @@ variables and no other goroutine is trying to read or write to those variables
 at that instance. Once `setItem` has written the result and unlocked the Lock,
 other goroutines can then read them safely without causing any data races.
 
-Interestingly, channels too can be used to guarantee mutual exclusion. Given how
-the `Future` object is structured, we end up with the following key factors:
+As earlier mentioned, channels too can be used to guarantee mutual exclusion.
+Given how the `Future` object is structured, we end up with the following key
+factors:
 
 - A write occurs only once throughout the lifetime of a `Future` object, that is
   when either the result arrives or a timeout occurs.
-
 - All reads should occur only after the write above has been completed in order
   to avoid data races.
 
