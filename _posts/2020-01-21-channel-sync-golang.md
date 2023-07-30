@@ -1,8 +1,8 @@
 ---
-title: "Go channels suffice for synchronization"
+title: "Go Channels Suffice for Synchronization"
 slug: go-channels-concurrency-sync
 date: 2020-07-21
-tags: ["Golang"]
+category: Golang
 excerpt_separator: <!--start-->
 ---
 
@@ -17,7 +17,7 @@ are more idiomatic. So as an exercise, once in a while I try to switch code
 that's using Locks/Waitgroups into using channels, just to get used to them.
 
 For example, let's consider the
-[Workiva/go-datastructures/futures](github.com/Workiva/go-datastructures/tree/master/futures)
+[Workiva/go-datastructures/futures](https://github.com/Workiva/go-datastructures/tree/master/futures)
 package. I'd define a _future_ as a sort of placeholder for a result that's
 being computed asynchronously and might be accessed by multiple
 threads/go-routines concurrently. Here's a better and simpler definition though
@@ -31,8 +31,8 @@ Alternatively, if you're already familiar with Javascript, futures are similar
 to ES6 promises.
 
 The `Workiva/futures`
-[API](godoc.org/github.com/Workiva/go-datastructures/futures) is short enough
-and is a great place to start from. The caller creates a Future value by
+[API](https://godoc.org/github.com/Workiva/go-datastructures/futures) is short
+enough and is a great place to start from. The caller creates a Future value by
 invoking `futures.New(completer, timeout)`. The `completer` argument is a
 read-only channel through which the result is received asynchronously. The
 `timeout` argument is there to avoid waiting for the result indefinitely. One
@@ -190,11 +190,11 @@ func (f *Future) GetResult() (interface{}, error) {
 }
 ```
 
-As [specified](yourbasic.org/golang/broadcast-channel/), channels are safe for
-concurrent receives and all reads from a closed channel receive the zero value.
-Also note that `f.completed` is an empty `struct{}` channel to indicate that
-it'll be used solely for signaling rather than sending or receiving any actual
-values.
+As [specified](https://yourbasic.org/golang/broadcast-channel/), channels are
+safe for concurrent receives and all reads from a closed channel receive the
+zero value. Also note that `f.completed` is an empty `struct{}` channel to
+indicate that it'll be used solely for signaling rather than sending or
+receiving any actual values.
 
 Now, for the locks. The `f.lock` is used to ensure that data races don't occur.
 Data races fall under _race conditions_ which are a kind of concurrency bug.
@@ -272,5 +272,5 @@ channels version. As expected, it did not find any data-races. I also
 benchmarked the locking+waitgroup version versus the channels version; both had
 similar performance but the former was slightly faster by a couple of
 nanoseconds. And that's it! If you've enjoyed this post, do check out Go101's in
-depth [post](go101.org/article/channel-use-cases.html) on all the other
+depth [post](https://go101.org/article/channel-use-cases.html) on all the other
 interesting ways you can use channels in Go. Cheers!

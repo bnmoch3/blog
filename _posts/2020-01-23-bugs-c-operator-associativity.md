@@ -12,8 +12,8 @@ myself, in case I make the same mistake again.
 A while ago, I required a hash table for a LISP interpreter in C that I was
 working on as part of the book _Build Your Own Lisp_ by Daniel Holden. Rather
 than go straight for a library, I opted for
-[this tutorial](github.com/jamesroutley/write-a-hash-table) so that I could also
-learn more about how open-addressed hash-tables work.
+[this tutorial](https://github.com/jamesroutley/write-a-hash-table) so that I
+could also learn more about how open-addressed hash-tables work.
 
 For the sake of it, I wrote some tests with randomized inputs just to make sure
 everything is set. And the tests failed horribly. Two key bugs emerged:
@@ -71,5 +71,5 @@ hash += (long)pow(a, len_str - (i + 1)) * str[i];
 ```
 
 Moral of the story, ignore
-[operator associativity (and even precedence)](www.programiz.com/c-programming/precedence-associativity-operators)
+[operator associativity (and even precedence)](https://www.programiz.com/c-programming/precedence-associativity-operators)
 at your own peril.
