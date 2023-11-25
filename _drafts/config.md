@@ -130,7 +130,7 @@
     hermetic evaluation and prevent separation of config from data. Evaluate the
     config then make the resulting data available to the user to analyze [2]
 
-## Early detection of configuration errors to reduce failure damage
+## Early detection of configuration errors to reduce failure damage - Paper Review
 
 - configuration parameters associated with reliability, availabilty and
   serviceability features
@@ -146,6 +146,8 @@
 - For example:
   - check if path exists
   - check if user has permission to read/write a given file or directory
+
+## Early detection of configuration errors to reduce failure damage - Paper
 
 ## Mini Case Study:
 
