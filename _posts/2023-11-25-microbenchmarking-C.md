@@ -59,7 +59,7 @@ assembly has to be done carefully since the RDTSC instruction overwrites the EAX
 and EDX registers - you don't want to end up with a segmentation fault, or
 worse.
 
-```C
+```c
 #include <stdint.h>
 
 uint64_t inline rdtsc() {
@@ -71,7 +71,7 @@ uint64_t inline rdtsc() {
 
 As a working example, let's benchmark a simple add function using RDTSC:
 
-```C
+```c
 void sum(int* nums, size_t n, int* res) {
     int s = 0;
     for (size_t i = 0; i < n; i++) {
@@ -84,7 +84,7 @@ void sum(int* nums, size_t n, int* res) {
 To get the number of cycles a piece of code takes, we read the counter at the
 start of the benchmark, then at the end:
 
-```C
+```c
 int main() {
     // ...
 
@@ -314,7 +314,7 @@ run the entire benchmark with a given CPU core affinity or to set
 process/thread-level CPU affinity directly within the code using the
 `sched_setaffinity` function:
 
-```C
+```c
 #include <sched.h>
 
 void assign_to_core(int core_id) {
@@ -362,7 +362,7 @@ uses the `sleep` function to do the waiting (an updated version might use
 I used the code sample below to calculate the frequency. It's adopted from
 [here](https://github.com/cmuratori/computer_enhance/blob/main/perfaware/part2/listing_0073_cpu_timer_guessfreq_main.cpp).
 
-```C
+```c
 #include <stdint.h>
 #include <stdio.h>
 #include <time.h>

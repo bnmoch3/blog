@@ -30,7 +30,7 @@ number of slots (or buckets) in the hash-table and our current attempt at
 finding an empty slot (starts at 0), `ht_get_hash` returns an integer which
 serves as the slot index. It uses `ht_hash` to calculate this index:
 
-```C
+```c
 static const int HT_PRIME_1 = 151;
 static const int HT_PRIME_2 = 163;
 
