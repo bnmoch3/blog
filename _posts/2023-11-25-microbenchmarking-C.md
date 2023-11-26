@@ -283,6 +283,9 @@ However, I do have some pending questions:
 
 - why is the minimum considered the 'final' value, why not something like median
   or mode. The Paoloni guide also picks the minimum.
+  ([Answer](https://ocw.mit.edu/courses/6-172-performance-engineering-of-software-systems-fall-2018/resources/lecture-10-measurement-and-timing/):
+  compared to the mean or even the median, the minimum does best at noise
+  rejection)
 - why doesn't it take into account the possibility of out-of-order execution.
   The code is open-source though, so I added serializing instructions to mine
   just in case the processor does its thing.
