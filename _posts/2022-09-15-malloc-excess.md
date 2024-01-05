@@ -3,7 +3,7 @@ layout: post
 title:  "Malloc excess bytes"
 slug: malloc-excess
 tag: ["C"]
-categories: Misc
+categories: Computer Systems
 excerpt_separator: <!--start-->
 ---
 
