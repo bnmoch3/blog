@@ -7,6 +7,11 @@ category: "Computer Systems"
 excerpt_separator: <!--start-->
 ---
 
+Wherein the OS and user get more control over the L1,L2 and L3 caches, mostly
+for performance.
+
+<!--start-->
+
 Traditionally, the L1, L2 and L3 SRAM caches are meant to be managed solely by
 the CPU. After all, from the perspective of the user's program, the abstraction
 available for non-persistent data is that of memory; caches are there purely for
