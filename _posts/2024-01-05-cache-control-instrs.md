@@ -3,7 +3,7 @@ layout: post
 title:  "x86 Cache Control Instructions"
 slug: cache-control-instrs
 tag: ["systems development"]
-categories: Computer Systems
+category: "Computer Systems"
 excerpt_separator: <!--start-->
 ---
 
