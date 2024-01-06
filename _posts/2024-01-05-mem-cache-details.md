@@ -3,7 +3,7 @@ layout: post
 title:  "Retrieving Memory and Cache Organization"
 slug: mem-cache-details
 tag: ["systems development"]
-categories: Computer Systems
+categories: "Computer Systems"
 excerpt_separator: <!--start-->
 ---
 

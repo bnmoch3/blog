@@ -3,7 +3,7 @@ layout: post
 title:  "Microbenchmarking: Way more than I set out to know"
 slug: microbenchmarking-c
 tag: ["C", "systems development", "low-level programming"]
-categories: Computer Systems
+categories: "Computer Systems"
 excerpt_separator: <!--start-->
 ---
 
