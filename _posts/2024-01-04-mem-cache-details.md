@@ -20,7 +20,7 @@ Let's start with the output from
 [lstopo](https://iq.opengenus.org/lstopo-in-linux/). This is a tool that 'shows
 the topology of a system':
 
-![lstopo output](assets/mem_details/lstopo_output.png)
+![lstopo output](/assets/images/mem_details/lstopo_output.png)
 
 From the diagram:
 
@@ -154,7 +154,7 @@ This graph below (from Ulrich Drepper's
 [paper](https://akkadia.org/drepper/cpumemory.pdf) 'What every Programmer Should
 Know About Memory') demonstrates the result of increasing lines per set:
 
-![cache size vs associativity](assets/mem_details/cache_size_vs_associativity.png)
+![cache size vs associativity](/assets/images/mem_details/cache_size_vs_associativity.png)
 
 Another trade-off that's worth pointing out is the **size of the cache**. From
 the graph above, we get the least amount of cache hits with the largest cache
