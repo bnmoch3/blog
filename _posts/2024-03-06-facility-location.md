@@ -2,7 +2,7 @@
 layout: post
 title:  "The Facility Location Problem"
 slug: facility-location-problem
-tag: ["python", "Linear Programming", "PuLP"]
+tag: ["python", "Linear Programming", "PuLP", "minizinc"]
 categories: Optimization
 excerpt_separator: <!--start-->
 ---
@@ -235,4 +235,47 @@ for f_id, customers in enumerate(allocations):
     customers_assigned = demands > 0
     assert is_built == customers_assigned
     assert demands <= facility_capacities[f_id]
+```
+
+## Minizinc
+
+For reference, here's how the same problem is modeled in minizinc. This
+particular modeling might be useful if the goal is to have it solved via a MILP
+solver:
+
+```minizinc
+% parameters
+par int: num_facilities;
+array[1..num_facilities] of float: facility_setup_costs;
+array[1..num_facilities] of int: facility_capacities;
+
+par int: num_customers;
+array[1..num_customers] of int: customer_demands;
+
+array[1..num_facilities,1..num_customers] of float: dist_matrix;
+
+% decision variables
+array[1..num_facilities,1..num_customers] of var 0..1: allocations;
+array[1..num_facilities] of var 0..1: facilities_built;
+
+% constraints
+
+% obj
+var float: cost =
+    sum(f in 1..num_facilities)(facilities_built[f] * facility_setup_costs[f])
+    +
+    sum(f in 1..num_facilities,c in 1..num_customers)(allocations[f,c]*dist_matrix[f,c]);
+
+constraint forall(c in 1..num_customers)
+    (sum(f in 1..num_facilities)(allocations[f,c]) == 1);
+
+constraint forall(f in 1..num_facilities,c in 1..num_customers)
+    (allocations[f,c] <= facilities_built[f]);
+
+constraint forall(f in 1..num_facilities)
+    (sum(c in 1..num_customers)(allocations[f,c]*customer_demands[c])
+        <= (facility_capacities[f]*facilities_built[f]));
+
+solve minimize cost;
+output ["\(cost)"];
 ```
