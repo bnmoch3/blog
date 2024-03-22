@@ -375,7 +375,7 @@ penalties of all the features with `max_util`:
 ```python
 else: # best_move is None and we're at a local minima
     utils = [
-        I * (cost / (1 + penalty))
+        I * (cost / (1 + penalty)) # 1 is there to prevent division by zero
         for (I, cost, penalty) in zip(feature_indicators, features, penalties)
     ]
     max_util = max(utils)
