@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Guided Local Search for the Capacitated Facility Location Problem"
-slug:  gls-flp
+slug:  guided-local-search-flp
 tag: ["Discrete Optimization"]
 categories: "Discrete Optimization"
 excerpt_separator: <!--start-->
@@ -35,15 +35,14 @@ problem sizes [1].
 
 ## Local Search
 
-From [wikipedia](https://en.wikipedia.org/wiki/Local_search_(optimization),
-local search involves moving "from solution to solution in the space of
-candidate solutions (the search space) by applying local changes, until a
-solution deemed optimal is found or a time bound is elapsed". Since we're
-starting from an initial solution, all the decision variables have a set value
-and what we've got is an initial _state_ [1]. From there a _move_ involves
-changing some of the decision variables so as to move to a new state [1]. We've
-also got the neighborhood which is the "set of moves to consider at each point
-in the search" [1].
+From [wikipedia](https://en.wikipedia.org/wiki/Local_search_optimization), local
+search involves moving "from solution to solution in the space of candidate
+solutions (the search space) by applying local changes, until a solution deemed
+optimal is found or a time bound is elapsed". Since we're starting from an
+initial solution, all the decision variables have a set value and what we've got
+is an initial _state_ [1]. From there a _move_ involves changing some of the
+decision variables so as to move to a new state; we've also got the neighborhood
+which is the "set of moves to consider at each point in the search" [1].
 
 With regards to FLP, an initial solution can be derived via a randomly assigning
 a customer to a facility while keeping track of each facility's current
