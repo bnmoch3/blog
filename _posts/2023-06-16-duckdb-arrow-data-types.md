@@ -3,7 +3,7 @@ layout: post
 title:  "Programmatically creating a DuckDB table from an Arrow schema"
 slug: duckdb-arrow-data-types
 tag: ["duckdb", "arrow", "sql", "python"]
-categories: Python
+categories: "DuckDB Python"
 excerpt_separator: <!--start-->
 ---
 

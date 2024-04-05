@@ -3,7 +3,7 @@ layout: post
 title:  "The Facility Location Problem"
 slug: facility-location-problem
 tag: ["python", "Linear Programming", "PuLP", "minizinc"]
-categories: "Discrete Optimization"
+category: "Discrete Optimization"
 excerpt_separator: <!--start-->
 ---
 

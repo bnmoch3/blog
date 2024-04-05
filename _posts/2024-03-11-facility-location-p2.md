@@ -3,7 +3,7 @@ layout: post
 title:  "Minizinc: Alternative Modeling Approaches for the Facility Location Problem"
 slug: facility-location-problem-p2
 tag: ["Discrete Optimzation", "minizinc"]
-categories: "Discrete Optimization"
+category: "Discrete Optimization"
 excerpt_separator: <!--start-->
 ---
 

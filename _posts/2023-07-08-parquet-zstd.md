@@ -3,7 +3,7 @@ layout: post
 title:  "Parquet + Zstd: Smaller faster data formats"
 slug: parquet-zstd
 tag: ["DuckDB", "Python", "Arrow"]
-categories: Python
+categories: "DuckDB"
 excerpt_separator: <!--start-->
 ---
 

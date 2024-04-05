@@ -3,7 +3,7 @@ layout: post
 title:  "Guided Local Search for the Capacitated Facility Location Problem"
 slug:  guided-local-search-flp
 tag: ["Discrete Optimization"]
-categories: "Discrete Optimization"
+category: "Discrete Optimization"
 excerpt_separator: <!--start-->
 ---
 

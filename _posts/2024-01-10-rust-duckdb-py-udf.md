@@ -3,7 +3,7 @@ layout: post
 title:  "Vectorized DuckDB UDFs with Rust and Python FFI"
 slug: rust-duckdb-py-udf
 tag: ["Rust", "Python", "DuckDB"]
-category: "Python"
+categories: "DuckDB Python"
 excerpt_separator: <!--start-->
 ---
 
