@@ -146,16 +146,18 @@ is why the JIT scalar version doesn't improve performance much.
 
 To mitigate against this overhead, DuckDB offers a third kind of UDFs -
 vectorized UDFs. These take in inputs as vectors and produce outputs as vectors.
-These allow for zero-copy between the database and client code (no translation)
-plus systems-wise, benefit from improved cache locality.
+They also allow for zero-copy between the database and client code (no
+translation overhead); additionally, systems-wise, they benefit from improved
+cache locality.
 
 For vectorized UDFs, DuckDB uses the [Arrow](https://arrow.apache.org/) format
 to provide inputs and take the output.
 
 Let's convert the haversine UDFs above from scalar into vectorized. I'll skip
 non-JIT vectorized functions and head straight to the JIT version since in my
-benchmarks, vectorized non-JIT versions ended up performing even worse than
-their scalar equivalents, sometimes by a factor of 5.
+benchmarks across other datasets and problems, vectorized non-JIT versions ended
+up performing even worse than their scalar equivalents, sometimes by a factor
+of 5.
 
 Numba comes with built-in support for Numpy arrays. In order to provide
 Arrow-based arrays as input, we have to extend Numba's typing layer. Uwe Korn
@@ -190,11 +192,11 @@ def _calc_haversine_dist_vectorized(x0, y0, x1, y1, out, len_):
         out[i] = distance
 ```
 
-A good rule of thumb whenever one's using numpy is to avoid explicit for loops
+A good rule of thumb whenever one's using numpy is to avoid explicit for-loops
 and rely on numpy's built-in vectorized functions. With Numba though, we're more
-than encouraged to use such explicit for loops. Numba in turn receives these
-for-loops and compiles them into relatively efficient procedures, taking
-advantage of all the optimizations that LLVM provides.
+than encouraged to use such for-loops. Numba in turn receives these procedures
+and compiles them into relatively efficient procedures, taking advantage of all
+the optimizations that LLVM provides.
 
 As for registering the UDF, the only change we'll make is telling DuckDB that
 we're providing it an "arrow" type UDF rather than a "native" one. We've also
@@ -205,7 +207,6 @@ invoking `_calc_haversine_dist_vectorized`:
 def haversine_dist_udf(x0, y0, x1, y1):
     len_ = len(x0)
     out = np.empty((len_,))
-    vs = tuple(v.to_numpy() for v in (x0, y0, x1, y1))
     _calc_haversine_dist_vectorized(
         *tuple(v.to_numpy() for v in (x0, y0, x1, y1)),
         out=out,
@@ -239,7 +240,8 @@ And for the performance, here's what we get:
 
 ![chart](/assets/images/duckdb_numba_udfs/vec_numba.svg)
 
-A near 9X improvement with the vectorized version taking 2.998 seconds!
+A near 9X improvement with the vectorized version taking 2.998 seconds vs the
+26.7 seconds that the native scalar UDF takes!
 
 ## Comparison with Rust-based UDFs
 
@@ -294,10 +296,10 @@ development or build-time dependency.
 Both the JIT and Rust-based vectorized UDFs provide decent performance but
 there's nothing quite like good old-fashioned SQL.
 
-StackOverflow user TautrimasPajarskas was quite kind to provide a
+StackOverflow user TautrimasPajarskas was kind enough to provide a
 [pure SQL-based approach](https://stackoverflow.com/a/72730460) for calculating
-the haversine distance and it's performance blows all other approaches out of
-the water. Here's the query in all its glory:
+the haversine distance . Its performance blows all other approaches out of the
+water. Here's the query in all its glory:
 
 ```sql
 with distances as (
@@ -321,7 +323,7 @@ On benchmarking, it clocks in at 347.9 milliseconds:
 ![chart](/assets/images/duckdb_numba_udfs/pure_sql.svg)
 
 Only issue I had with the pure SQL approach was that the final value veered a
-bit off from all other answers, I'm guessing because DuckDB's re-ordering of
+bit off from all other answers, I'm guessing because of DuckDB's re-ordering of
 floating-point operations. To be fair, this isn't their fault per se since SQL
 by definition is not imperative.
 
@@ -333,9 +335,9 @@ computation at the client's side. The performance isn't quite bad as we'll see
 but I often hesitate relying on such approaches for a couple of reasons [1]:
 
 - Performance and Resource Usage: DuckDB can adjust its execution strategy based
-  on metadata. If the dataset is small, DuckDB will use fewer threads. If the
-  dataset can't fit entirely in memory, DuckDB will definitely do a better job
-  buffering the needed working set than I can.
+  on the metadata it keeps around. If the dataset is small, DuckDB will use
+  fewer threads. If the dataset can't fit entirely in memory, DuckDB will
+  definitely do a better job buffering the needed working set than I can.
 - Integration with SQL: while average is a simple operation that can be done in
   the client's side, for more complex upstream operations such as window
   queries, CTEs or joins, I'd prefer to keep everything within SQL via UDFs and
@@ -388,8 +390,9 @@ print(res)
 Performance-wise, this is faster than using the vectorized UDFs though it's
 still not as fast as the pure-SQL approach:
 
-If you've got the relevant GPU, Numba also let's you use CUDA quite easily by
-just changing the `target`:
+If you've got an Nvidia GPU plus all the relevant drivers and libraries
+installed, Numba also let's you use CUDA quite easily by just changing the
+`target`:
 
 ```python
 get_dist_cuda = vectorize(spec, target="cuda")(_calc_haversine_dist)
@@ -403,11 +406,11 @@ Performance-wise, in my machine, it's similar to the OpenMP CPU-based version
 ![chart](/assets/images/duckdb_numba_udfs/export_to_numpy.svg)
 
 I didn't use GPU-based UDFs for the vectorized functions since I cannot directly
-control the size of chunks DuckDB feeds into the UDFs: the sizes work for CPU
-based vectorized UDFs but are rather small for the GPU equivalent ones thus
-resulting in high copy overhead to and from the device relative to the time
-spent on computation. Also there's definitely ways to improve the CUDA version
-for which I'll look into in the future
+control the size of chunks DuckDB feeds into the UDFs: the sizes DuckDB defaults
+to work for CPU based vectorized UDFs but are rather small for the GPU
+equivalent ones thus resulting in high copy overhead to and from the device
+relative to the time spent on computation. Also there's definitely ways to
+improve the CUDA version for which I'll look into in the future.
 
 ## Conclusion
 
@@ -429,7 +432,7 @@ entries = {
 }
 ```
 
-And here's the [code](https://github.com/bnm3k/duckdb-udf-numba-jit)
+And here's the [code](https://github.com/bnm3k/duckdb-udf-numba-jit).
 
 There's of course the bane of SQL - handling NULLs within the UDFs, which I
 skipped in the interest of time and simplicity.
