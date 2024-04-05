@@ -137,10 +137,10 @@ with all the best practices applied. The dataset has 10,000,000 entries.
 
 ![chart](/assets/images/duckdb_numba_udfs/py_native.svg)
 
-Unfortunately, the performance benefit is negligible. As explained in [1], usage
-of Python-native UDFs incurs the overhead of translating DuckDB values into
-Python objects and vice versa. That is why the JIT scalar version doesn't
-improve performance much.
+Unfortunately, the performance benefit is negligible (26.7 seconds for no JIT vs
+23.443 with JIT). As explained in [1], usage of Python-native UDFs incurs the
+overhead of translating DuckDB values into Python objects and vice versa. That
+is why the JIT scalar version doesn't improve performance much.
 
 ## Vectorized JIT UDFs
 
@@ -202,7 +202,7 @@ got to convert the inputs into numpy arrays using the `to_numpy` method before
 invoking `_calc_haversine_dist_vectorized`:
 
 ```python
-def haversine_udf(x0, y0, x1, y1):
+def haversine_dist_udf(x0, y0, x1, y1):
     len_ = len(x0)
     out = np.empty((len_,))
     vs = tuple(v.to_numpy() for v in (x0, y0, x1, y1))
@@ -215,7 +215,7 @@ def haversine_udf(x0, y0, x1, y1):
 
 conn.create_function(
     "haversine_dist",
-    fn,
+    haversine_dist_udf,
     [DOUBLE, DOUBLE, DOUBLE, DOUBLE],
     DOUBLE,
     type="arrow",
@@ -235,20 +235,20 @@ The code looks almost C-like: we're "allocating" the output buffer in the
 the parameters. `_calc_haversine_dist_vectorized` returns a numpy array which is
 zero-copied into an arrow array that DuckDB expects.
 
-As for the performance, here's what we get:
+And for the performance, here's what we get:
 
 ![chart](/assets/images/duckdb_numba_udfs/vec_numba.svg)
 
-A near 9X improvement!
+A near 9X improvement with the vectorized version taking 2.998 seconds!
 
 ## Comparison with Rust-based UDFs
 
 I've [previously detailed](https://bnm3k.github.io/blog/rust-duckdb-py-udf) how
 one can implement such vectorized UDFs in Rust and invoke them via FFI. If you
 know enough Rust, the hardest part at least for me is setting up and configuring
-maturin and pyO3 (aka the build and integration steps) plus making sure I can
+maturin and pyO3 (aka the build and integration steps), plus making sure I can
 import the package in Python (environment stuff). Writing the function should be
-quite fast:
+quite straight-forward:
 
 ```rust
 // imports ...
@@ -274,11 +274,12 @@ fn calc_haversine_dist(x0: f64, y0: f64, x1: f64, y1: f64) -> f64 {
     return distance;
 }
 
-// add above function into the py module
+// register above function into the py module
 ```
 
 I'm using this method just to see how well the Numba-JIT version compares to the
-Rust-based version. The results are quite pleasing:
+Rust-based version. The results are quite pleasing since the Rust-based
+versiontakes 2.566 seconds vs the 2.998 seconds the the JIT version took:
 
 ![chart](/assets/images/duckdb_numba_udfs/vec_numba_rust.svg)
 
@@ -293,7 +294,7 @@ development or build-time dependency.
 Both the JIT and Rust-based vectorized UDFs provide decent performance but
 there's nothing quite like good old-fashioned SQL.
 
-StackOverflow user was quite kind to provide a
+StackOverflow user TautrimasPajarskas was quite kind to provide a
 [pure SQL-based approach](https://stackoverflow.com/a/72730460) for calculating
 the haversine distance and it's performance blows all other approaches out of
 the water. Here's the query in all its glory:
@@ -315,7 +316,7 @@ select
 from distances
 ```
 
-As for its relative performance:
+On benchmarking, it clocks in at 347.9 milliseconds:
 
 ![chart](/assets/images/duckdb_numba_udfs/pure_sql.svg)
 
@@ -396,7 +397,8 @@ dists = get_dist_cuda(*args)
 avg = get_avg(dists)
 ```
 
-Performance-wise, in my machine, it's similar to the OpenMP CPU-based version:
+Performance-wise, in my machine, it's similar to the OpenMP CPU-based version
+(1.803 seconds for CUDA vs 1.715 for OpenMP):
 
 ![chart](/assets/images/duckdb_numba_udfs/export_to_numpy.svg)
 
@@ -413,7 +415,7 @@ To sign off, here are all the benchmarking results in one graph.
 
 ![chart](/assets/images/duckdb_numba_udfs/all.svg)
 
-And here are the raw values for reference:
+Here are the raw values for reference:
 
 ```python
 entries = {
@@ -426,6 +428,8 @@ entries = {
     "Export to Numpy - CUDA": 1.803,  # seconds
 }
 ```
+
+And here's the [code](https://github.com/bnm3k/duckdb-udf-numba-jit)
 
 There's of course the bane of SQL - handling NULLs within the UDFs, which I
 skipped in the interest of time and simplicity.
