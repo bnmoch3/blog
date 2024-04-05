@@ -71,7 +71,7 @@ from duckdb.typing import DOUBLE
 conn = duckdb.connect("points.db")
 conn.create_function(
     "haversine_dist",
-    fn,
+    _calc_haversine_dist,
     [DOUBLE, DOUBLE, DOUBLE, DOUBLE],
     DOUBLE,
     type="native",
@@ -94,7 +94,7 @@ from points
 
 ## Speeding up Python-Native UDFs with Numba
 
-Unfortunately, its performance leaves a lot to desire, that is compared to a
+Unfortunately, its performance leaves a lot to be desired, that is compared to a
 custom script. A good piece of advice is to profile the code and figure out
 where the bottleneck is. I'll skip this advice and simply assume that it's slow
 because of the quote-unquote python interpreter overhead, particularly at the
@@ -408,7 +408,7 @@ Performance-wise, in my machine, it's similar to the OpenMP CPU-based version
 I didn't use GPU-based UDFs for the vectorized functions since I cannot directly
 control the size of chunks DuckDB feeds into the UDFs: the sizes DuckDB defaults
 to work for CPU based vectorized UDFs but are rather small for the GPU
-equivalent ones thus resulting in high copy overhead to and from the device
+equivalent ones thus resulting in high copy overhead to and fro the device,
 relative to the time spent on computation. Also there's definitely ways to
 improve the CUDA version for which I'll look into in the future.
 
