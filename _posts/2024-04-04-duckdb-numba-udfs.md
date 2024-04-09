@@ -12,13 +12,15 @@ you can figure out how to write it
 
 <!--start-->
 
-DuckDB's Python API supports extending of core functionality with user-defined
+DuckDB's Python API supports extending its core functionality with user-defined
 functions (UDFs). This comes quite in handy when we've got use-cases for which
 DuckDB does not provide built-in functions. To demonstrate the utility of UDFs,
 I'll pick a rather contrived problem: we've got a list of pairs of geographical
-points (latitude, longitude) - we need to compute the
+points (latitude, longitude) and we need to compute the
 [haversine distance](https://en.wikipedia.org/wiki/Haversine_formula) between
-all the pairs then get the average distance. Here's the schema of the table:
+all the pairs then get the average distance.
+
+Here's the schema of the table:
 
 ```
 > create table points from select * from 'data/points.parquet';
@@ -97,14 +99,15 @@ from points
 Unfortunately, its performance leaves a lot to be desired, that is compared to a
 custom script. A good piece of advice is to profile the code and figure out
 where the bottleneck is. I'll skip this advice and simply assume that it's slow
-because of the quote-unquote python interpreter overhead, particularly at the
+because of the quote-unquote python interpreter overhead, particularly at
 `_calc_haversine_dist`.
 
 Luckily, we've got a tool that can speed up computation-heavy procedures in
 Python: [Numba](https://numba.readthedocs.io/en/stable/). From its docs, Numba
 is described as 'a just-in-time compiler for Python that works best on code that
-uses NumPy arrays and functions, and loops'. Let's apply it to
-`_calc_haversine_dist` and see if it's up to the task:
+uses NumPy arrays and functions, and loops'.
+
+Let's apply it to `_calc_haversine_dist` and see if it's up to the task:
 
 ```python
 from numba import jit
@@ -116,38 +119,41 @@ _calc_haversine_dist_py_jit = jit(nopython=True, nogil=True, parallel=False)(
 
 In almost all usages of Numba that you'll see out there, `jit` is applied as a
 decorator - my non-standard usage of invoking it as a function is to make it
-clear that we're creating a new compiled function. Also I'll be reusing
-`_calc_haversine_dist` in other contexts later on so I want to keep it as is.
+clear that we're creating a new jit-compiled function. Also I'll be reusing
+`_calc_haversine_dist` in other contexts later on so I want to keep the original
+python version as is.
 
 `nopython=True` prevents Numba from falling back into object mode in cases where
 Numba does not 'understand' a data type. Since all our inputs and outputs are
-numeric, Numba should be able to handle them natively without any error, setting
-`nopython` to True is more of a sanity check. `nogil=True` ensures that upon
-invocation the function does not hold the GIL since we don't need it - allowing
-for actual parallelism. Finally with `parallel=False`, we don't want Numba to
-manage parallelism for us - that's left for DuckDB and it's query executor since
-it'll have better info on how much resources we need and will schedule the
-operations better given it's cognizant of the upstream operators such as `avg`
-in our case.
+numeric, Numba should be able to handle them natively without any error -
+setting `nopython` to True is more of a sanity check. `nogil=True` ensures that
+upon invocation the function does not hold the GIL since we don't need it thus
+allowing for actual parallelism. Finally with `parallel=False`, we don't want
+Numba to manage parallelism for us - that's left for DuckDB and its query
+executor since it'll have better info on how much resources we need and will
+schedule the operations better given it's cognizant of the upstream operators
+such as `avg` in our case.
 
 Does the JIT-compiled alternative provide any performance benefits - let's see
 the results. As an aside, I carried out all the benchmarks using
 [hyperfine](https://github.com/sharkdp/hyperfine) and picked the best time -
-with all the best practices applied. The dataset has 10,000,000 entries.
+with all the usual benchmarking best practices applied. The dataset has
+10,000,000 entries.
 
 ![chart](/assets/images/duckdb_numba_udfs/py_native.svg)
 
 Unfortunately, the performance benefit is negligible (26.7 seconds for no JIT vs
-23.443 with JIT). As explained in [1], usage of Python-native UDFs incurs the
-overhead of translating DuckDB values into Python objects and vice versa. That
-is why the JIT scalar version doesn't improve performance much.
+23.443 with JIT). As explained in the DuckDB documentation [1], usage of
+Python-native UDFs incurs the overhead of translating DuckDB values into Python
+objects and vice versa. That is why the JIT scalar version doesn't improve
+performance much.
 
 ## Vectorized JIT UDFs
 
 To mitigate against this overhead, DuckDB offers a third kind of UDFs -
-vectorized UDFs. These take in inputs as vectors and produce outputs as vectors.
-They also allow for zero-copy between the database and client code (no
-translation overhead); additionally, systems-wise, they benefit from improved
+_vectorized UDFs_. These take in inputs as vectors and produce outputs as
+vectors. They also allow for zero-copy between the database and client code (no
+translation overhead). Additionally, systems-wise, they benefit from improved
 cache locality.
 
 For vectorized UDFs, DuckDB uses the [Arrow](https://arrow.apache.org/) format
@@ -155,9 +161,9 @@ to provide inputs and take the output.
 
 Let's convert the haversine UDFs above from scalar into vectorized. I'll skip
 non-JIT vectorized functions and head straight to the JIT version since in my
-benchmarks across other datasets and problems, vectorized non-JIT versions ended
-up performing even worse than their scalar equivalents, sometimes by a factor
-of 5.
+benchmarks even across other datasets and problems, vectorized non-JIT versions
+ended up performing even worse than their scalar equivalents, sometimes by a
+factor of 5.
 
 Numba comes with built-in support for Numpy arrays. In order to provide
 Arrow-based arrays as input, we have to extend Numba's typing layer. Uwe Korn
@@ -194,7 +200,7 @@ def _calc_haversine_dist_vectorized(x0, y0, x1, y1, out, len_):
 
 A good rule of thumb whenever one's using numpy is to avoid explicit for-loops
 and rely on numpy's built-in vectorized functions. With Numba though, we're more
-than encouraged to use such for-loops. Numba in turn receives these procedures
+than encouraged to use such for-loops. Numba in turn receives these for-loops
 and compiles them into relatively efficient procedures, taking advantage of all
 the optimizations that LLVM provides.
 
@@ -280,16 +286,16 @@ fn calc_haversine_dist(x0: f64, y0: f64, x1: f64, y1: f64) -> f64 {
 ```
 
 I'm using this method just to see how well the Numba-JIT version compares to the
-Rust-based version. The results are quite pleasing since the Rust-based
-versiontakes 2.566 seconds vs the 2.998 seconds the the JIT version took:
+Rust-based version. The results are quite pleasing since the Rust-based version
+takes 2.566 seconds vs the 2.998 seconds the the JIT version took:
 
 ![chart](/assets/images/duckdb_numba_udfs/vec_numba_rust.svg)
 
 Now, I do enjoying using Rust every now and then but for quick development,
-Numba does provide some bang for our buck. If there are some concerns about
-having to bundle the entirety of Numba as a dependency for other users, Numba
-can also AOT compile the function into a distributable module and be kept as a
-development or build-time dependency.
+Numba does provide some bang for our buck. If there are concerns about having to
+bundle the entirety of Numba as a dependency for other users, Numba can also AOT
+compile the function into a distributable module and be kept as a
+development/build-time dependency.
 
 ## SQL Functions
 
@@ -298,7 +304,7 @@ there's nothing quite like good old-fashioned SQL.
 
 StackOverflow user TautrimasPajarskas was kind enough to provide a
 [pure SQL-based approach](https://stackoverflow.com/a/72730460) for calculating
-the haversine distance . Its performance blows all other approaches out of the
+the haversine distance. Its performance blows all other approaches out of the
 water. Here's the query in all its glory:
 
 ```sql
@@ -330,24 +336,25 @@ by definition is not imperative.
 ## Export entire dataset to Numpy
 
 There is yet another approach. DuckDB's Python API let's as efficiently export
-the entire dataset into numpy. From there we can carry out the entire
-computation at the client's side. The performance isn't quite bad as we'll see
-but I often hesitate relying on such approaches for a couple of reasons [1]:
+the entire dataset into numpy. From there we can carry out the whole computation
+at the client's side. The performance isn't quite bad as we'll see but I often
+hesitate relying on such approaches for a couple of reasons [1]:
 
 - Performance and Resource Usage: DuckDB can adjust its execution strategy based
   on the metadata it keeps around. If the dataset is small, DuckDB will use
   fewer threads. If the dataset can't fit entirely in memory, DuckDB will
-  definitely do a better job buffering the needed working set than I can.
+  definitely do a better job buffering the needed working set in memory than I
+  can.
 - Integration with SQL: while average is a simple operation that can be done in
   the client's side, for more complex upstream operations such as window
   queries, CTEs or joins, I'd prefer to keep everything within SQL via UDFs and
   have DuckDB figure out the execution
 
 With that being said, let's see how we can leverage Numba for computation. Numba
-does provide a means for parallelization (which I had to ensure is off with the
-`parallel=False` parameter). By default, it will use a simple built-in
-`workqueue` for the threading layer but if OpenMP is present, it'll use that
-instead. I opted for OpenMP since it's faster.
+does provide a means for parallelization (which earlier on I had to ensure is
+off with the `parallel=False` parameter). By default, it will use a simple
+built-in `workqueue` for the threading layer but if OpenMP is present, it'll use
+that instead. I opted for OpenMP since it's faster.
 
 First, let's export all the points into numpy via the `fetchnumpy` method:
 
@@ -388,7 +395,7 @@ print(res)
 ```
 
 Performance-wise, this is faster than using the vectorized UDFs though it's
-still not as fast as the pure-SQL approach:
+still not as fast as the pure-SQL approach.
 
 If you've got an Nvidia GPU plus all the relevant drivers and libraries
 installed, Numba also let's you use CUDA quite easily by just changing the
@@ -408,7 +415,7 @@ Performance-wise, in my machine, it's similar to the OpenMP CPU-based version
 I didn't use GPU-based UDFs for the vectorized functions since I cannot directly
 control the size of chunks DuckDB feeds into the UDFs: the sizes DuckDB defaults
 to work for CPU based vectorized UDFs but are rather small for the GPU
-equivalent ones thus resulting in high copy overhead to and fro the device,
+equivalent ones thereby resulting in high copy overhead to and fro the device
 relative to the time spent on computation. Also there's definitely ways to
 improve the CUDA version for which I'll look into in the future.
 
