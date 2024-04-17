@@ -7,6 +7,10 @@ category: "Distributed Systems"
 excerpt_separator: <!--start-->
 ---
 
+Using MIP solvers to model and optimize shard placement
+
+<!--start-->
+
 In distributed OLAP database systems, tables and indices are partitioned into
 shards and those shards are placed across a set of servers; queries are then
 routed to the assigned shards' servers during execution - basic stuff.
