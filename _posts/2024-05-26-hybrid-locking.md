@@ -277,7 +277,7 @@ lock that ticks all the boxes all while being quite fast and scalable.
 
 ## References
 
-1. Scalable and Robust Latches for Database Systems
+1. [Scalable and Robust Latches for Database Systems](https://db.in.tum.de/~boettcher/locking.pdf)
 2. [Locking in Webkit - Filip Pizlo](https://webkit.org/blog/6161/locking-in-webkit/)
 3. [Spinlocks Considered Harmful - matklad](https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html)
 4. [Mutexes Are Faster Than Spinlocks - matklad](https://matklad.github.io/2020/01/04/mutexes-are-faster-than-spinlocks.html)
