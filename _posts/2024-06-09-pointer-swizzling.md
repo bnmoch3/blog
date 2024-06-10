@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Pointer Swizzling Buffer Pools"
-slug: s
+slug: pointer-swizzling
 tag: ["Database Internals"]
 category: "Database Internals"
 excerpt_separator: <!--start-->
