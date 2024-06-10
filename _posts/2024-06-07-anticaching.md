@@ -11,10 +11,6 @@ Track hot/cold data at tuple-level granularity. Evict LRU cold data in blocks.
 
 <!--start-->
 
-## Intro
-
-![image description](/assets/images/larger_than_mem/anticaching/)
-
 ## Overview
 
 In main-memory databases, when the database size exceeds the main memory size,
