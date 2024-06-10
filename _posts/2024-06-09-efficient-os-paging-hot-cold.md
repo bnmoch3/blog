@@ -31,7 +31,7 @@ processing throughput decreases as OS paging kicks in. The throughput decrease
 is more severe in instances where the RAM size is smaller.
 
 Figure from [1]:
-![figure 1](/assets/images/efficient_os_paging_hot_cold/figure_1.png)
+![figure 1](/assets/images/larger_than_mem/efficient_os_paging_hot_cold/figure_1.png)
 
 The authors instead propose a smarter way to rely on OS paging: given that most
 if not all OLTP workloads tend to exhibit skew whereby some records are hot and
@@ -45,7 +45,7 @@ swap out LRU resident regions whenever a query accesses a cold paged out tuple.
 Step-by-step, the authors' solution is as follows:
 
 Figure from [1]:
-![figure 2](/assets/images/efficient_os_paging_hot_cold/figure_2_system_architecture.png)
+![figure 2](/assets/images/larger_than_mem/efficient_os_paging_hot_cold/figure_2_system_architecture.png)
 
 1. **Sample accesses**: log every tuple access into a circular buffer per a
    given sampling frequency. A log entry should include the tuple ID and its
@@ -82,7 +82,7 @@ three cases:
 - data-reorganization: database restricted to 5GB of main memory
 
 Figure from [1]:
-![figure 4](/assets/images/efficient_os_paging_hot_cold/figure_4.png)
+![figure 4](/assets/images/larger_than_mem/efficient_os_paging_hot_cold/figure_4.png)
 
 From the paper: "the hot/cold data separation stabilizes throughput within 7% of
 the in-memory performance, although the actual data stored grows 50x larger than
