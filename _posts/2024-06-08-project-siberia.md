@@ -56,7 +56,7 @@ The main problem the paper addresses is the overhead of online cache maintenance
 both CPU-wise and memory-wise. In the
 [Anti-Caching overview post](/blog/anti-caching), we saw this overhead addressed
 by using only a sample of the accesses to update the LRU chain. In future posts,
-we'll see other approaches that lower/coarsen the granurality from record level
+we'll see other approaches that lower/coarsen the granularity from record level
 accesses to page level accesses and even use hardware support so as to minimize
 the cache maintenance overhead.
 
