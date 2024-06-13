@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Leanstore: High Peformance Low-Overhead Buffer Pool"
+title:  "Leanstore: High Performance Low-Overhead Buffer Pool"
 slug: leanstore
 tag: ["Database Internals"]
 category: "Database Internals"
@@ -22,7 +22,8 @@ Let's start of with the numbers and charts showcasing Leanstore's performance:
 
 Leanstore has [two boxes to tick](/blog/larger-than-mem-intro): (1) does it
 offer great performance in the case where the working set fits entirely
-in-memory, and (2) does it offer decent larger-than-memory performance
+in-memory, and (2) does it offer decent larger-than-memory performance as the
+working set's size increases.
 
 In the first case where the working dataset fits entirely in-memory, a b-tree
 implemented on top of Leanstore is has almost the same performance as an
@@ -109,7 +110,9 @@ parent holds a reference to a child page and that page is on secondary storage
 2. If the page is on disk, access the IO component and initialize the IO as
    follows:
    - Acquire the (global) lock of the hash table within IO Component. This hash
-     tables maps on-disk page IDs to IO frames.
+     tables maps on-disk page IDs to IO frames. The authors argue that this lock
+     will not impede scalability & performance since either way, I/O operations
+     are slower than the preceding lock acquisition [1].
    - Create an IO frame and insert it into the hash table. This consists of an
      operating system mutex and a pointer to the in-memory location where the
      page will be loaded to. A key advantage of OS mutexes is that they make
@@ -129,7 +132,29 @@ parent holds a reference to a child page and that page is on secondary storage
 Suppose a page was already swizzled; the worker thread has only one step before
 accessing the page: an if statement to check the bit indicator, that's it!.
 
-## Replacement Strategy (LeanEvit)
+### Scaling I/O
+
+The latest iteration of Leanstore gets rid of the single lock over the hash
+table for managing IO operation [6]. Turns out the authors' initial argument
+(that a single lock over will not become a bottleneck) became invalidated with
+SSDs getting faster and I/O bandwidth increasing:
+
+> With one SSD, the single I/O stage with the global mutex in the original
+> LeanStore design from 2018 was enough to saturate the SSD bandwidth. With
+> today’s PCIe 4.0, we can attach an array of, e.g., ten NVMe SSDs..., where
+> each drive can deliver up to 7000 MB/s read bandwidth and 3800 MB/s write
+> bandwidth. In such a system, we need high concurrency to issue a large number
+> of parallel I/O requests to fully utilize all SSDs. The global mutex that
+> protects the I/O hash table would quickly become a scalability bottleneck and
+> prevent us from reaching exploiting the maximum bandwidth that modern flash
+> drives can deliver. [6]
+
+Currently, Leanstore uses a partitioned I/O stage with the page ID determining
+which partition will be used to handle and synchronize the operation [6]. Each
+partition is protected by a lock and allows concurrent threads requesting the
+same page to synchronize their requests and also to 'park' as they wait along.
+
+## Replacement Strategy 1: LeanEvict
 
 Memory is a finite resources and eventually, a buffer pool must decide what to
 evict and what to keep around. Hence all the caching algorithms designed for
@@ -210,9 +235,40 @@ optimum caching strategy would give a 96.3% hit rate; LeanEvict has a 92.8% hit
 rate while LRU is at 93.1%; and 2Q (everyone's favourite patented caching
 algorithm) is at 93.8%.
 
-## Synchronization (Optimistic Locking)
+## Replacement Strategy 2: Swizzling-Based Second Chance Implementation
 
-For page specific synchronization, Leanstore uses optimistic latches: each page
+Right when I though Leanstore's replacement couldn't approach couldn't get any
+better, the authors go ahead to switch to something simpler that still does the
+job quite fine - turns out the Cooling Stage was adding unnecessary complexity
+[6]. Currently, Leanstore uses Second Chance replacement. A swizzled page is
+assumed to be, or rather starts of as hot, so no need to set the hit bit upon a
+cache hit as is the case in the textbook version of Second Chance. Hence,
+accessing a hot page still incurs the same cost as in the initial version.
+
+As for selecting candidates for eviction, a random set of 64 buffer frames is
+sampled. Within that set, Leanstore carries out the following actions depending
+on the page's states:
+
+- Hot page: change page's status to cool, 'inform' the page's parent that its
+  child is cool. Unlike, the previous implementation whereby the parent swaps
+  the virtual address with a page ID, in the current implementation, the parent
+  only has to tag the virtual address as cool (set the MSB to 1)
+- Cool page: if page is dirty write back to disk, or evict immediately otherwise
+  [6]
+
+With this approach in place, Leanstore no longer needs the cooling stage's hash
+table and FIFO queue. Also, instead of burdening worker threads with the task of
+cooling and evicting pages, the current iteration has background Page Provider
+threads that carry out the cooling and eviction. I'm curious though: if
+Leanstore still allows for cool pages that are still in-memory to transition back
+to hot upon a hit and if so, how foreground worker threads that 'reheat' a page
+coordinate with the background page provider threads that might evict that same
+page. This is probably one of those details that you have to read in the actual
+code since there's only so much detail that can be included in the paper.
+
+## Synchronization
+
+Wrt page specific synchronization, Leanstore uses optimistic latches: each page
 has a counter: writers increment the counter before beginning modifications and
 readers "can proceed without acquiring any latches, but validate their reads
 using the version counters instead (similar to optimistic concurrency control)"
@@ -253,6 +309,28 @@ thread can immediately re-use the page for new data after incrementing the
 version counter; the reader will compare against the counter's new value and
 retry the operation.
 
+The initial implementation for Leanstore relied on spinlocks for exclusive
+locks. What much can be said about spinlocks - easy to implement, easy to assume
+they provide high performance but they are a
+[bad idea](https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html).
+Given that many of the researchers developing Leanstore also published papers on
+[hybrid locking](/blog/dbms-hybrid-locking) and lightweight synchronization
+primitives, it was only a matter of time before they adopted their techniques
+within Leanstore [5,6]. In the current Leanstore implementation, pages support
+optimistic locking (for short reads), shared pessimistic mode (blocks out
+concurrent writers so no need to restart, for longer page reads) and exclusive
+mode (mostly for writers, allows for threads waiting in line to be efficiently
+'parked' rather than loop endlessly) [5, 6].
+
+Unsurprisingly, Leanstore still retains its excellent performance that scales as
+the number of threads increases [6]. WiredTiger (RU) comes quite close in
+read-only workloads but that's only without any concurrency control, shared
+memory reclamation (hazard pointers) and lock-free techniques whatsoever - the
+Leanstore numbers are with its synchronization primitives still 'turned' on
+(both charts sourced from [6]):
+
+![Figure 6,7](/assets/images/leanstore/in_mem_scalability.png)
+
 ## Miscellaneous
 
 TODO
@@ -265,3 +343,5 @@ TODO
 3. [Leanstore - Viktor Leis - CMU DB Talks](https://www.youtube.com/watch?v=o467OKy7Q0g)
 4. [Umbra: A Disk-Based System with In-Memory Performance - Thomas Neumann,
    Michael Freitag](https://www.cidrdb.org/cidr2020/papers/p29-neumann-cidr20.pdf)
+5. [Scalable and Robust Latches for Database Systems - Jan Böttcher, Viktor Leis, Jana Giceva, Thomas Neumann, Alfons Kemper](https://db.in.tum.de/~boettcher/locking.pdf)
+6. [The Evolution of LeanStore - Adnan Alhomssi, Michael Haubenschild, Viktor Leis](https://dl.gi.de/server/api/core/bitstreams/edd344ab-d765-4454-9dbe-fcfa25c8059c/content)
