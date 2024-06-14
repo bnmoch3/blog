@@ -89,12 +89,17 @@ the in-memory performance, although the actual data stored grows 50x larger than
 the amount of RAM available. On the other hand, the throughput of the unmodified
 engine drops by 66% when swapping to the SSD".
 
-Overall, this approach seems relatively simpler since much of the heavy-lifting
+Overall, this approach seems relatively simple since much of the heavy-lifting
 is left to the OS. One aspect I'd have wished for the authors to dig deeper into
 is when data-reorganization should be triggered - which exact metrics are
 measured and what thresholds are used. Also, does data-reorganization handle
 only the case where all tuples in a relation have the same size - if otherwise,
-I suppose it'll be much closer to a full-on malloc implementation.
+I suppose it'll be much closer to a full-on seperate malloc implementation.
+There's also
+[vmcache](https://www.cs.cit.tum.de/fileadmin/w00cfj/dis/_my_direct_uploads/vmcache.pdf)
+which can be used to let the system have greater control over page faulting and
+eviction which then provides the option for abort-and-restart if a transaction
+accesses an evicted page.
 
 ## References
 
