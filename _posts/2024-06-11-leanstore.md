@@ -26,13 +26,13 @@ in-memory, and (2) does it offer decent larger-than-memory performance as the
 working set's size increases.
 
 In the first case where the working dataset fits entirely in-memory, a b-tree
-implemented on top of Leanstore is has almost the same performance as an
-in-memory b-tree; both of course outperform 'traditional' disk-based b-trees
-(figure 1 sourced from [1]):
+implemented on top of Leanstore has almost the same performance as an in-memory
+b-tree; both of course outperform traditional disk-based b-trees (graph sourced
+from [1]):
 
 ![Figure 1](/assets/images/leanstore/single_threaded_tpc_100_warehouses.png)
 
-And with multiple threads (figure 8 sourced from [1]):
+And with multiple threads (graph sourced from [1]):
 
 ![Figure 8](/assets/images/leanstore/mt_tpc_100_warehouses.png)
 
@@ -41,9 +41,9 @@ number of threads increases. If a page already is in-memory, a thread doesn't
 have to acquire any lock such as for the hash table to translate the page ID or
 for the updating the cache eviction state.
 
-For the second case, once the working dataset exceeds main-memory, Leanstore
-offers a smooth off-ramp compared to other systems and even the OS itself
-(swapping):
+For the second case (larger-than-memory performance), once the working dataset
+exceeds main-memory, Leanstore offers a smooth off-ramp compared to other
+systems and even the OS itself (swapping):
 
 ![Figure 9](/assets/images//leanstore/larger_than_memory.png)
 
@@ -53,7 +53,7 @@ the authors list the following:
 1. Page translation from disk-resident page identifier to in-memory location
 2. Cache management: determining what pages should be kept in memory and which
    ones should be evicted once more memory is required
-3. IO operations management: loading pages from disk, flushing dirty pages as
+3. I/O operations management: loading pages from disk, flushing dirty pages as
    needed
 
 These are handled within 3 separate data structures in Leanstore:
@@ -61,7 +61,7 @@ These are handled within 3 separate data structures in Leanstore:
 1. Buffer pool - handles page translation
 2. Cooling stage - keeps a pool of pages ready for eviction should space be
    needed
-3. IO Component: manages in-flight IO operations
+3. I/O Component: manages in-flight I/O operations
 
 ![Figure showing states of a page in Leanstore](/assets/images/leanstore/figure_1_leanstore_datastructures.png)
 
@@ -102,28 +102,28 @@ parent holds a reference to a child page and that page is on secondary storage
 (has to be fetched/loaded). Here are the steps that a worker thread takes:
 
 1. Check that the reference indicates the page is on disk. References take up 8
-   bytes. One bit out of the 8 bytes is used to indicate whether a page is on
-   disk or in memory. Once in-memory, only 48-bits (6 bytes) out of the 8 byte
-   virtual address in x86 64 bit machine are used for addressing, so we've a bit
-   more leg room to tag metadata compared to the on-disk page ID (Umbra [4] does
-   take advantage of this).
-2. If the page is on disk, access the IO component and initialize the IO as
+   bytes. One bit is used to indicate whether a page is on disk or in memory.
+   Once in-memory, only 48-bits (6 bytes) out of the 8 byte virtual address in
+   x86 64 bit machine are used for addressing, so we've got a bit more leg room
+   to tag metadata compared to the on-disk page ID (Umbra [4] does take
+   advantage of this).
+2. If the page is on disk, access the I/O component and initialize the I/O as
    follows:
-   - Acquire the (global) lock of the hash table within IO Component. This hash
-     tables maps on-disk page IDs to IO frames. The authors argue that this lock
-     will not impede scalability & performance since either way, I/O operations
-     are slower than the preceding lock acquisition [1].
-   - Create an IO frame and insert it into the hash table. This consists of an
+   - Acquire the (global) lock of the hash table within I/O Component. This hash
+     tables maps on-disk page IDs to I/O frames. The authors argue that this
+     lock will not impede scalability & performance since either way, I/O
+     operations are slower than the preceding lock acquisition [1].
+   - Create an I/O frame and insert it into the hash table. This consists of an
      operating system mutex and a pointer to the in-memory location where the
      page will be loaded to. A key advantage of OS mutexes is that they make
      threads waiting in a low overhead resource-efficient manner (compared to
      spin loops).
-   - Acquire the mutex within the IO frame before proceeding
+   - Acquire the mutex within the I/O frame before proceeding
    - Release the hash table's global lock
    - Issue the read system call. Note that the hash table's lock is released to
-     enable concurrent IO operations. Once the read is complete, release the IO
-     frame's mutex
-3. Suppose a different thread had already issued the IO request for the given
+     enable concurrent I/O operations. Once the read is complete, release the
+     I/O frame's mutex
+3. Suppose a different thread had already issued the I/O request for the given
    page: the current thread will find that there's already an entry for the page
    ID in the hash table then block on its mutex until the load is done.
 4. Once the page is loaded, the reference to the page is swizzled (on-disk page
@@ -135,9 +135,9 @@ accessing the page: an if statement to check the bit indicator, that's it!.
 ### Scaling I/O
 
 The latest iteration of Leanstore gets rid of the single lock over the hash
-table for managing IO operation [6]. Turns out the authors' initial argument
-(that a single lock over will not become a bottleneck) became invalidated with
-SSDs getting faster and I/O bandwidth increasing:
+table for managing I/O operations [6]. Turns out the authors' initial argument
+(that a single lock over will not become a bottleneck) got invalidated with SSDs
+getting faster and their I/O bandwidth increasing:
 
 > With one SSD, the single I/O stage with the global mutex in the original
 > LeanStore design from 2018 was enough to saturate the SSD bandwidth. With
@@ -219,17 +219,17 @@ This image (from the paper [1]) shows all the states a page can be in:
 
 ![Figure showing states of a page in Leanstore](/assets/images/leanstore/figure_3_possible_states_of_a_page.png)
 
-At any point in time, 10% of pages are kept in the cooling stage. The authors
-recommend a value between 5% - 20% which they arrive at experimentally, with 10%
-being a decent starting point. If the working set is close to the buffer pool
-size, a higher percentage means the system will spend a lot of time swizzling
-and unswizzling hot pages [1].
+At any point in time, a fraction of the cached pages are kept in the cooling
+stage. The authors recommend a value between 5% - 20% which they arrive at
+experimentally, with 10% being a decent starting point. If the working set is
+close to the buffer pool size, a higher percentage means the system will spend a
+lot of time swizzling and unswizzling hot pages [1].
 
-Also, like any replacement algorithm worth its salt, lean-evict implements some
+Also, like any replacement algorithm worth its salt, LeanEvict implements some
 form of _scan resistance_: during scans: a worker thread can pre-emptively
-unswizzle a loaded leaf page and add it to the cooling stage.
+unswizzle a loaded page and add it to the cooling stage.
 
-For the sake of comparison, the authors collect traces and see how LeanEvict
+For the sake of comparison, the authors collect traces and compare how LeanEvict
 fares against other cache eviction algorithms. In one particular trace, an
 optimum caching strategy would give a 96.3% hit rate; LeanEvict has a 92.8% hit
 rate while LRU is at 93.1%; and 2Q (everyone's favourite patented caching
@@ -237,13 +237,13 @@ algorithm) is at 93.8%.
 
 ## Replacement Strategy 2: Swizzling-Based Second Chance Implementation
 
-Right when I though Leanstore's replacement couldn't approach couldn't get any
-better, the authors go ahead to switch to something simpler that still does the
-job quite fine - turns out the Cooling Stage was adding unnecessary complexity
-[6]. Currently, Leanstore uses Second Chance replacement. A swizzled page is
-assumed to be, or rather starts of as hot, so no need to set the hit bit upon a
-cache hit as is the case in the textbook version of Second Chance. Hence,
-accessing a hot page still incurs the same cost as in the initial version.
+Right when I though Leanstore's replacement approach couldn't get any better,
+the authors go ahead to switch to something simpler that still does the job
+quite fine - turns out the Cooling Stage was adding unnecessary complexity [6].
+Currently, Leanstore uses Second Chance replacement. A swizzled page is assumed
+to be, or rather starts of as hot, so no need to set the hit bit upon a cache
+hit as is the case in the textbook version of Second Chance. Hence, accessing a
+hot page still incurs the same cost as in the initial version.
 
 As for selecting candidates for eviction, a random set of 64 buffer frames is
 sampled. Within that set, Leanstore carries out the following actions depending
@@ -260,19 +260,19 @@ With this approach in place, Leanstore no longer needs the cooling stage's hash
 table and FIFO queue. Also, instead of burdening worker threads with the task of
 cooling and evicting pages, the current iteration has background Page Provider
 threads that carry out the cooling and eviction. I'm curious though: if
-Leanstore still allows for cool pages that are still in-memory to transition back
-to hot upon a hit and if so, how foreground worker threads that 'reheat' a page
-coordinate with the background page provider threads that might evict that same
-page. This is probably one of those details that you have to read in the actual
-code since there's only so much detail that can be included in the paper.
+Leanstore still allows for cool pages that are still in-memory to transition
+back to hot upon a hit and if so, how foreground worker threads that 'reheat' a
+page coordinate with the background page provider threads that might evict that
+same page. This is probably one of those details that you have to read in the
+actual code since there's only so much detail that can be included in the paper.
 
 ## Synchronization
 
-Wrt page specific synchronization, Leanstore uses optimistic latches: each page
-has a counter: writers increment the counter before beginning modifications and
-readers "can proceed without acquiring any latches, but validate their reads
-using the version counters instead (similar to optimistic concurrency control)"
-[1].
+With regards to page specific synchronization, Leanstore uses optimistic
+latches: each page has a counter: writers increment the counter before beginning
+modifications and readers "can proceed without acquiring any latches, but
+validate their reads using the version counters instead (similar to optimistic
+concurrency control)" [1].
 
 What of the case where one thread is reading a page and another thread wants to
 evict or delete the page (optimistic locks don't block such threads). To begin
