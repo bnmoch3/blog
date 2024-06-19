@@ -105,8 +105,7 @@ parent holds a reference to a child page and that page is on secondary storage
    bytes. One bit is used to indicate whether a page is on disk or in memory.
    Once in-memory, only 48-bits (6 bytes) out of the 8 byte virtual address in
    x86 64 bit machine are used for addressing, so we've got a bit more leg room
-   to tag metadata compared to the on-disk page ID (Umbra [4] does take
-   advantage of this).
+   to tag metadata compared to the on-disk page ID.
 2. If the page is on disk, access the I/O component and initialize the I/O as
    follows:
    - Acquire the (global) lock of the hash table within I/O Component. This hash
@@ -331,9 +330,32 @@ Leanstore numbers are with its synchronization primitives still 'turned' on
 
 ![Figure 6,7](/assets/images/leanstore/in_mem_scalability.png)
 
-## Miscellaneous
+## Umbra: Variable-size Pages
 
-TODO
+Umbra's [4] buffer pool builds upon Leanstore by offering variable-size pages.
+The authors note that [4]:
+
+> ... a buffer manager with variable-size pages, which allows for storing large
+> objects natively and consecutively if needed. Such a design leads to a more
+> complex buffer manager, but it greatly simplifies the rest of the system. If
+> we can rely upon the fact that a dictionary is stored consecutively in memory,
+> decompression is just as simple and fast as in an in-memory system. In
+> contrast, a system with fixed-size pages either needs to re-assemble (and thus
+> copy) the dictionary in memory, or has to use a complex and expensive lookup
+> logic.
+
+Pages in umbra are partitioned into size classes - the smallest size class is 64
+KiB with sizes per class doubling all the way possibly up to the buffer pool's
+entire size. On startup, different private anonymous mappings (not backed by any
+files) are reserved for each size class - these don't consume any physical
+memory yet. An unswizzled pointer (page ID) contains both the tag (indicating
+it's disk-resident) and the size class. Upon reading from disk (via the `pread`)
+system class, it's loaded into the mmap region for its size class and the
+pointer is swizzled. Once swizzled, its pointer does not need to contain the
+size class it belongs to since that can be derived based on the starting virtual
+address. When evicting a page, the `madvise` system call with the
+`MADV_DONTNEED` flag is used so that the underlying physical pages of
+main-memory can be reused.
 
 ## References
 
