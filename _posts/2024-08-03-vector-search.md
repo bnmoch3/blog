@@ -173,6 +173,12 @@ Finally, we can commit the transaction:
 conn.execute("commit")
 ```
 
+Update: With the version of DuckDB (v1.0.0 1f98600c2c) I used at the time of
+writing this post, the index doesn't get picked up by the query planner for some
+reason, probably a bug, so this step can be discarded. For further discussion on
+this, please check [my post](/blog/vss-duckdb-caveats) particularly the section
+on cosine similarity.
+
 ## Vector Search
 
 With the index in place, we can now carry out vector similarity search quite
