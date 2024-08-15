@@ -116,3 +116,136 @@ I didn't add the limit clauses in the sub queries particularly the one for
 semantic search - I'm being optimistic here that DuckDB's query optimizer will
 figure it out. Though as always, it's best to check the query plan and ensure
 we're ending up with an index scan rather than a sequential scan
+
+## RRF using Polars
+
+Here's how to calculate RRF using Polars, for comparison's sake. I'll post the
+snippets bit by bit with explanations then post the whole code at a go.
+
+Suppose `search_results` consists of PyArrow tables and each table has an `id`
+column for the document ID and a `score` column for the score assigned by the
+search/retrieval algorithm. The higher the score the 'closer'/more relevant the
+document is to the query.
+
+To convert a pyarrow table to a polars dataframe:
+
+```python
+df = pl.from_arrow(tbl)
+```
+
+To assign a rank to a document based on its score. This snippet also drops the
+`score` column since once we have the rank we don't need the score (for RRF)
+
+```python
+df
+.with_columns(
+    pl.col("score")
+    .rank(method="dense", descending=True)
+    .alias("rank")
+)
+.drop("score")
+```
+
+To 'gather' all the rankings into a single dataframe, use `pl.concat` which
+takes in an iterator/list of dataframes
+
+```python
+df = pl.concat(
+    pl.from_arrow(tbl)
+    .with_columns(
+        pl.col("score")
+        .rank(method="dense", descending=True)
+        .alias("rank")
+    )
+    .drop("score")
+    for r in search_results
+)
+```
+
+Next, group all the rows and gather the different rankings into a list:
+
+```python
+df = df.agg(pl.col("rank").alias("ranks"))
+```
+
+If we print the dataframe at this point, we might get something similar to:
+
+```
+shape: (5, 2)
+┌──────┬───────────┐
+│ id   ┆ ranks     │
+│ ---  ┆ ---       │
+│ u32  ┆ list[u32] │
+╞══════╪═══════════╡
+│ 2104 ┆ [2, 3]    │
+│ 2256 ┆ [1, 1]    │
+│ 2056 ┆ [3, 2]    │
+└──────┴───────────┘
+```
+
+Finally to calculate the RRF score:
+
+```python
+df = df.with_columns(
+    (
+        1
+        / pl.col("ranks")
+        .list.eval(pl.element() + K)
+        .list.sum()
+    ).alias("score")
+)
+.drop("ranks")
+```
+
+If we print the dataframe at this point, we might get something similar to:
+
+```
+shape: (5, 2)
+┌──────┬───────────┐
+│ id   ┆ score     │
+│ ---  ┆ ---       │
+│ u32  ┆ f64       │
+╞══════╪═══════════╡
+│ 2104 ┆ 0.007692  │
+│ 2256 ┆ 0.008197  │
+│ 2056 ┆ 0.008065  │
+│ 2168 ┆ 0.007937  │
+│ 2174 ┆ 0.0078125 │
+└──────┴───────────┘
+```
+
+We can then sort by score then pick the top K matches.
+
+I find chaining everything together more elegant rather than breaking it up into
+different segments. Therefore, the above code can be rewritten as follows:
+
+```python
+df = (
+    pl.concat(
+        pl.from_arrow(tbl)
+        .with_columns(
+            pl.col(r.col())
+            .rank(method="dense", descending=True)
+            .alias("rank")
+        )
+        .drop("score")
+        for tbl in search_results
+    )
+    .group_by("id")
+    .agg(pl.col("rank").alias("ranks"))
+    .with_columns(
+        (
+            1
+            / pl.col("ranks")
+            .list.eval(pl.element() + K) # by default K is 60
+            .list.sum()
+        ).alias("score")
+    )
+    .drop("ranks")
+)
+```
+
+And that's how to calculate RRF using polars. I find the SQL more beautiful and
+understandable, though the Polars dataframe style computation is more flexible.
+The SQL one can only fuse two results - to add more means rewriting the entire
+query. The Polars one on the other hand won't need any rewriting
