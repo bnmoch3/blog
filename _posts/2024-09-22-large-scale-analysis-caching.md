@@ -13,9 +13,9 @@ fragmentation
 
 <!--start-->
 
-The following are my key take-aways from the paper "[A large scale analysis of
-hundreds of in-memory cache clusters at
-Twitter]"(https://www.usenix.org/conference/osdi20/presentation/yang) authored
+The following are my key take-aways from the paper
+"[A large scale analysis of hundreds of in-memory cache clusters at
+Twitter](https://www.usenix.org/conference/osdi20/presentation/yang)" authored
 by Juncheng Yang, Yao Yue and K.V Rashmi.
 
 I find the paper worth reading for three reasons: First, I'm currently
