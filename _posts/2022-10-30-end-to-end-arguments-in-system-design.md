@@ -2,9 +2,12 @@
 layout: post
 title:  "End-to-End Arguments in System Design"
 slug: end-to-end-arguments-in-system-design
+tag: ["Distributed Systems"]
 category: Distributed Systems
 excerpt_separator: <!--start-->
 ---
+
+Paper Review
 
 <!--start-->
 

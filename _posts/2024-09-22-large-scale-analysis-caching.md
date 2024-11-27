@@ -3,7 +3,7 @@ layout: post
 title:  " Notes on 'A large scale analysis of hundreds of in-memory cache clusters at Twitter'"
 slug: large-scale-analysis-caching-twitter
 tag: []
-categories: "Cache Systems"
+category: "Cache Systems"
 excerpt_separator: <!--start-->
 ---
 

@@ -5,6 +5,7 @@ slug: vss-duckdb-caveats
 tag: ["DuckDB", "RAG"]
 categories: "DuckDB RAG"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Once you've indexed your vectors for similarity search, be sure to check your

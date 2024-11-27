@@ -5,6 +5,7 @@ slug: larger-than-mem-intro
 tag: ["Database Internals"]
 category: "Database Internals"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 For when the database exceeds the main memory size

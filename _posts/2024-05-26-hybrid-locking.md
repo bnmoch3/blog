@@ -5,6 +5,7 @@ slug: dbms-hybrid-locking
 tag: ["Rust"]
 category: "Computer Systems"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Fast-path optimistic locking with fallback to pessimistic RW locks under

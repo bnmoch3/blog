@@ -5,6 +5,7 @@ slug: matrix-mult-and-caching
 tag: ["systems development"]
 category: "Computer Systems"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Same algo, different memory access patterns, what could go wrong (or right)!

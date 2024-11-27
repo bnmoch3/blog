@@ -5,13 +5,12 @@ slug: pg-parquet-archive-timeseries
 tag: ["SQL", "PostgreSQL"]
 categories: "Timeseries PostgreSQL"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Keeping your database lean
 
 <!--start-->
-
-# Archiving Time-Series Data from PostgreSQL into Parquet
 
 With time-series and real-time analytics, we usually query recent data rather
 than _all_ the data at a go. This means we don't have to index or even store

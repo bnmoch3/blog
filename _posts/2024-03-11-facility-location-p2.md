@@ -5,6 +5,7 @@ slug: facility-location-problem-p2
 tag: ["Discrete Optimzation", "minizinc"]
 category: "Discrete Optimization"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Multiple views and Channeling Constraints make for faster models (in some cases)

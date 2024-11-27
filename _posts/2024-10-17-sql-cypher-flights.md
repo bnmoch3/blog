@@ -5,6 +5,7 @@ slug: sql-cypher-flights
 tag: ["DuckDB", "SQL"]
 categories: "DuckDB SQL"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Featuring DuckDB & KuzuDB

@@ -5,6 +5,7 @@ slug: facility-location-problem
 tag: ["python", "Linear Programming", "PuLP", "minizinc"]
 category: "Discrete Optimization"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Discrete Optimization: Where to construct facilities so as to minimize setup

@@ -5,6 +5,7 @@ slug: timeseries-filling-missing-values
 tag: ["duckdb", "sql", "timeseries", "python"]
 categories: Timeseries
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Filling gaps using Last observation carried forward, next observation carried

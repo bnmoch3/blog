@@ -5,6 +5,7 @@ slug: hybrid-search-rrf
 tag: ["DuckDB", "RAG"]
 categories: "DuckDB RAG"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Best of both worlds sort of thing

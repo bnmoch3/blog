@@ -5,6 +5,7 @@ slug: duckdb-jit-udfs-numba
 tag: ["DuckDB", "Python"]
 categories: "DuckDB Python"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 JIT compiling your vectorized UDFs with Numba. Plus pure SQL is plenty fast if

@@ -1,8 +1,9 @@
 ---
 title: "Go Channels Suffice for Synchronization"
 slug: go-channels-concurrency-sync
-date: 2020-07-21
+layout: post
 category: Golang
+tag: ["Golang"]
 excerpt_separator: <!--start-->
 ---
 

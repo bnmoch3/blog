@@ -5,6 +5,7 @@ slug: data-placement-optimization
 tag: ["Python"]
 category: "Distributed Systems"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Using MIP solvers to model and optimize shard placement

@@ -5,6 +5,7 @@ slug: leanstore
 tag: ["Database Internals"]
 category: "Database Internals"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 A dash of pointer swizzling, a sprinkle of optimistic locking and a touch of

@@ -1,10 +1,15 @@
 ---
 title: "Bugs From ignoring C Operator Associativity"
+layout: post
 slug: bugs-c-operator-associativity
-description: "Mistakes were made"
 category: Misc
-tags: ["C"]
+tag: ["C"]
+excerpt_separator: <!--start-->
 ---
+
+Mistakes were made
+
+<!--start-->
 
 This is a quick post and it's here more or less to serve as a reminder to
 myself, in case I make the same mistake again.

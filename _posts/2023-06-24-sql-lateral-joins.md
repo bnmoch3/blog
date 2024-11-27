@@ -5,6 +5,7 @@ slug: sql-lateral-joins
 tag: ["sql", "postgres"]
 categories: SQL
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Sneaking for-loops into SQL without anyone noticing

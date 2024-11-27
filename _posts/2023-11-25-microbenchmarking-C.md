@@ -5,6 +5,7 @@ slug: microbenchmarking-c
 tag: ["C", "systems development", "low-level programming"]
 category: "Computer Systems"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 RDTSC, Out-of-order execution, OS interrupts, cycles, frequency and more.
@@ -212,14 +213,14 @@ Separately, Intel's manual[1] does offer its own solution for serializing
 RDTSC - using LFENCE and MFENCE:
 
 > - If software requires RDTSC to be executed only after all previous
-  > instructions have executed and all previous loads are globally visible, it
-  > can execute LFENCE immediately before RDTSC.
+>   instructions have executed and all previous loads are globally visible, it
+>   can execute LFENCE immediately before RDTSC.
 > - If software requires RDTSC to be executed only after all previous
-  > instructions have executed and all previous loads and stores are globally
-  > visible, it can execute the sequence MFENCE;LFENCE immediately before RDTSC.
+>   instructions have executed and all previous loads and stores are globally
+>   visible, it can execute the sequence MFENCE;LFENCE immediately before RDTSC.
 > - If software requires RDTSC to be executed prior to execution of any
-  > subsequent instruction (including any memory accesses), it can execute the
-  > sequence LFENCE immediately after RDTSC [1].
+>   subsequent instruction (including any memory accesses), it can execute the
+>   sequence LFENCE immediately after RDTSC [1].
 
 Given that the Paoloni guide is from 2010, it seems LFENCE & MFENCE (2-4 cycles)
 usage is the more modern approach. Also I might be wrong here, but I don't think

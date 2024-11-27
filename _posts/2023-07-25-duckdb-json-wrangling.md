@@ -5,6 +5,7 @@ slug: wrangling-json-with-duckdb
 tag: ["duckdb", "sql"]
 categories: SQL
 excerpt_separator: <!--start-->
+type: post
 ---
 
 For when you need to impose some structure on semi-structured data

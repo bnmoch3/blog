@@ -5,6 +5,7 @@ slug: rust-duckdb-py-udf
 tag: ["Rust", "Python", "DuckDB"]
 categories: "DuckDB Python"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Implementing vectorized UDFs in Rust that you can use in DuckDB, with a little

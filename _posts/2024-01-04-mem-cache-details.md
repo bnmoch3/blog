@@ -5,6 +5,7 @@ slug: mem-cache-details
 tag: ["systems development"]
 category: "Computer Systems"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Memory, Cache levels, Cache sizes, TLB, associativity and so on

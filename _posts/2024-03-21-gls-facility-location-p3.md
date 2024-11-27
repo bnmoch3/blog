@@ -5,6 +5,7 @@ slug:  guided-local-search-flp
 tag: ["Discrete Optimization"]
 category: "Discrete Optimization"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Overview of Guided Local Search plus how it can be applied to the capacitated

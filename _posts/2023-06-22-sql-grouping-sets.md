@@ -5,6 +5,7 @@ slug: sql-grouping-sets
 tag: ["sql", "duckdb", "postgres"]
 categories: SQL
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Computing multiple Group-bys with less steps

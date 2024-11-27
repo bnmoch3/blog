@@ -5,6 +5,7 @@ slug: parquet-zstd
 tag: ["DuckDB", "Python", "Arrow"]
 categories: "DuckDB"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Often, parquet files have to be compressed. For fast compression, use LZ4 or

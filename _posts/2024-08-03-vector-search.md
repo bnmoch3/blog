@@ -5,6 +5,7 @@ slug: vector-search-duckdb-fastembed
 tag: ["DuckDB", "RAG"]
 categories: "DuckDB RAG"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Using DuckDB for vector/semantic search

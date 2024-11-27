@@ -3,7 +3,7 @@ layout: post
 title:  "LRU vs FIFO (with Lazy Promotion and Quick Demotion)"
 slug: lru-vs-fifo
 tag: []
-categories: "Cache Systems"
+category: "Cache Systems"
 excerpt_separator: <!--start-->
 ---
 

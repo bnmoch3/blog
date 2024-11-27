@@ -5,6 +5,7 @@ slug: cache-control-instrs
 tag: ["systems development"]
 category: "Computer Systems"
 excerpt_separator: <!--start-->
+type: post
 ---
 
 Wherein the OS and user get more control over the L1,L2 and L3 caches, mostly
