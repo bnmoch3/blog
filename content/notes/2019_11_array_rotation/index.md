@@ -96,8 +96,8 @@ From there, let the superscript **r** denote either the operation of reversing
 elements within an array or reversing the order of partitions.
 
 As the image below shows, to rotate the array, we first reverse the elements
-within the first partition and the second partition: **A&rarr;A<sup>r</sup>**,
-**B&rarr;B<sup>r</sup>**.
+within the first partition and the second partition: **A&rarr;A^r**,
+**B&rarr;B^r**.
 
 ![alt text](images/image2.png)
 

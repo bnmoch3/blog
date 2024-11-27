@@ -1,8 +1,8 @@
 +++
-title = "Speeding up unique constraint checks in Postgres... or not"
+title = "Speeding up unique constraint checks in PostgreSQL... or not"
 date = "2020-05-28"
 summary = "Are exclusion constraints using hash indexes faster than plain old uniqueness checks? Let's find out"
-tags = ["SQL"]
+tags = ["SQL", "PostgreSQL"]
 type = "note"
 toc = false
 readTime = true

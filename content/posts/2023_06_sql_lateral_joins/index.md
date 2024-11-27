@@ -2,7 +2,7 @@
 title = "Lateral Joins & Iterators in SQL"
 date = "2023-06-24"
 summary = "Sneaking for-loops into SQL without anyone noticing"
-tags = ["SQL"]
+tags = ["SQL", "PostgreSQL"]
 type = "post"
 toc = false
 readTime = true

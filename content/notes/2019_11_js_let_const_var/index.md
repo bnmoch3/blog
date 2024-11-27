@@ -2,7 +2,7 @@
 title = "Var, Let, Const and the 'commonly' expected behaviour"
 date = "2019-11-29"
 summary = "Javascript quirks and idiosyncracies. Or why learning a new programming language is hard when coming in with implicit assumptions from other languages"
-tags = ["Javascript Node.js"]
+tags = ["Javascript","Node.js"]
 type = "note"
 toc = false
 readTime = true

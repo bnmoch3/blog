@@ -1,0 +1,84 @@
+baseURL = 'https://bnm3k.github.io'
+languageCode = 'en-us'
+title = 'bnm 3000'
+theme = 'typo'
+summaryLength = 0
+
+[taxonomies]
+tag = 'tags'
+
+[permalinks]
+notes = "/blog/:slug"
+posts = "/blog/:slug"
+
+[params]
+description = "A tech-oriented personal blog"
+
+# Appearance settings
+theme = 'light'
+colorPalette = 'default'
+hideHeader = false
+
+# Intro on main page, content in markdown
+# homeIntroTitle = 'Hi!'
+homeIntroContent = "Enjoyer of Go, Rust, Python, Databases & SQL"
+
+
+# Collection to display on home
+homeCollectionTitle = 'Posts'
+homeCollection = 'posts'
+
+# Lists parameters
+paginationSize = 100
+listSummaries = true
+listDateFormat = '2006 Jan 02'
+
+# Breadcrumbs
+breadcrumbs = true
+
+showFooter = true
+footerContent = "..."
+
+# Main menu pages
+[[params.menu]]
+name = "home"
+url = "/"
+
+[[params.menu]]
+name = "posts"
+url = "/posts"
+
+[[params.menu]]
+name = "notes"
+url = "/notes"
+
+[[params.menu]]
+name = "tags"
+url = "/tags"
+
+
+# Syntax highligth on code blocks
+[markup]
+[markup.highlight]
+style = 'bw'
+
+# Deploy settings
+
+[[deployment.matchers]]
+pattern = "^.+\\.(js|css|svg|ttf|woff2)$"
+cacheControl = "max-age=31536000, no-transform, public"
+gzip = true
+
+[[deployment.matchers]]
+pattern = "^.+\\.(png|jpg|gif|webp)$"
+cacheControl = "max-age=31536000, no-transform, public"
+gzip = false
+
+[params.giscus]
+enable = false
+repo = "tomfran/blog"
+repoid = "R_kgDOLtSszw"
+category = "General"
+categoryid = "DIC_kwDOLtSsz84CfLm4"
+mapping = "pathname"
+theme = "preferred_color_scheme"

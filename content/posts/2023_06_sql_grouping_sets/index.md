@@ -2,7 +2,7 @@
 title = "SQL Grouping sets, Rollups & Cube"
 date = "2023-06-22"
 summary = "Computing multiple Group-bys with less steps"
-tags = ["SQL"]
+tags = ["SQL", "DuckDB"]
 type = "post"
 toc = false
 readTime = true
