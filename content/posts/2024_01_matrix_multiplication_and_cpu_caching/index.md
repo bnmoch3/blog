@@ -32,7 +32,7 @@ For each element in C, we take the dot product of the associated row in A with
 the associated column in B. The mathematical definition from wikipedia is
 definitely clearer and more precise:
 
-![matrix multiplication formula](images/matrix_multiplication_formula.svg.TODO)
+![matrix multiplication formula](images/matrix_multiplication_formula.svg)
 _credits wikipedia_
 
 This definition also lends itself to the following straightforward algorithm
@@ -195,7 +195,7 @@ double get_sum(double a[M][N]){
 The program traverses the 2-D array by going down the first column, then the
 second and so on.
 
-![row-major traversal vs column-major traversal](images/traversals.svg.TODO)
+![row-major traversal vs column-major traversal](images/traversals.svg)
 
 It's still the same from a correctness perspective (though I'm not quite sure
 addition of doubles is commutative, but let's assume). And it still does the
@@ -211,7 +211,7 @@ All these make the performance gap quite evident.
 When carrying out a benchmark to demonstrate the performance gap between summing
 row-by-row vs column-by-column, I get the following results:
 
-![sum by row vs by col](images/sum_by_row_vs_by_col.svg.TODO)
+![sum by row vs by col](images/sum_by_row_vs_by_col.svg)
 
 Summing row-by-row is 28.8% faster. In this case, each row has 512 doubles and
 there are 1024 rows. As an aside, I ported the prior C code snippet to Rust and
@@ -275,7 +275,7 @@ constant, the traversal of A is row-wise with a stride of 1 while the traversal
 of B is column-wise with a stride of n (n is assumed to be very large thus
 negating any instance of spatial locality).
 
-![AB traversals](images/AB.svg.TODO)
+![AB traversals](images/AB.svg)
 
 Additionally, each iteration involves 2 loads (reads from A and B), and zero
 stores. Suppose a cache line holds 64 bytes and a double is 8 bytes. With the
@@ -313,7 +313,7 @@ Can we do better? Yes, definitely:
 
 Let's start with the following diagram:
 
-![Loop directions for i,j,k](images/loop_directions.svg.TODO)
+![Loop directions for i,j,k](images/loop_directions.svg)
 
 Observe that if we make the for-loop for j the innermost one, we'll get a
 row-wise traversal of matrix B and C which will be of stride-1, thus maximizing
@@ -367,7 +367,7 @@ for (i = 0; i < N; i++) {
 Both versions should have the same performance since they entail the same memory
 access patterns:
 
-![BC traversals](images/BC.svg.TODO)
+![BC traversals](images/BC.svg)
 
 Let's analyze the work getting done per each iteration (of the innermost
 for-loop):
@@ -400,7 +400,7 @@ we can get way worse performance.
 By making the innermost for-loop be the one that increments `i`, we get the AC
 routines: `jki` and `kji`. These traverse A and C column by column:
 
-![AC traversals](images/AC.svg.TODO)
+![AC traversals](images/AC.svg)
 
 Applying the same kind of analysis as for AB and BC routines, there will be 2
 loads and a store per iteration and 2 cache misses per iteration due to the

@@ -100,7 +100,7 @@ it:
    reside in plus respective offsets within the block. Indices either store a
    pointer to the tuple in the LRU chain or to an entry in the evicted table.
 
-![storage manager](images/storage_manager.svg.TODO)
+![storage manager](images/storage_manager.svg)
 
 The alternative to a doubly-linked list for the LRU chain is a single-linked
 list. In both, popping the LRU tuple is O(1). Adding a tuple to the tail is also
@@ -130,7 +130,7 @@ eviction".
 
 In graphic form:
 
-![table eviction](images/table_eviction.svg.TODO)
+![table eviction](images/table_eviction.svg)
 
 From there, the cold tuples are popped from the head of the LRU chain and moved
 into a block buffer. The evicted table is updated and the blocks are written to
