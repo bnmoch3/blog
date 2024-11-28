@@ -4,10 +4,10 @@ date = "2024-11-15"
 summary = "Keeping your database lean"
 tags = ["Timeseries", "PostgreSQL"]
 type = "post"
-toc = false
+toc = true
 readTime = true
 autonumber = false
-showTags = false
+showTags = true
 slug = "pg-parquet-archive-timeseries"
 +++
 
