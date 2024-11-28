@@ -2,8 +2,7 @@
 layout: post
 title:  "Timeseries and ASOF Joins"
 slug: sql-asof-joins
-tag: ["sql", "duckdb", "polars", "arrow", "python", "questdb", "pandas", "postgres"]
-categories: Timeseries
+categories: ["Timeseries", "SQL", "Python", "PostgreSQL", "DuckDB"]
 excerpt_separator: <!--start-->
 type: "post"
 ---
