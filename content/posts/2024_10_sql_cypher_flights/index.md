@@ -58,7 +58,7 @@ separate ETL/ELT.
 
 Let's start with an overview of the database. Here's the high-level schema:
 
-![schema for the flights DB](/assets/images/graph_db_cypher/schema_flights.png)
+![schema for the flights DB](images/schema_flights.png)
 
 A flight between two airports is scheduled to start at a certain time for some
 or all days of the week plus take some expected amount of time and use the

@@ -100,7 +100,7 @@ it:
    reside in plus respective offsets within the block. Indices either store a
    pointer to the tuple in the LRU chain or to an entry in the evicted table.
 
-![storage manager](/assets/images/larger_than_mem/anticaching/storage_manager.svg)
+![storage manager](images/storage_manager.svg.TODO)
 
 The alternative to a doubly-linked list for the LRU chain is a single-linked
 list. In both, popping the LRU tuple is O(1). Adding a tuple to the tail is also
@@ -110,7 +110,7 @@ reside. This is in contrast with single-linked lists where queries would have to
 start with the head (LRU entries). Hence the faster execution as demonstrated in
 the plot below.
 
-![figure 10](/assets/images/larger_than_mem/anticaching/figure_10_doubly_linked_list_vs.png)
+![figure 10](images/figure_10_doubly_linked_list_vs.png)
 
 Also, as already mentioned, updating the LRU chain imposes some overhead. As
 such, anti-caching uses what the authors call _aLRU_; with aLRU, only the
@@ -130,7 +130,7 @@ eviction".
 
 In graphic form:
 
-![table eviction](/assets/images/larger_than_mem/anticaching/table_eviction.svg)
+![table eviction](images/table_eviction.svg.TODO)
 
 From there, the cold tuples are popped from the head of the LRU chain and moved
 into a block buffer. The evicted table is updated and the blocks are written to
@@ -145,7 +145,7 @@ system fetches the required blocks and merges the tuples back into the LRU chain
 before re-executing the query. This process is summarized in the state diagram
 blow (retrieved from the paper):
 
-![figure 5](/assets/images/larger_than_mem/anticaching/figure_5.png)
+![figure 5](images/anticaching/figure_5.png)
 
 When merging back evicted tuples, there are two strategies:
 
@@ -169,7 +169,7 @@ When merging back evicted tuples, there are two strategies:
     the number of holes exceed a certain threshold e.g. 50% of the block, the
     block is merged with other such blocks.
 
-![figure 8](/assets/images/larger_than_mem/anticaching/figure_8_merge_strategies.png)
+![figure 8](images/figure_8_merge_strategies.png)
 
 ## Possible Further Experiments: Switch LRU for Clock? or Clock-Pro?
 

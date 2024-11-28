@@ -72,7 +72,8 @@ freshest version of the record. Inclusive policy minimizes IO costs though it
 uses up more disk space.
 
 Figure from 2-Tree paper:
-![image description](/assets/images/larger_than_mem/two_tree.png)
+
+![image description](images/two_tree.png)
 
 Additional details to consider:
 

@@ -42,7 +42,8 @@ and compressed differently depending on its status (hot, cold). Vectors
 comprising the same group of tuples then form a _chunk_.
 
 Figure 3 from [1]
-![figure 3](/assets/images/larger_than_mem/hyper_compaction/figure_3.png)
+
+![figure 3](images/figure_3.png)
 
 ## Clustering Tuples into Hot & Cold
 
@@ -75,7 +76,8 @@ structure that indicates that the tuple's old data in the cold/frozen section is
 validity status of tuples before handing them over to upstream operators.
 
 Figure 1 from [1]
-![figure 1](/assets/images/larger_than_mem/hyper_compaction/figure_1.png)
+
+![figure 1](images/figure_1.png)
 
 In previous posts, we've seen LRU & other caching algorithms being used to
 identify and track hot tuples. HyPer's approach is quite different given that
@@ -103,7 +105,8 @@ charge of resetting the physical pages metadata by `mlock`-ing the pages its
 tracking so that the OS can't reset the metadata during swapping.
 
 Figure 9 from [1]
-![figure 9](/assets/images/larger_than_mem/hyper_compaction/figure_9.png)
+
+![figure 9](images/figure_9.png)
 
 ## Compacting Cold Data
 

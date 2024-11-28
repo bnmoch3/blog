@@ -29,11 +29,11 @@ implemented on top of Leanstore has almost the same performance as an in-memory
 b-tree; both of course outperform traditional disk-based b-trees (graph sourced
 from [1]):
 
-![Figure 1](/assets/images/leanstore/single_threaded_tpc_100_warehouses.png)
+![Figure 1](images/single_threaded_tpc_100_warehouses.png)
 
 And with multiple threads (graph sourced from [1]):
 
-![Figure 8](/assets/images/leanstore/mt_tpc_100_warehouses.png)
+![Figure 8](images/mt_tpc_100_warehouses.png)
 
 Leanstore is designed with scalability in mind hence why it scales quite well as
 number of threads increases. If a page already is in-memory, a thread doesn't
@@ -44,7 +44,7 @@ For the second case (larger-than-memory performance), once the working dataset
 exceeds main-memory, Leanstore offers a smooth off-ramp compared to other
 systems and even the OS itself (swapping):
 
-![Figure 9](/assets/images//leanstore/larger_than_memory.png)
+![Figure 9](images/larger_than_memory.png)
 
 As for the core functionalities required out of any buffer pool in a database,
 the authors list the following:
@@ -62,7 +62,7 @@ These are handled within 3 separate data structures in Leanstore:
    needed
 3. I/O Component: manages in-flight I/O operations
 
-![Figure showing states of a page in Leanstore](/assets/images/leanstore/figure_1_leanstore_datastructures.png)
+![Figure showing states of a page in Leanstore](images/figure_1_leanstore_datastructures.png)
 
 Worth mentioning, since multiple threads will be accessing pages, the buffer
 pool also needs to provide some means for synchronizing threads.
@@ -215,7 +215,7 @@ memory. It works this way:
 
 This image (from the paper [1]) shows all the states a page can be in:
 
-![Figure showing states of a page in Leanstore](/assets/images/leanstore/figure_3_possible_states_of_a_page.png)
+![Figure showing states of a page in Leanstore](images/figure_3_possible_states_of_a_page.png)
 
 At any point in time, a fraction of the cached pages are kept in the cooling
 stage. The authors recommend a value between 5% - 20% which they arrive at
@@ -327,7 +327,7 @@ memory reclamation (hazard pointers) and lock-free techniques whatsoever - the
 Leanstore numbers are with its synchronization primitives still 'turned' on
 (both charts sourced from [6]):
 
-![Figure 6,7](/assets/images/leanstore/in_mem_scalability.png)
+![Figure 6,7](images/in_mem_scalability.png)
 
 ## Umbra: Variable-size Pages
 

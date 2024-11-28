@@ -263,7 +263,7 @@ such as allowing users to "integrate additional logic like checking for query
 cancellation, or in the buffer manager to ensure that the page we are currently
 waiting for has not been evicted in the meantime" [1].
 
-![parking lot - credits 'Scalable and Robust Latches for Database Systems'](/assets/images/hybrid_locking/figure_5.png)
+![parking lot - credits 'Scalable and Robust Latches for Database Systems'](images/figure_5.png)
 
 ## Parting Note
 

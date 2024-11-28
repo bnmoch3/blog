@@ -362,20 +362,20 @@ but that's out of scope for now.
 On speed, obviously having to do no compression is the fastest, but LZ4, Snappy
 are a close second followed by Zstd. Gzip and Brotli are relatively slow.
 
-![speed comparison bar chart](/assets/images/parquet_zstd/speed_comparison.png)
+![speed comparison bar chart](images/speed_comparison.png)
 
 On the smallest disk footprint (compression ratio), Brotli offers the most bang
 for your back, closely followed by Zstd then Gzip. I've included 'NONE' in the
 bar chart just to show how necessary compression is.
 
-![data size comparison bar chart](/assets/images/parquet_zstd/size_comparison.png)
+![data size comparison bar chart](images/size_comparison.png)
 
 Finally, on direct integration with DuckDB, (in that I don't have to manually
 decompress the dataset nor do I have to use an intermediary), my options are
 pretty much narrowed down to snappy, zstd and gzip. Query speeds are similar (I
 used the `summarize` query).
 
-![query time comparison bar chart](/assets/images/parquet_zstd/query_comparison.png)
+![query time comparison bar chart](images/query_comparison.png)
 
 If it isn't obvious by now, the only codec that ticks all the boxes is, drumroll
 please, Zstd.

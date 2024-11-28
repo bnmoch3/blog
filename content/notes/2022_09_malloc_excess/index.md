@@ -26,11 +26,11 @@ bytes".
 
 From afar, it seems there aren't any 'excess' bytes allocated:
 
-![all](/assets/images/malloc_excess/fig_all.png)
+![all](images/fig_all.png)
 
 However, on zooming in, the difference is observable:
 
-![zoomed](/assets/images/malloc_excess/fig_zoomed.png)
+![zoomed](images/fig_zoomed.png)
 
 ## Code
 

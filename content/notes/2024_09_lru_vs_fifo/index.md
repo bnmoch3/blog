@@ -81,7 +81,7 @@ algorithm is not quite efficient.
 
 ## Implementing QD
 
-![Implementing quick demotion](/assets/images/caching/quick_demotion.svg)
+![Implementing quick demotion](images/quick_demotion.svg.TODO)
 
 The diagram above provides an overview of how QD can be implemented. A couple of
 points worth adding: the main cache uses 90% of the space and the probationary

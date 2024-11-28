@@ -139,7 +139,7 @@ the results. As an aside, I carried out all the benchmarks using
 with all the usual benchmarking best practices applied. The dataset has
 10,000,000 entries.
 
-![chart](/assets/images/duckdb_numba_udfs/py_native.svg)
+![chart](images/py_native.svg)
 
 Unfortunately, the performance benefit is negligible (26.7 seconds for no JIT vs
 23.443 with JIT). As explained in the DuckDB documentation [1], usage of
@@ -243,7 +243,7 @@ zero-copied into an arrow array that DuckDB expects.
 
 And for the performance, here's what we get:
 
-![chart](/assets/images/duckdb_numba_udfs/vec_numba.svg)
+![chart](images/vec_numba.svg)
 
 A near 9X improvement with the vectorized version taking 2.998 seconds vs the
 26.7 seconds that the native scalar UDF takes!
@@ -288,7 +288,7 @@ I'm using this method just to see how well the Numba-JIT version compares to the
 Rust-based version. The results are quite pleasing since the Rust-based version
 takes 2.566 seconds vs the 2.998 seconds the the JIT version took:
 
-![chart](/assets/images/duckdb_numba_udfs/vec_numba_rust.svg)
+![chart](images/vec_numba_rust.svg)
 
 Now, I do enjoying using Rust every now and then but for quick development,
 Numba does provide some bang for our buck. If there are concerns about having to
@@ -325,7 +325,7 @@ from distances
 
 On benchmarking, it clocks in at 347.9 milliseconds:
 
-![chart](/assets/images/duckdb_numba_udfs/pure_sql.svg)
+![chart](images/pure_sql.svg)
 
 Only issue I had with the pure SQL approach was that the final value veered a
 bit off from all other answers, I'm guessing because of DuckDB's re-ordering of
@@ -409,7 +409,7 @@ avg = get_avg(dists)
 Performance-wise, in my machine, it's similar to the OpenMP CPU-based version
 (1.803 seconds for CUDA vs 1.715 for OpenMP):
 
-![chart](/assets/images/duckdb_numba_udfs/export_to_numpy.svg)
+![chart](images/export_to_numpy.svg)
 
 I didn't use GPU-based UDFs for the vectorized functions since I cannot directly
 control the size of chunks DuckDB feeds into the UDFs: the sizes DuckDB defaults
@@ -422,7 +422,7 @@ improve the CUDA version for which I'll look into in the future.
 
 To sign off, here are all the benchmarking results in one graph.
 
-![chart](/assets/images/duckdb_numba_udfs/all.svg)
+![chart](images/all.svg)
 
 Here are the raw values for reference:
 

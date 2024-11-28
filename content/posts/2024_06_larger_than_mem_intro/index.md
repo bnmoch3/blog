@@ -28,7 +28,7 @@ manager to the recovery component contributes constant significant overhead with
 'useful work' comprising a small fraction of instructions processed in a query
 (figure from 'OLTP Through the Looking Glass, and What We Found There'):
 
-![figure 1](/assets/images/larger_than_mem/oltp_through_the_looking_glass.png)
+![figure 1](images/oltp_through_the_looking_glass.png)
 
 Hence the current tendency to favour the second approach [8,9]: take highly
 optimized main-memory systems and extend them to handle larger-than-memory

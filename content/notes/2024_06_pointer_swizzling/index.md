@@ -91,8 +91,7 @@ In the case where the working set fits in memory, the performance of a pointer
 swizzling buffer-pool is identical to an in-memory database and far outperforms
 traditional buffer-pools (the source of graph is from the paper):
 
-Figure 10 from [1]
-![Figure 10](/assets/images/larger_than_mem/pointer_swizzling/figure_10.png)
+Figure 10 from [1] ![Figure 10](images/figure_10.png)
 
 As the workload starts exceeding the main-memory size, the performance
 degradation of a pointer swizzling buffer pool is similar to that of a
@@ -100,8 +99,7 @@ traditional buffer pool - both degrade gracefully. On the other hand, in-memory
 databases degrade drastically in that scenario (source of graph is from the
 paper):
 
-Figure 11 from [1]
-![Figure 11](/assets/images/larger_than_mem/pointer_swizzling/figure_11.png)
+Figure 11 from [1] ![Figure 11](images/figure_11.png)
 
 In a way, with swizzling buffer pools you get the best of both worlds.
 

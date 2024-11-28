@@ -25,14 +25,14 @@ We'll be focusing on NxN (square) matrices where N is assumed to be very large.
 Matrix multiplication involves taking two matrices A and B and combining them
 into a new matrix C.
 
-![matrix multiplication diagram](/assets/images/mm/matrix_multiplication_diagram.png)
+![matrix multiplication diagram](images/matrix_multiplication_diagram.png)
 _credits wikipedia_
 
 For each element in C, we take the dot product of the associated row in A with
 the associated column in B. The mathematical definition from wikipedia is
 definitely clearer and more precise:
 
-![matrix multiplication formula](/assets/images/mm/matrix_multiplication_formula.svg)
+![matrix multiplication formula](images/matrix_multiplication_formula.svg.TODO)
 _credits wikipedia_
 
 This definition also lends itself to the following straightforward algorithm
@@ -195,7 +195,7 @@ double get_sum(double a[M][N]){
 The program traverses the 2-D array by going down the first column, then the
 second and so on.
 
-![row-major traversal vs column-major traversal](/assets/images/mm/traversals.svg)
+![row-major traversal vs column-major traversal](images/traversals.svg.TODO)
 
 It's still the same from a correctness perspective (though I'm not quite sure
 addition of doubles is commutative, but let's assume). And it still does the
@@ -211,7 +211,7 @@ All these make the performance gap quite evident.
 When carrying out a benchmark to demonstrate the performance gap between summing
 row-by-row vs column-by-column, I get the following results:
 
-![sum by row vs by col](/assets/images/mm/sum_by_row_vs_by_col.svg)
+![sum by row vs by col](images/sum_by_row_vs_by_col.svg.TODO)
 
 Summing row-by-row is 28.8% faster. In this case, each row has 512 doubles and
 there are 1024 rows. As an aside, I ported the prior C code snippet to Rust and
@@ -275,7 +275,7 @@ constant, the traversal of A is row-wise with a stride of 1 while the traversal
 of B is column-wise with a stride of n (n is assumed to be very large thus
 negating any instance of spatial locality).
 
-![AB traversals](/assets/images/mm/AB.svg)
+![AB traversals](images/AB.svg.TODO)
 
 Additionally, each iteration involves 2 loads (reads from A and B), and zero
 stores. Suppose a cache line holds 64 bytes and a double is 8 bytes. With the
@@ -313,7 +313,7 @@ Can we do better? Yes, definitely:
 
 Let's start with the following diagram:
 
-![Loop directions for i,j,k](/assets/images/mm/loop_directions.svg)
+![Loop directions for i,j,k](images/loop_directions.svg.TODO)
 
 Observe that if we make the for-loop for j the innermost one, we'll get a
 row-wise traversal of matrix B and C which will be of stride-1, thus maximizing
@@ -367,7 +367,7 @@ for (i = 0; i < N; i++) {
 Both versions should have the same performance since they entail the same memory
 access patterns:
 
-![BC traversals](/assets/images/mm/BC.svg)
+![BC traversals](images/BC.svg.TODO)
 
 Let's analyze the work getting done per each iteration (of the innermost
 for-loop):
@@ -400,7 +400,7 @@ we can get way worse performance.
 By making the innermost for-loop be the one that increments `i`, we get the AC
 routines: `jki` and `kji`. These traverse A and C column by column:
 
-![AC traversals](/assets/images/mm/AC.svg)
+![AC traversals](images/AC.svg.TODO)
 
 Applying the same kind of analysis as for AB and BC routines, there will be 2
 loads and a store per iteration and 2 cache misses per iteration due to the
@@ -438,7 +438,7 @@ So far I've been alluding to the great performance of BC routines without
 showing the actual results. So without further ado, here's the graph comparing
 all the routines:
 
-![Line chart comparing total cycles for each matrix multiplication routine](/assets/images/mm/total_res.png)
+![Line chart comparing total cycles for each matrix multiplication routine](images/total_res.png)
 
 Routines within the same class have essentially the same performance, seeing as
 their graphs are indistinguishable. The graphs's divided into three regions, in
@@ -452,7 +452,7 @@ the rest.
 
 We've also got the following:
 
-![Line chart comparing cycles per inner-loop iteration for each matrix multiplication routine](/assets/images/mm/per_iter_res.png)
+![Line chart comparing cycles per inner-loop iteration for each matrix multiplication routine](images/per_iter_res.png)
 
 In this, we measure how many cycles a single innermost loop takes, that is, one
 instance of the multiplication and addition. BC(kij & ikj) remains consistent
