@@ -1,3 +1,6 @@
 [submodule "themes/typo"]
 	path = themes/typo
 	url = git@github.com:bnm3k/typo-theme.git
+[submodule "public"]
+	path = public
+	url = git@github.com:bnm3k/bnm3k.github.io.git
