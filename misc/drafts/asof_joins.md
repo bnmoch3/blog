@@ -5,6 +5,7 @@ slug: sql-asof-joins
 tag: ["sql", "duckdb", "polars", "arrow", "python", "questdb", "pandas", "postgres"]
 categories: Timeseries
 excerpt_separator: <!--start-->
+type: "post"
 ---
 
 Pairing up timeseries data when the timestamps don't match exactly (in Pandas,
