@@ -1,6 +1,18 @@
-# Kill a PostgreSQL Connection
++++
+title = "Killing a PostgreSQL Connection"
+date = "2024-12-09"
+summary = "Let's kill a PG connection"
+tags = ["SQL", "PostgreSQL"]
+type = "note"
+toc = false
+readTime = true
+autonumber = false
+showTags = false
+slug = "pg-kill-connection"
++++
 
-Let's create a user with maximum connection limit of 1:
+First, for demonstration purposes, let's create a user with maximum connection
+limit of 1:
 
 ```sql
 create role some_user

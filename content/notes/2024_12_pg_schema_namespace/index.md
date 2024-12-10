@@ -1,4 +1,15 @@
-# PostgreSQL Schemas: Namespacing for Objects
++++
+title = "PostgreSQL Schemas: Namespacing for Objects"
+date = "2024-12-09"
+summary = "For organizing objects in your DB, or setting up multi-tenancy"
+tags = ["SQL", "PostgreSQL"]
+type = "note"
+toc = false
+readTime = true
+autonumber = false
+showTags = false
+slug = "pg-schemas-namespacing"
++++
 
 Postgres offers schemas as a means for organizing objects (tables, views,
 indexes etc) into separate namespaces. Worth noting that schemas here are

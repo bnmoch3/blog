@@ -1,4 +1,15 @@
-# PostgreSQL: Create a Read-only User/Group
++++
+title = "PostgreSQL: Create a Read-only User/Group"
+date = "2024-12-09"
+summary = "Let's create a read only group in PG and add users to it"
+tags = ["SQL", "PostgreSQL"]
+type = "note"
+toc = false
+readTime = true
+autonumber = false
+showTags = false
+slug = "pg-create-read-only-group"
++++
 
 Suppose we've got a role `some_user` and want to give it read access to all the
 tables in a given database. It's cumbersome to grant these privileges one by
