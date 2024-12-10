@@ -12,14 +12,19 @@ slug = "pg-create-read-only-group"
 +++
 
 Suppose we've got a role `some_user` and want to give it read access to all the
-tables in a given database. It's cumbersome to grant these privileges one by
-one.
+tables in a given database but no permission to write/modify/delete any object.
+Let's look at 2 approaches:
 
-Instead, let's create a `read_access` role that will have read access to all the
-tables present. From there, we'll take advantage Postgres' ability to add a role
-as a member of another role which will serve as a _group_. In concrete terms,
-`some_user` will be added to the `read_access` 'group'. PS I learnt of this
-approach from this blog post:
+- Create a read-access group and add `some_user`
+- Use the predefined role `pg_read_all_data`
+
+## Create a custom read-access group
+
+First approach, let's create a `read_access` role that will have read access to
+all the tables present. From there, we'll take advantage Postgres' ability to
+add a role as a member of another role which will serve as a _group_. In
+concrete terms, `some_user` will be added to the `read_access` 'group'. PS I
+learnt of this approach from this blog post:
 ['Securing your PostgreSQL DB with Roles & Privileges'](https://rlopzc.com/posts/securing-your-postgresql-db-with-roles--privileges/).
 
 It's worth emphasizing that Postgres does not really have separate notions of
@@ -125,4 +130,33 @@ revoke the membership:
 
 ```sql
 revoke read_access from some_user;
+```
+
+## Use the predefined role `pg_read_all_data`
+
+Postgres also provides a `pg_read_all_data` predefined role that we can use:
+
+As admin, let's run the following:
+
+```sql
+grant pg_read_all_data to some_user;
+```
+
+Now `some_user` can read from any table:
+
+```
+some_user@some_db=> select * from nums;
+ a
+═══
+(0 rows)
+```
+
+Once we've added `some_user` to the `pg_read_all_data` group, they can also read
+data from any tables we create in the future so no need for an extra step.
+
+Same case as the previous method, we can also revoke membership to
+`pg_read_all_data`:
+
+```sql
+revoke pg_read_all_data from some_user;
 ```
