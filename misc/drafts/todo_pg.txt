@@ -1,0 +1,15 @@
+
+
+In schema post, update to
+    - link to the multitenancy post
+    - link to roles post
+
+In roles post,
+    - update to link to read_access group post
+
+In schema post, link to
+
+In multitenancy
+    - link roles
+    - link schema
+    - link rls
