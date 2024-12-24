@@ -1,4 +1,15 @@
-# Fine-grained Authorization with Row Level Security in PostgreSQL
++++
+title = "Fine-grained Authorization with Row Level Security in PostgreSQL"
+date = "2024-12-24"
+summary = "Tutorial on RLS"
+tags = ["PostgreSQL"]
+type = "post"
+toc = true
+readTime = true
+autonumber = true
+showTags = true
+slug = "postgres-row-level-security"
++++
 
 ## Intro
 
@@ -11,7 +22,7 @@ entirely.
 In this post, I'll be going over how RLS works, various caveats and how you can
 go about implementing it.
 
-## Demonstration Database
+## Demo Database
 
 For the sake of demonstration I'll be using the database from the
 [pgexercises](https://pgexercises.com/gettingstarted.html) SQL tutorial site.
@@ -400,7 +411,7 @@ create policy bookings_del_policy on cd.bookings
     using (starttime > now());
 ```
 
-## RLS & Session/Local Variables
+## RLS with Session/Local Variables
 
 Now, unless all the members of our club are DB experts and are comfortable
 accessing their information directly from Postgres, we'll need some way of
