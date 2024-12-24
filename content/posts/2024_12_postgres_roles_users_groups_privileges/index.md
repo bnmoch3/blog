@@ -1,4 +1,15 @@
-# PostgreSQL: Managing Roles, Attributes and Privileges
++++
+title = "PostgreSQL: Managing Roles, Attributes and Privileges"
+date = "2024-12-10"
+summary = "Using roles for permissions and authorization for users and groups in PG"
+tags = ["PostgreSQL"]
+type = "post"
+toc = false
+readTime = true
+autonumber = false
+showTags = true
+slug = "postgres-roles-users-groups-privileges"
++++
 
 Postgres handles DB access permissions through roles which can own database
 objects (tables, sequences, functions, schemas etc) and grant/revoke access
@@ -280,9 +291,9 @@ admin@some_db=# \dn
 ```
 
 We've got `public` schema. It is owned by `pg_database_owner`, one of the
-predefined roles we came across earlier. `pg_database_owner` is a 'group' role for
-which the owner of the database, `admin` in our case, is added to as a member
-when the database is getting created. Check out this blog post,
+predefined roles we came across earlier. `pg_database_owner` is a 'group' role
+for which the owner of the database, `admin` in our case, is added to as a
+member when the database is getting created. Check out this blog post,
 [New Public Schema Permissions in PostgreSQL 15](https://www.enterprisedb.com/blog/new-public-schema-permissions-postgresql-15)
 from EnterpriseDB to see why Postgres uses what seems to be an indirect way to
 set the owner of a database's public schema.
