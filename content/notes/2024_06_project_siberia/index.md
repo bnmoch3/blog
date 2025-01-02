@@ -54,11 +54,11 @@ authored by Justin Levandoski, Per-Åke Larson and Radu Stoica.
 
 The main problem the paper addresses is the overhead of online cache maintenance
 both CPU-wise and memory-wise. In the
-[Anti-Caching overview post](/blog/anti-caching), we saw this overhead addressed
-by using only a sample of the accesses to update the LRU chain. In future posts,
-we'll see other approaches that lower/coarsen the granularity from record level
-accesses to page level accesses and even use hardware support so as to minimize
-the cache maintenance overhead.
+[Anti-Caching overview post](/notes/2024/anti-caching/), we saw this overhead
+addressed by using only a sample of the accesses to update the LRU chain. In
+future posts, we'll see other approaches that lower/coarsen the granularity from
+record level accesses to page level accesses and even use hardware support so as
+to minimize the cache maintenance overhead.
 
 Back to Levandoski et al's paper: what makes their approach unique is that it's
 based on offline analysis rather than online caching (LRU, LFU, Second-chance
@@ -144,7 +144,7 @@ utilized in a different paper, "Enabling Efficient OS paging for main-memory
 OLTP databases" by Radu Stoica et al, whereby we've got VoltDB (the same system
 used by the Anti-caching folks) but with a whole different hot/cold approach for
 larger-than-memory workloads. Here's
-[the post where I go over Radu Stoica and co's approach](/blog/efficient-os-paging-hot-cold-db)
+[the post where I go over Radu Stoica and co's approach](/notes/2024/efficient-os-paging-hot-cold-db)
 
 ## References
 

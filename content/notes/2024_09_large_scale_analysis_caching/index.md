@@ -1,5 +1,5 @@
 +++
-title = " Notes on 'A large scale analysis of hundreds of in-memory cache clusters at Twitter'"
+title = "Notes on 'A large scale analysis of hundreds of in-memory cache clusters at Twitter'"
 date = "2024-09-22"
 summary = "TTLs are prevalent, object sizes are small, metadata overhead can be large, object sizes change, FIFO is better than LRU, you've got to address memory fragmentation"
 tags = ["Cache Systems"]
@@ -83,10 +83,10 @@ is very very very small, the authors observe that FIFO's performance (miss
 ratio) is quite similar to LRU. What makes FIFO worth opting for is that it's
 easier to implement, it's faster, more amenable to concurrent access and
 requires tracking and updating less metadata size per object. In my previous
-post on [Anti-Caching](https://bnm3k.github.io/blog/anti-caching), we saw how
-LRU overhead has to be accounted for and worked around. Juncheng Yang and co.
-have a better proposal, ditch LRU entirely (if your cache size is large enough
-for your workload) and switch to FIFO.
+post on [Anti-Caching](/notes/2024/anti-caching/), we saw how LRU overhead has
+to be accounted for and worked around. Juncheng Yang and co. have a better
+proposal, ditch LRU entirely (if your cache size is large enough for your
+workload) and switch to FIFO.
 
 Speaking of object metadata sizes:
 

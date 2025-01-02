@@ -78,9 +78,9 @@ since threads have to acquire a lock before accessing the table.
 
 Leanstore instead opts for _pointer swizzling_. I've covered pointer swizzling
 before as pertains to buffer pools (the
-[Goetz Graefe et al approach](/blog/pointer-swizzling)); Leanstore's approach is
-almost the same except that it uses virtual addresses directly for pages that
-are already residing in memory.
+[Goetz Graefe et al approach](/notes/2024/pointer-swizzling)); Leanstore's
+approach is almost the same except that it uses virtual addresses directly for
+pages that are already residing in memory.
 
 A page can only have one other page holding a reference to it - or rather, every
 page has one parent/one owner (a parent can of course have multiple children
@@ -164,11 +164,11 @@ Clock/Second Chance where a bit is set, to the higher-overhead approach in LRU
 that requires the accessed entry to be moved to the head of a linked list. And
 as we've seen in previous larger-than-memory approaches, developers have to come
 up with different ways for mitigating this overhead, from only using a sample of
-the accesses (as is the case in [anticaching](/blog/anti-caching)), to moving
-the analysis entirely offline to a different thread or process and only logging
-the tuple accesses (as is the case in
-[Project Siberia](/blog/project-siberia-hot-cold-id) and the
-[Stoica and Ailamaki approach](/blog/efficient-os-paging-hot-cold-db)).
+the accesses (as is the case in [anticaching](/notes/2024/anti-caching)), to
+moving the analysis entirely offline to a different thread or process and only
+logging the tuple accesses (as is the case in
+[Project Siberia](/notes/2024/project-siberia-hot-cold-id) and the
+[Stoica and Ailamaki approach](/notes/2024/efficient-os-paging-hot-cold-db)).
 
 Leanstore takes a somewhat different philosophy [1]:
 

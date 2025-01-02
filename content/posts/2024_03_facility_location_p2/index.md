@@ -12,9 +12,9 @@ slug = "facility-location-problem-p2"
 +++
 
 This post picks up from where I left off in my previous post:
-[The Facility Location Problem](https://bnm3k.github.io/blog/facility-location-problem).
-In the previous post, I gave an introduction to the problem then demonstrated
-how it can be modeled using [PuLP](https://coin-or.github.io/pulp/). In the last
+[The Facility Location Problem](/blog/facility-location-problem). In the
+previous post, I gave an introduction to the problem then demonstrated how it
+can be modeled using [PuLP](https://coin-or.github.io/pulp/). In the last
 section, I ported the model one-to-one into
 [Minizinc](https://www.minizinc.org/) which offers a more declarative approach
 to modeling for discrete optimization. The great thing about Minizinc is that

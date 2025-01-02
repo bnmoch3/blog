@@ -21,7 +21,7 @@ In this post I will be going over some approaches for archiving timeseries data
 from Postgres. The archival file format I'll be using is parquet due to its
 ubiquity in the big-data analytics space. I have reviewed the compression
 advantages of parquet in a previous blog post
-([Parquet + Zstd: Smaller faster data formats](blog/parquet-zstd)) if you're
+([Parquet + Zstd: Smaller faster data formats](/blog/parquet-zstd)) if you're
 interested. Also, as a bonus, I'll show how you can query across both recent
 data and archived data.
 

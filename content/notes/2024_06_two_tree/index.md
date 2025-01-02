@@ -31,10 +31,10 @@ Here's a high-level overview of the 2-Tree approach:
   bottom tree.
 
 2-Tree contrasts with the
-[R Stoica & Ailamaki approach](/blog/efficient-os-paging-hot-cold-db) in that
-with the latter, you've got a single physical (in-memory) data-structure with
-hot records being placed in an `mlock`-ed region of virtual memory while the
-cold records are placed in regions that can be paged in and out by the OS as
+[R Stoica & Ailamaki approach](/notes/2024/efficient-os-paging-hot-cold-db) in
+that with the latter, you've got a single physical (in-memory) data-structure
+with hot records being placed in an `mlock`-ed region of virtual memory while
+the cold records are placed in regions that can be paged in and out by the OS as
 needed. The R. Stoica & Ailamaki also uses a more accurate though offline method
 to categorize hot vs cold records.
 

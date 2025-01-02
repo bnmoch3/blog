@@ -10,7 +10,7 @@ tag = 'tags'
 
 [permalinks]
 posts = "/blog/:slug"
-notes = "/notes/:year/:month/:day/:slug"
+notes = "/notes/:year/:slug"
 
 [params]
 description = "A tech-oriented personal blog"

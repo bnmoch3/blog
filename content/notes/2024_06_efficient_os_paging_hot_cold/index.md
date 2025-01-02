@@ -61,10 +61,10 @@ Figure from [1]:
    accessed a lot more are re-categorized as hot [2]. Furthermore, each table is
    assigned a computed _memory budget_ i.e. the size for its hot region. For the
    sake of comparison, if you recall in the
-   [anticaching approach](/blog/anti-caching), the memory budget for a table is
-   determined dynamically by how much it's been accessed since the last round of
-   evictions: the more a table is accessed, the less the data that's evicted
-   from it and vice versa.
+   [anticaching approach](/notes/2024/anti-caching/), the memory budget for a
+   table is determined dynamically by how much it's been accessed since the last
+   round of evictions: the more a table is accessed, the less the data that's
+   evicted from it and vice versa.
 4. **Read optimal tuple placement**: via a dedicated thread once step 3 is
    complete.
 5. **Re-organization**: Using a hot-cold aware malloc, delete and re-insert
