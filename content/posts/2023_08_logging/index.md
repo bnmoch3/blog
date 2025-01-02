@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "logging"
+featured =true
 +++
 
 ## Intro

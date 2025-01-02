@@ -8,6 +8,7 @@ toc = true
 readTime = true
 autonumber = true
 showTags = true
+featured = true
 slug = "postgres-row-level-security"
 +++
 

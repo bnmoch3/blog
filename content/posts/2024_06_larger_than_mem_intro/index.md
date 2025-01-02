@@ -8,6 +8,7 @@ toc = false
 readTime = true
 autonumber = false
 showTags = false
+featured = true
 slug = "larger-than-mem-intro"
 +++
 
