@@ -1,6 +1,6 @@
 baseURL = 'https://bnm3k.github.io'
 languageCode = 'en-us'
-title = 'bnm 3000'
+title = 'bnmoch3'
 theme = 'typo'
 summaryLength = 0
 publishDir = "build/main"
@@ -9,15 +9,15 @@ publishDir = "build/main"
 tag = 'tags'
 
 [permalinks]
-notes = "/blog/:slug"
 posts = "/blog/:slug"
+notes = "/note/:year/:month/:day/:slug"
 
 [params]
 description = "A tech-oriented personal blog"
 
 # Appearance settings
 theme = 'light'
-colorPalette = 'default'
+colorPalette = 'gruvebox'
 hideHeader = false
 
 # Intro on main page, content in markdown
@@ -61,7 +61,7 @@ url = "/tags"
 # Syntax highligth on code blocks
 [markup]
 [markup.highlight]
-style = 'bw'
+style = 'friendly'
 
 # Deploy settings
 
