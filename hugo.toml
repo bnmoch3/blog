@@ -24,11 +24,6 @@ hideHeader = false
 # homeIntroTitle = 'Hi!'
 homeIntroContent = "Enjoyer of Go, Rust, Python, Databases & SQL"
 
-
-# Collection to display on home
-homeCollectionTitle = 'Posts'
-homeCollection = 'posts'
-
 # Lists parameters
 paginationSize = 100
 listSummaries = true
@@ -44,6 +39,10 @@ footerContent = "..."
 [[params.menu]]
 name = "home"
 url = "/"
+
+[[params.menu]]
+name = "about"
+url = "/about"
 
 [[params.menu]]
 name = "posts"
