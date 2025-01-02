@@ -2,7 +2,7 @@
 title = "Tiered Storage via 2-Tree"
 date = "2024-06-10"
 summary = "Split a data-structure into two: a memory-optimized 'top'-tree and a disk optimized 'bottom'-tree. Implement a lightweight migration protocol for hot records to move up and cold records down."
-tags = ["Database Internals"]
+tags = ["Database Internals", "Paper Review"]
 type = "note"
 toc = false
 readTime = true

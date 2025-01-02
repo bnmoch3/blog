@@ -2,7 +2,7 @@
 title = "Virtual Memory Hot/Cold Data Re-organization for OLTP"
 date = "2024-06-07"
 summary = "Hot/Cold aware memory allocation with locking of the hot region to physical memory and letting the OS swap out cold LRU pages as needed."
-tags = ["Database Internals"]
+tags = ["Database Internals", "Paper Review"]
 type = "note"
 toc = false
 readTime = true

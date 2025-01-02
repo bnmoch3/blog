@@ -2,7 +2,7 @@
 title = "LRU vs FIFO (with Lazy Promotion and Quick Demotion)"
 date = "2024-09-23"
 summary = "Sprinkling some lazy promotion and quick demotion on FIFO"
-tags = ["Cache Systems"]
+tags = ["Cache Systems", "Paper Review"]
 type = "note"
 toc = false
 readTime = true

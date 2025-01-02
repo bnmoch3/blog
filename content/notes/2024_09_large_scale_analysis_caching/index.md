@@ -2,7 +2,7 @@
 title = "Notes on 'A large scale analysis of hundreds of in-memory cache clusters at Twitter'"
 date = "2024-09-22"
 summary = "TTLs are prevalent, object sizes are small, metadata overhead can be large, object sizes change, FIFO is better than LRU, you've got to address memory fragmentation"
-tags = ["Cache Systems"]
+tags = ["Cache Systems", "Paper Review"]
 type = "note"
 toc = false
 readTime = true

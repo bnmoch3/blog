@@ -2,7 +2,7 @@
 title = "Anti-Caching"
 date = "2024-06-05"
 summary = "Track hot/cold data at tuple-level granularity. Evict LRU cold data in blocks."
-tags = ["Database Internals"]
+tags = ["Database Internals", "Paper Review"]
 type = "note"
 toc = false
 readTime = true

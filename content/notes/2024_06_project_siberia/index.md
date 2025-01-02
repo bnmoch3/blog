@@ -2,7 +2,7 @@
 title = "Offline (but Faster and more Accurate) Classification of Hot and Cold Data "
 date = "2024-06-06"
 summary = "Hint, it's based on exponential smoothing"
-tags = ["Database Internals"]
+tags = ["Database Internals", "Paper Review"]
 type = "note"
 toc = false
 readTime = true

@@ -2,7 +2,7 @@
 title = "Distributed Reference Counting"
 date = "2022-10-29"
 summary = ""
-tags = ["Distributed Systems"]
+tags = ["Distributed Systems", "Paper Review"]
 type = "note"
 toc = false
 readTime = true

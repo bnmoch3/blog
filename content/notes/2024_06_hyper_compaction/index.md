@@ -2,7 +2,7 @@
 title = "Compacting Transactional Data in HyPer"
 date = "2024-06-08"
 summary = "Keep hot tuples uncompressed, organize cold data into chunks of columns then use lightweight compression, handle both OLTP and OLAP workloads"
-tags = ["Database Internals"]
+tags = ["Database Internals", "Paper Review"]
 type = "note"
 toc = false
 readTime = true

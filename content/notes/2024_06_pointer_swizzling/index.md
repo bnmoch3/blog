@@ -2,7 +2,7 @@
 title = "Pointer Swizzling Buffer Pools"
 date = "2024-06-09"
 summary = "Switching pointers as the data pointed to moves to and fro memory and secondary storage"
-tags = ["Database Internals"]
+tags = ["Database Internals", "Paper Review"]
 type = "note"
 toc = false
 readTime = true

@@ -2,7 +2,7 @@
 title = "Leanstore: High Performance Low-Overhead Buffer Pool"
 date = "2024-06-11"
 summary = "A dash of pointer swizzling, a sprinkle of optimistic locking and a touch of lean eviction, that's the secret to a high performance buffer pool!"
-tags = ["Database Internals"]
+tags = ["Database Internals", "Paper Review"]
 type = "post"
 toc = false
 readTime = true

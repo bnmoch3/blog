@@ -2,7 +2,7 @@
 title = "Optimizing Data Placement for Distributed OLAP Systems"
 date = "2024-04-16"
 summary = "Using MIP solvers to model and optimize shard placement"
-tags = ["Distributed Systems"]
+tags = ["Distributed Systems", "Paper Review"]
 type = "post"
 toc = false
 readTime = true

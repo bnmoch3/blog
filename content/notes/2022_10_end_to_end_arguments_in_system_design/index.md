@@ -2,7 +2,7 @@
 title = "End-to-End Arguments in System Design"
 date = "2022-10-30"
 summary = "Paper Review"
-tags = ["Distributed Systems"]
+tags = ["Distributed Systems", "Paper Review"]
 type = "note"
 toc = false
 readTime = true
