@@ -253,7 +253,7 @@ hence the need for lightweight, query-friendly compression schemes. Structured
 logs can also be wrangled into traditional database columns as a quick
 pre-processing step or they can be queried directly. I've written a separate
 post on how you can use
-[DuckDB to derive structure from and query JSON](/blog/wrangling-json-with-duckdb).
+[DuckDB to derive structure from and query JSON](/p/wrangling-json-with-duckdb).
 
 For Go-based apps, there are a couple of structured logging libraries:
 

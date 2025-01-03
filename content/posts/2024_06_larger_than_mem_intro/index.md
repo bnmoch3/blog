@@ -59,7 +59,7 @@ Update: I'm done!. Here's the list:
 4. [Compacting Transactional Data in HyPer DB](/notes/2024/hyper-compaction/)
 5. [Utilizing Pointer Swizzling in Buffer Pools](/notes/2024/pointer-swizzling/)
 6. [Tiered Stroage via 2-Tree](/notes/2024/two-tree/)
-7. [Leanstore: High Performance Low-Overhead Buffer Pool](/blog/leanstore/)
+7. [Leanstore: High Performance Low-Overhead Buffer Pool](/p/leanstore/)
 
 ## References
 

@@ -251,7 +251,7 @@ A near 9X improvement with the vectorized version taking 2.998 seconds vs the
 
 ## Comparison with Rust-based UDFs
 
-I've [previously detailed](/blog/rust-duckdb-py-udf) how one can implement such
+I've [previously detailed](/p/rust-duckdb-py-udf) how one can implement such
 vectorized UDFs in Rust and invoke them via FFI. If you know enough Rust, the
 hardest part at least for me is setting up and configuring maturin and pyO3 (aka
 the build and integration steps), plus making sure I can import the package in

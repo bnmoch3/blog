@@ -12,7 +12,7 @@ featured = true
 slug = "sql-joins-p2"
 +++
 
-Now, I've written [previously](/blog/sql-joins-p1/) on how, when learning SQL, I
+Now, I've written [previously](/p/sql-joins-p1/) on how, when learning SQL, I
 had trouble understanding joins conceptually and even at a much more technical
 level. Usually, joins are presented to learners as is since, after all, SQL is a
 declarative language and the user ought to focus on framing the correct query,

@@ -171,7 +171,7 @@ All good so far.
 
 With regards to vector search, there are cases where window queries come quite
 in handy, such as when carrying out
-[Reciprocal Rank Fusion](/blog/hybrid-search-rrf).
+[Reciprocal Rank Fusion](/p/hybrid-search-rrf).
 
 However, getting DuckDB to opt for an index scan in such cases is rather hard.
 

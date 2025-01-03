@@ -19,10 +19,10 @@ performance approach possible while keeping modern hardware in mind.
 
 Let's start of with the numbers and charts showcasing Leanstore's performance:
 
-Leanstore has [two boxes to tick](/blog/larger-than-mem-intro): (1) does it
-offer great performance in the case where the working set fits entirely
-in-memory, and (2) does it offer decent larger-than-memory performance as the
-working set's size increases.
+Leanstore has [two boxes to tick](/p/larger-than-mem-intro): (1) does it offer
+great performance in the case where the working set fits entirely in-memory, and
+(2) does it offer decent larger-than-memory performance as the working set's
+size increases.
 
 In the first case where the working dataset fits entirely in-memory, a b-tree
 implemented on top of Leanstore has almost the same performance as an in-memory
@@ -312,7 +312,7 @@ locks. What much can be said about spinlocks - easy to implement, easy to assume
 they provide high performance but they are a
 [bad idea](https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html).
 Given that many of the researchers developing Leanstore also published papers on
-[hybrid locking](/blog/dbms-hybrid-locking) and lightweight synchronization
+[hybrid locking](/p/dbms-hybrid-locking) and lightweight synchronization
 primitives, it was only a matter of time before they adopted their techniques
 within Leanstore [5,6]. In the current Leanstore implementation, pages support
 optimistic locking (for short reads), shared pessimistic mode (blocks out

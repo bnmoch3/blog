@@ -426,7 +426,7 @@ with psycopg2.connect(dsn) as conn:
         send_csv_to_pg(cur, "bids", bids_tbl)
 ```
 
-For querying, we could use a [left lateral join](/blog/sql-lateral-joins):
+For querying, we could use a [left lateral join](/p/sql-lateral-joins):
 
 ```sql
 select

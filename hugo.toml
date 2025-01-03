@@ -9,7 +9,7 @@ publishDir = "build/main"
 tag = 'tags'
 
 [permalinks]
-posts = "/blog/:slug"
+posts = "/p/:slug"
 notes = "/notes/:year/:slug"
 
 [params]
