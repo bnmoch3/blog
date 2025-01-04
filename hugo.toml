@@ -1,4 +1,4 @@
-baseURL = 'https://www.bnmoch3.org'
+baseURL = 'https://bnmoch3.org'
 languageCode = 'en-us'
 title = 'bnmoch3'
 theme = 'typo'
