@@ -75,10 +75,10 @@ cacheControl = "max-age=31536000, no-transform, public"
 gzip = false
 
 [params.giscus]
-enable = false
-repo = "tomfran/blog"
-repoid = "R_kgDOLtSszw"
+enable = true
+repo = "bnmoch3/blog"
+repoid = "R_kgDOIU86DQ"
 category = "General"
-categoryid = "DIC_kwDOLtSsz84CfLm4"
+categoryid = "DIC_kwDOIU86Dc4Clvgl"
 mapping = "pathname"
-theme = "preferred_color_scheme"
+theme = "gruvbox_light"
