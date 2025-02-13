@@ -176,3 +176,4 @@
   [link](https://github.com/tianyin/configuration-management-papers)
 - There is plenty of room at the bottom:
   [link](https://muratbuffalo.blogspot.com/2021/08/there-is-plenty-of-room-at-bottom.html)
+- Config: https://nickel-lang.org/
