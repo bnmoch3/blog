@@ -529,3 +529,29 @@ function B() {}
 Object.setPrototypeOf(A.prototype, B.prototype);
 Object.setPrototypeOf(B.prototype, A.prototype);
 ```
+
+Because of how `instanceof` works, you might get `true` even if an object is not
+an instance of a constructor:
+
+```javascript
+const someObj = Object.create(null);
+function Foo() {}
+Foo.prototype = someObj;
+
+const bar = {};
+Object.setPrototypeOf(bar, someObj);
+
+console.log("bar instanceof Foo:", bar instanceof Foo); // true
+```
+
+And `false` even if an object is actually an instance of the constructor:
+
+```javascript
+const someObj = Object.create(null);
+function Foo() {}
+
+const fooInstance = new Foo();
+Object.setPrototypeOf(fooInstance, someObj);
+
+console.log("fooInstance instanceof Foo:", fooInstance instanceof Foo); // false
+```
