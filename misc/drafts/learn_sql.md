@@ -14,3 +14,5 @@ Resources:
 - https://use-the-index-luke.com/
 - https://www.youtube.com/watch?v=wL5FqRKDBg8
 - https://giulianopz.github.io/pg.html
+- https://github.com/StructuredCS/grokking-relational-database-design
+- https://mccue.dev/pages/3-11-25-life-altering-postgresql-patterns
