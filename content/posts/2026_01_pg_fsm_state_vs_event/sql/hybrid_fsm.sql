@@ -109,32 +109,32 @@ declare
   current_state invoice_state;
   next_state invoice_state;
 begin
-  -- get current state
-  select state into current_state
-  from invoice_events
-  where invoice_id = NEW.invoice_id
-  order by id desc
-  limit 1
-  for update; -- lock row
+    -- lock the parent invoice row which always exists
+    perform 1 from invoices where id = NEW.invoice_id for update;
 
+    -- get current state
+    select state into current_state
+    from invoice_events
+    where invoice_id = NEW.invoice_id
+    order by id desc;
 
+    -- if no prev event exists for this invoice then we're in start state
+    if current_state is null then
+      current_state := 'start'::invoice_state;
+    end if;
 
-  -- if no prev event exists for this invoice then we're in start state
-  if current_state is null then
-    current_state := 'start'::invoice_state;
-  end if;
+    -- calculate the next state based on curr state and new event
+    next_state := invoice_transition(current_state, NEW.event);
 
-  -- calculate the next state based on curr state and new event
-  next_state := invoice_transition(current_state, NEW.event);
+    -- validate the transition
+    if next_state = 'error'::invoice_state then
+        raise exception 'invalid invoice event: % is not valid from state %',
+        NEW.event, current_state;
+    end if;
 
-  -- validate the transition
-  if next_state = 'error'::invoice_state then
-    raise exception 'invalid invoice event';
-  end if;
-
-  -- automatically set the state s.t. users only need to provide the event
-  NEW.state := next_state;
-  return new;
+    -- automatically set the state s.t. users only need to provide the event
+    NEW.state := next_state;
+    return new;
 end
 $$
 ;

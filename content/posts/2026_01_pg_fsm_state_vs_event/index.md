@@ -591,6 +591,37 @@ could:
 2. Both calculate their next states independently
 3. Both insert their events, potentially creating an invalid state sequence
 
+Okay, I noticed another error yet again. When no events exist yet for an invoice
+then `select ... for update` returns zero rows therefore there's nothing to
+lock. This means that two or more concurrent transactions can get away with
+doing a `insert into invoice_events(invoice_id, event) values (1, 'create')`.
+The fix is to lock the parent row since an invoices row must exist before you
+can insert events related to it due to the foreign key constraint. In the
+`invoice_events_trigger_func` we'll have:
+
+```sql
+create function invoice_events_trigger_func()
+returns trigger
+language plpgsql
+as $$
+declare
+  current_state invoice_state;
+  next_state invoice_state;
+begin
+    -- lock the parent invoice row which always exists
+    perform 1 from invoices where id = NEW.invoice_id for update;
+
+    -- remove the `for update` here
+    select state into current_state from invoice_events
+    where invoice_id = NEW.invoice_id order by id desc;
+
+    -- the rest of the function
+end $$ ;
+```
+
+We don't need to add an index on `invoices(id)` since `id` is a primary key so
+it gets one automatically.
+
 That's it for now. For further reading if you're interested in DB-enforced FSMs:
 
 - [Implementing State Machines in PostgreSQL - Felix Geisendörfer](https://felixge.de/2017/07/27/implementing-state-machines-in-postgresql/) -

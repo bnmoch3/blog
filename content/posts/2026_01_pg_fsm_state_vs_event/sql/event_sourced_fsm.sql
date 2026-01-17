@@ -31,7 +31,7 @@ create table invoice_transitions(
 
 insert into invoice_transitions(state, event, next_state)
 values
-  ('start',     'create',         'draft'),
+  ('start',     'create',       'draft'),
   ('draft',     'send',         'sent'),
   ('draft',     'cancel',       'cancelled'),
   ('sent',      'pay',          'paid'),
