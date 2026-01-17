@@ -20,11 +20,11 @@ of invoices in our business:
 - Recipients pay them
 - If not, the invoices are marked as overdue
 - Invoices can be cancelled as long as they haven't been paid yet
-- Once paid, invoices can also be refunded
+- Once paid, invoices can also be refunded if something came up
 
 This problem can be modeled as a state-machine:
 
-TODO insert graphviz image here
+![invoice state machine figure](invoice_state_machine.svg)
 
 Better yet, the states an invoice goes through and transitions can be stored and
 enforced within the DB (specifically PostgreSQL), otherwise we'll have to rely
@@ -32,8 +32,8 @@ on application code to never make mistakes and keep everything consistent.
 
 There are two main approaches for database-enforced FSMs:
 
-1. **State-based**: Store the current state on the entity, validate transitions
-   via triggers
+1. **State-based**: Store the current state on the entity (e.g. the invoice
+   tuple itself), validate transitions via triggers
 2. **Event-sourced**: Store events in an append-only log, derive state by
    folding over the events
 
@@ -56,9 +56,9 @@ As for event-sourced, I based my approach on Raphael Medaer's
 [Versioned FSM (Finite-State Machine) with Postgresql](https://raphael.medaer.me/2019/06/12/pgfsm.html)
 who in turn based his approach on Felix Geisendörfer's
 [Implementing State Machines in PostgreSQL](https://felixge.de/2017/07/27/implementing-state-machines-in-postgresql/).
-For the sake of clarity/blogging I chucked out the versioning stuff in Raphael's
-approach but in 'real-life' business processes change so consider incorporating
-versioning of FSMs.
+For the sake of making things easy to follow along, I chucked out the versioning
+stuff in Raphael's approach but in 'real-life' business processes change so
+ideally you should consider incorporating versioning of FSMs.
 
 Okay, let's proceed
 
@@ -277,6 +277,13 @@ create type invoice_state as enum(
 );
 ```
 
+Also add the transition from `start` to `draft`:
+
+```sql
+insert into invoice_transitions(state, event, next_state)
+values ('start', 'create', 'draft');
+```
+
 Events are stored in their own table:
 
 ```sql
@@ -455,11 +462,11 @@ where invoice_id = 1
 Which gives:
 
 ```
- id │ event  │ state_after │          occured_at
-════╪════════╪═════════════╪═══════════════════════════════
-  1 │ create │ draft       │ 2026-01-03 10:39:28.641375+00
-  2 │ send   │ sent        │ 2026-01-03 10:39:28.641375+00
-  3 │ pay    │ paid        │ 2026-01-03 10:39:28.641375+00
+id │ event  │ state_after │          occured_at
+═══╪════════╪═════════════╪═══════════════════════════════
+ 1 │ create │ draft       │ 2026-01-03 10:39:28.641375+00
+ 2 │ send   │ sent        │ 2026-01-03 10:39:28.641375+00
+ 3 │ pay    │ paid        │ 2026-01-03 10:39:28.641375+00
 ```
 
 Ignore the occured_at timestamps, I probably should have seeded more realistic
@@ -584,7 +591,7 @@ could:
 2. Both calculate their next states independently
 3. Both insert their events, potentially creating an invalid state sequence
 
-So for further reading if you're interested in DB-enforced FSMs:
+That's it for now. For further reading if you're interested in DB-enforced FSMs:
 
 - [Implementing State Machines in PostgreSQL - Felix Geisendörfer](https://felixge.de/2017/07/27/implementing-state-machines-in-postgresql/) -
   great starting point
