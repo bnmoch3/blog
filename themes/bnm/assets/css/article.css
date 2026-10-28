@@ -1,0 +1,45 @@
+/* Article body: heading anchors, autonumbering. TOC, notes and grid are added in the article phase. */
+.heading {
+  a {
+    visibility: hidden;
+    margin-left: 0.3em;
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    font-weight: 400;
+    text-decoration: none;
+    color: var(--color-muted);
+  }
+
+  &:hover a,
+  a:focus-visible {
+    visibility: visible;
+  }
+}
+
+.autonumber {
+  counter-reset: h2-counter 0;
+
+  h2 { counter-increment: h2-counter 1; counter-reset: h3-counter 0; }
+  h3 { counter-increment: h3-counter 1; counter-reset: h4-counter 0; }
+  h4 { counter-increment: h4-counter 1; }
+
+  h2::before { content: counter(h2-counter) "\00a0\00a0"; }
+  h3::before { content: counter(h2-counter) "." counter(h3-counter) "\00a0\00a0"; }
+  h4::before { content: counter(h2-counter) "." counter(h3-counter) "." counter(h4-counter) "\00a0\00a0"; }
+}
+
+.toc {
+  margin: var(--space-6) 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+
+  ul { margin: 0.1rem 0; }
+  li { margin: 0.1rem 0; }
+}
+
+.footnotes {
+  margin-top: var(--space-7);
+  font-size: var(--text-sm);
+
+  hr { margin: 0 0 var(--space-4); }
+}

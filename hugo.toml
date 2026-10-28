@@ -1,9 +1,12 @@
 baseURL = 'https://bnmoch3.org'
 languageCode = 'en-us'
 title = 'bnmoch3'
-theme = 'typo'
+theme = 'bnm'
 summaryLength = 0
 publishDir = "build/main"
+
+# Hugo version: 0.148.x. The standard (non-extended) edition is enough; the
+# theme uses no Sass/PostCSS. The theme's hugo.toml enforces min = 0.148.0.
 
 [taxonomies]
 tag = 'tags'
@@ -15,9 +18,6 @@ notes = "/notes/:year/:slug"
 [params]
 description = "A tech-oriented personal blog"
 
-# Appearance settings
-theme = 'light'
-colorPalette = 'gruvebox'
 hideHeader = false
 
 # Intro on main page, content in markdown
@@ -60,7 +60,10 @@ url = "/tags"
 # Syntax highligth on code blocks
 [markup]
 [markup.highlight]
-style = 'friendly'
+# class-based output; colors live in themes/bnm/assets/css/code.css
+noClasses = false
+lineNos = false
+guessSyntax = false
 
 # Deploy settings
 
@@ -82,3 +85,47 @@ category = "General"
 categoryid = "DIC_kwDOIU86Dc4Clvgl"
 mapping = "pathname"
 theme = "gruvbox_light"
+
+# Analytics (loaded in production builds only)
+[params.simpleAnalytics]
+enable = true
+
+# Fonts: change a font by editing family/fallback/files here and dropping the
+# WOFF2 files into themes/bnm/static/fonts/<dir>/ (or the site's static/fonts/<dir>/).
+# @font-face rules and --font-heading / --font-body / --font-mono are generated from this.
+[params.fonts.heading]
+family = "Outfit"
+dir = "outfit"
+fallback = "ui-sans-serif, system-ui, sans-serif"
+[[params.fonts.heading.files]]
+file = "outfit-latin-wght-normal.woff2"
+weight = "100 900"
+style = "normal"
+preload = true
+
+[params.fonts.body]
+family = "Work Sans"
+dir = "work-sans"
+fallback = "ui-sans-serif, system-ui, sans-serif"
+[[params.fonts.body.files]]
+file = "work-sans-latin-wght-normal.woff2"
+weight = "100 900"
+style = "normal"
+preload = true
+[[params.fonts.body.files]]
+file = "work-sans-latin-wght-italic.woff2"
+weight = "100 900"
+style = "italic"
+
+[params.fonts.mono]
+family = "Google Sans Code"
+dir = "google-sans-code"
+fallback = "ui-monospace, Menlo, Consolas, monospace"
+[[params.fonts.mono.files]]
+file = "google-sans-code-latin-wght-normal.woff2"
+weight = "300 800"
+style = "normal"
+[[params.fonts.mono.files]]
+file = "google-sans-code-latin-wght-italic.woff2"
+weight = "300 800"
+style = "italic"

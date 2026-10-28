@@ -1,0 +1,13 @@
+{{- $fonts := resources.FromString "css/fonts.generated.css" (partial "head/fonts.html" .) -}}
+{{- $css := slice
+  (resources.Get "css/tokens.css")
+  $fonts
+  (resources.Get "css/base.css")
+  (resources.Get "css/layout.css")
+  (resources.Get "css/components.css")
+  (resources.Get "css/article.css")
+  (resources.Get "css/code.css")
+  (resources.Get "css/print.css")
+-}}
+{{- $combined := $css | resources.Concat "assets/combined.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $combined.RelPermalink }}" media="all">

@@ -1,0 +1,6 @@
+# Theme-level config: only the Hugo version requirement.
+# Pinned/documented version: Hugo 0.148.x. The standard (non-extended) edition is enough.
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.148.0"

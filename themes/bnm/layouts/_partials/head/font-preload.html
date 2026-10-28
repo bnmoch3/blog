@@ -1,0 +1,7 @@
+{{- range $role, $f := site.Params.fonts -}}
+  {{- range $f.files -}}
+    {{- if .preload }}
+<link rel="preload" href="{{ printf "fonts/%s/%s" $f.dir .file | relURL }}" as="font" type="font/woff2" crossorigin>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

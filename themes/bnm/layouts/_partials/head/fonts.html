@@ -1,0 +1,15 @@
+{{/*
+Returns CSS: @font-face rules plus --font-<role> custom properties, generated
+from [params.fonts.<role>] (family, fallback, dir, files[{file, weight, style, preload}]).
+Files live in static/fonts/<dir>/ (theme or site).
+*/}}
+{{- $faces := "" -}}
+{{- $vars := "" -}}
+{{- range $role, $f := site.Params.fonts -}}
+  {{- range $f.files -}}
+    {{- $url := printf "fonts/%s/%s" $f.dir .file | relURL -}}
+    {{- $faces = printf `%s@font-face{font-family:%q;src:url(%q) format("woff2");font-weight:%s;font-style:%s;font-display:swap}%s` $faces $f.family $url (.weight | default "400") (.style | default "normal") "\n" -}}
+  {{- end -}}
+  {{- $vars = printf "%s--font-%s:%q,%s;" $vars $role $f.family $f.fallback -}}
+{{- end -}}
+{{- return (printf "%s:root{%s}\n" $faces $vars) -}}

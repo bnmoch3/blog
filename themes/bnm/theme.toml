@@ -1,0 +1,10 @@
+name = 'bnm'
+license = 'MIT'
+licenselink = 'https://github.com/tomfran/typo/blob/main/LICENSE'
+description = 'A light, warm, typographic Hugo theme with a sticky TOC and marginal footnotes. Derived from tomfran/typo (MIT).'
+min_version = '0.148.0'
+tags = ['blog', 'personal', 'light', 'minimal', 'responsive']
+features = ['table-of-contents', 'footnotes', 'syntax-highlighting', 'katex', 'giscus']
+
+[author]
+name = 'bnm'

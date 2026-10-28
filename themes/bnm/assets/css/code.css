@@ -1,0 +1,95 @@
+/*
+ * Code: Chroma classes (markup.highlight noClasses = false) mapped to the
+ * New Moon palette tokens from tokens.css. Block furniture (label, copy
+ * button) is added in the article phase.
+ */
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-feature-settings: "liga" 1, "calt" 1;
+}
+
+/* Inline code */
+:not(pre) > code {
+  padding: 0.12em 0.35em;
+  border-radius: var(--radius-sm);
+  background: var(--color-code-inline-bg);
+  font-size: 0.88em;
+  overflow-wrap: anywhere;
+}
+
+/* Blocks */
+.highlight {
+  margin: var(--space-5) 0;
+}
+
+pre {
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  overflow-x: auto;
+  border: 1px solid var(--color-code-border);
+  border-radius: var(--radius);
+  background: var(--color-code-bg);
+  color: var(--code-text);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  tab-size: 4;
+  -moz-tab-size: 4;
+
+  code {
+    padding: 0;
+    background: none;
+    font-size: inherit;
+    overflow-wrap: normal;
+  }
+}
+
+.chroma {
+  .line { display: block; }
+  .hl { background: var(--code-line-hl); display: block; margin-inline: calc(-1 * var(--space-5)); padding-inline: var(--space-5); }
+
+  /* keywords */
+  .k, .kc, .kd, .kn, .kp, .kr { color: var(--code-keyword); }
+  .kt { color: var(--code-class); }
+
+  /* names */
+  .nf, .fm { color: var(--code-function); }
+  .nb, .bp { color: var(--code-function); }
+  .nc, .ne { color: var(--code-class); }
+  .na, .nd { color: var(--code-attribute); }
+  .nt, .no { color: var(--code-tag); }
+  .nv, .vc, .vg, .vi, .vm { color: var(--code-variable); }
+  .nn, .nx, .n { color: var(--code-text); }
+
+  /* literals */
+  .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: var(--code-string); }
+  .m, .mb, .mf, .mh, .mi, .il, .mo { color: var(--code-number); }
+  .l, .ld { color: var(--code-number); }
+
+  /* operators and punctuation */
+  .o, .ow { color: var(--code-operator); }
+  .p { color: var(--code-punctuation); }
+
+  /* comments */
+  .c, .ch, .cm, .c1, .cs, .cp, .cpf { color: var(--code-comment); font-style: italic; }
+
+  /* generic */
+  .gd { color: var(--code-deleted); }
+  .gi { color: var(--code-inserted); }
+  .gr, .err { color: var(--code-error); }
+  .gh, .gu { color: var(--code-keyword); font-weight: 600; }
+  .gs { font-weight: 600; }
+  .ge { font-style: italic; }
+  .go, .gp { color: var(--code-comment); }
+
+  /* line numbers, when enabled */
+  .lnt, .ln { color: var(--code-comment); margin-right: var(--space-4); user-select: none; }
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}

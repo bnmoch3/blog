@@ -1,0 +1,12 @@
+@media print {
+  :root { --text-base: 11pt; }
+
+  body { background: #fff; color: #000; display: block; }
+  .header, footer, .toc, .giscus, .back-to-top, .single-pagination, .skip-link { display: none !important; }
+  .main { width: 100%; padding: 0; }
+  a { color: inherit; text-decoration: underline; }
+  .single-content a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; word-break: break-all; }
+  pre { white-space: pre-wrap; overflow: visible; break-inside: avoid; }
+  figure, table { break-inside: avoid; }
+  h1, h2, h3, h4 { break-after: avoid; }
+}

@@ -1,0 +1,92 @@
+/*
+ * Design tokens. The only place raw colors, sizes and measures live.
+ * Fonts are the exception: --font-heading / --font-body / --font-mono are
+ * generated from [params.fonts.*] in hugo.toml (see layouts/_partials/head/fonts.html).
+ * Light only.
+ */
+:root {
+  color-scheme: light;
+
+  /* Palette: warm off-white, adapted from tania_rascia/src/styles/style.css */
+  --beige-0: #f8f4e6;
+  --beige-1: #f1ead5;
+  --beige-2: #ece4ca;
+  --beige-25: #e5dcbd;
+  --beige-3: #ded4b2;
+  --beige-4: #c6ba93;
+  --ink-1: #1d1d22;
+  --ink-2: #28282e;
+  --ink-3: #5a5a61;
+
+  /* Roles */
+  --color-bg: var(--beige-0);
+  --color-surface: var(--beige-1);
+  --color-surface-2: var(--beige-2);
+  --color-border: var(--beige-25);
+  --color-border-strong: var(--beige-4);
+  --color-text: var(--ink-2);
+  --color-strong: var(--ink-1);
+  --color-muted: var(--ink-3);
+  /* accent is for decoration and focus rings; accent-text passes AA (>=4.5) on bg and surface */
+  --color-accent: #b26a34;
+  --color-accent-text: #9a5526;
+  --color-accent-soft: rgb(178 106 52 / 0.12);
+  --color-selection: rgb(178 106 52 / 0.22);
+
+  /* Code: New Moon, adapted for a light background and checked for >=4.5:1 on --color-code-bg */
+  --color-code-bg: var(--beige-1);
+  --color-code-border: var(--beige-3);
+  --color-code-inline-bg: rgb(0 0 0 / 0.05);
+  --code-text: #28282e;
+  --code-comment: #55696f;
+  --code-punctuation: #586e75;
+  --code-property: #4d5d63;
+  --code-keyword: #b8266d;
+  --code-class: #c32c75;
+  --code-function: #0c6f67;
+  --code-string: #5f6e00;
+  --code-number: #b54110;
+  --code-operator: #785200;
+  --code-attribute: #7d5e0e;
+  --code-tag: #1d6ea9;
+  --code-variable: #0e2a35;
+  --code-error: #c0282a;
+  --code-inserted: #2f7d32;
+  --code-deleted: #c0282a;
+  --code-line-hl: rgb(178 106 52 / 0.12);
+
+  /* Type scale */
+  --text-base: 1.0625rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.8125rem;
+  --text-h1: clamp(2rem, 1.5rem + 2vw, 2.75rem);
+  --text-h2: 1.65rem;
+  --text-h3: 1.3rem;
+  --text-h4: 1.1rem;
+  --leading: 1.65;
+  --leading-tight: 1.25;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+
+  /* Layout */
+  --measure: 68ch; /* article column */
+  --page-width: 52rem; /* home and list pages */
+  --toc-width: 15rem;
+  --note-width: 15rem;
+  --gutter: 2.5rem; /* between TOC / article / notes */
+  --page-pad: clamp(1rem, 4vw, 2rem);
+
+  /* Shape and motion */
+  --radius: 8px;
+  --radius-sm: 4px;
+  --transition: 0.15s ease;
+  --focus-ring: 2px solid var(--color-accent);
+}
