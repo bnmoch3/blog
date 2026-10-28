@@ -51,11 +51,29 @@ Hugo version: **0.148.x**. The **standard (non-extended)** edition must build th
 | TOC, footnotes, sidenotes, autonumber styles | `themes/bnm/assets/css/article.css` |
 | Article JS (bundled, minified, fingerprinted in `single.html`) | `themes/bnm/assets/js/{toc,footnotes,code}.js` |
 | Code block markup (border label) / math fences (`transform.ToMath`) | `themes/bnm/layouts/_markup/render-codeblock{,-math}.html` |
+| Callouts (blockquote hook; styles at the end of `article.css`, tones in `tokens.css`) | `themes/bnm/layouts/_markup/render-blockquote.html` |
 | KaTeX stylesheet (pinned, SRI; only on pages with math) | `themes/bnm/layouts/_partials/math.html` |
 
 Article front matter: `toc = true` (optional `tocDepth = 1|2|3`, levels below h2, default 2),
 `autonumber`, `readTime`, `showTags`, `math = true` (opt-in client-side `$...$` rendering; not needed
 for ```` ```math ```` fences, which render at build time), `hidePagination`, `hideBackToTop`.
+
+## Callouts
+
+Hugo alert syntax in a blockquote. Types (case-insensitive): `NOTE`, `TIP`, `IMPORTANT`, `WARNING`,
+`CAUTION`, plus the custom `UPDATE` and `CORRECTION` for edits made after publishing. Hugo's alert
+parser accepts any `[!WORD]`, so custom types need no workaround; the hook only whitelists the seven
+above and renders anything else (and plain `>` quotes) as an ordinary `<blockquote>`.
+
+```md
+> [!UPDATE] Fixed after publishing
+> The query was missing `for update`; the code below is corrected.
+```
+
+The optional text after the type is shown next to the label, which always keeps the type name. Output is
+`<aside class="callout callout-update" role="note">` with a real-text label. Three tones: neutral
+(note, tip), accent (important, update, correction), warn (warning, caution). Blocks, lists and
+footnotes work inside; sidenotes are unaffected.
 
 The breakpoint is written only in CSS (media queries cannot read custom properties). JS reads the
 layout's `--wide` custom property instead of repeating it. If the body size, measure, `--toc-width`,
