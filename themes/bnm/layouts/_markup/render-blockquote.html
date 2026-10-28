@@ -1,0 +1,25 @@
+{{- /* Callouts: Hugo alert syntax (> [!NOTE] Optional title). Built-in types plus
+  update and correction, which Hugo passes through as AlertType like any other
+  word. Anything else, and plain blockquotes, render as an ordinary <blockquote>.
+  The label is real text so screen readers announce it. */ -}}
+{{- $labels := dict
+  "note" "Note"
+  "tip" "Tip"
+  "important" "Important"
+  "warning" "Warning"
+  "caution" "Caution"
+  "update" "Update"
+  "correction" "Correction"
+-}}
+{{- if and (eq .Type "alert") (isset $labels .AlertType) -}}
+<aside class="callout callout-{{ .AlertType }}" role="note">
+  <p class="callout-label"><span class="callout-type">{{ index $labels .AlertType }}</span>{{ with .AlertTitle }} <span class="callout-title">{{ . }}</span>{{ end }}</p>
+  <div class="callout-body">
+    {{ .Text }}
+  </div>
+</aside>
+{{- else -}}
+<blockquote>
+  {{ .Text }}
+</blockquote>
+{{- end -}}

@@ -9,5 +9,7 @@
   .single-content a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; word-break: break-all; }
   pre { white-space: pre-wrap; overflow: visible; }
   figure.image, table { break-inside: avoid; }
+  .callout { break-inside: avoid; border-left-color: #000; }
+  .callout-label { color: #000; }
   h1, h2, h3, h4 { break-after: avoid; }
 }

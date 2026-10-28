@@ -147,3 +147,48 @@
   font-variant-numeric: lining-nums tabular-nums;
   color: var(--color-accent-text);
 }
+
+/* Callouts (layouts/_markup/render-blockquote.html): a left rule and a small caps label, no box.
+   Three tones: neutral (note, tip), accent (important, update, correction), warn (warning, caution). */
+.callout {
+  --callout-rule: var(--color-callout-neutral);
+  --callout-label: var(--color-muted);
+  margin: 0 0 var(--para-space) 0.5em;
+  padding-left: 1em;
+  border-left: 3px solid var(--callout-rule);
+  overflow-wrap: break-word;
+
+  &.callout-important,
+  &.callout-update,
+  &.callout-correction {
+    --callout-rule: var(--color-accent);
+    --callout-label: var(--color-accent-text);
+  }
+
+  &.callout-warning,
+  &.callout-caution {
+    --callout-rule: var(--color-warn);
+    --callout-label: var(--color-warn);
+  }
+
+  /* contents keep the normal size and ink; only the last margin collapses */
+  .callout-body > :last-child { margin-bottom: 0; }
+  .callout-body > :first-child { margin-top: 0; }
+}
+
+.callout-label {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-sm);
+  line-height: 1.3;
+  color: var(--callout-label);
+}
+
+.callout-type {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.callout-title {
+  margin-left: 0.4em;
+}

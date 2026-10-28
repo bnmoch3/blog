@@ -30,6 +30,10 @@
   --color-accent-text: #904f23;
   --color-accent-soft: rgb(173 102 48 / 0.14);
   --color-selection: rgb(173 102 48 / 0.24);
+  /* callouts: three tones. neutral border is decoration only (label uses --color-muted);
+     warn is also the label color, 7.2:1 on bg */
+  --color-callout-neutral: #9a9078;
+  --color-warn: #8a2a1c;
 
   /* Code: New Moon adapted for light, each >=4.5:1 on --color-code-bg */
   --color-code-bg: var(--beige-1);
