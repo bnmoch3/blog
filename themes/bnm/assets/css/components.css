@@ -264,6 +264,7 @@ figure.image {
     }
 
     img[src$=".svg"] {
+      flex: none;
       max-width: none;
       margin-inline: 0;
     }

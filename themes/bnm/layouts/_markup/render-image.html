@@ -55,6 +55,14 @@ and build the img class string as "img-tag1 img-tag2 ..."
         {{ with $imgResource }}
             {{ if ne .MediaType.SubType "svg" }}
                 width="{{ .Width }}px" height="{{ .Height }}px"
+            {{ else }}
+                {{/* SVGs without width/height attributes would stretch to the column; size them from the viewBox (inline style, since the theme's width:auto overrides the attribute) */}}
+                {{ $root := index (findRE `<svg[^>]*>` .Content 1) 0 | default "" }}
+                {{ if not (findRE `\swidth=` $root) }}
+                    {{ with findRESubmatch `viewBox="[-\d.]+[ ,]+[-\d.]+[ ,]+([\d.]+)[ ,]+([\d.]+)"` $root 1 }}
+                        width="{{ index (index . 0) 1 }}" height="{{ index (index . 0) 2 }}" style="width:{{ index (index . 0) 1 }}px"
+                    {{ end }}
+                {{ end }}
             {{ end }}
         {{ end }}>
     </div>
