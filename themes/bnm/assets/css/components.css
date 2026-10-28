@@ -183,10 +183,6 @@
 }
 
 /* Single page chrome */
-.single-intro-container {
-  margin: 0 0 var(--space-6);
-}
-
 .single-title {
   margin: 0 0 var(--space-2);
 }
@@ -238,8 +234,8 @@
   margin-top: var(--space-7);
 }
 
-/* Figures */
-figure {
+/* Figures (images; code blocks are figure.code in code.css) */
+figure.image {
   > div {
     display: flex;
     justify-content: center;

@@ -109,7 +109,7 @@ body > footer {
   justify-content: center;
 }
 
-.article-head { grid-area: head; }
+.article-head { grid-area: head; margin-bottom: var(--space-6); }
 .toc { grid-area: toc; }
 .article-body { grid-area: body; min-width: 0; align-self: start; }
 .sidenotes { grid-area: notes; display: none; }

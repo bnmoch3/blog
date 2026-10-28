@@ -1,0 +1,12 @@
+{{- /* Code block: highlighted <pre> plus a language label that sits on the top
+  border (no vertical space). js/code.js adds the copy button to .code-tools. */ -}}
+{{- $lang := lower .Type -}}
+{{- $result := transform.HighlightCodeBlock . -}}
+<figure class="code"{{ with $lang }} data-lang="{{ . }}"{{ end }}>
+  <div class="code-tools">
+    {{- if and $lang (not (in (slice "text" "txt" "plain" "plaintext") $lang)) -}}
+    <span class="code-lang">{{ $lang }}</span>
+    {{- end -}}
+  </div>
+  {{ $result.Wrapped }}
+</figure>

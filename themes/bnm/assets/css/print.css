@@ -2,12 +2,12 @@
   :root { --text-base: 11pt; }
 
   body { background: #fff; color: #000; display: block; }
-  .header, body > footer, .article-foot, .toc, .giscus, .back-to-top, .post-nav, .skip-link, .sidenotes { display: none !important; }
+  .header, body > footer, .article-foot, .toc, .giscus, .back-to-top, .post-nav, .skip-link, .sidenotes, .code-copy { display: none !important; }
   .has-sidenotes .footnotes { display: block; }
   .main { width: 100%; padding: 0; }
   a { color: inherit; text-decoration: underline; }
   .single-content a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; word-break: break-all; }
-  pre { white-space: pre-wrap; overflow: visible; break-inside: avoid; }
-  figure, table { break-inside: avoid; }
+  pre { white-space: pre-wrap; overflow: visible; }
+  figure.image, table { break-inside: avoid; }
   h1, h2, h3, h4 { break-after: avoid; }
 }

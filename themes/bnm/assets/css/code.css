@@ -1,7 +1,7 @@
 /*
  * Code: Chroma classes (markup.highlight noClasses = false) mapped to the
- * New Moon palette tokens from tokens.css. Block furniture (label, copy
- * button) is added in the article phase.
+ * New Moon palette tokens from tokens.css. Blocks come from
+ * _markup/render-codeblock.html: figure.code > .code-tools + .highlight > pre.
  */
 code,
 pre,
@@ -12,18 +12,79 @@ samp {
   font-variant-numeric: tabular-nums;
 }
 
-/* Inline code */
+/* Inline code: a light tint, never the block styles; wraps only when it must */
 :not(pre) > code {
-  padding: 0.12em 0.35em;
+  padding: 0.1em 0.3em;
   border-radius: var(--radius-sm);
   background: var(--color-code-inline-bg);
   font-size: 0.88em;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
+a code { color: inherit; }
+
 /* Blocks */
+.code,
 .highlight {
   margin: var(--space-5) 0;
+}
+
+.code {
+  position: relative;
+
+  .highlight { margin: 0; }
+}
+
+/*
+ * Language label and copy button sit on the top border, like a fieldset
+ * legend: half above the block, half on it, so they cost no vertical space
+ * and never scroll with the code.
+ */
+.code-tools {
+  position: absolute;
+  top: 0;
+  right: var(--space-4);
+  z-index: 1;
+  display: flex;
+  gap: var(--space-2);
+  translate: 0 -50%;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+
+  &:empty { display: none; }
+}
+
+.code-lang,
+.code-copy {
+  padding: 0 0.45em;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-muted);
+}
+
+.code-copy {
+  margin: 0;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--transition), color var(--transition);
+
+  &:hover { color: var(--color-accent-text); }
+  &:focus-visible { opacity: 1; }
+}
+
+.code:hover .code-copy,
+.code:focus-within .code-copy {
+  opacity: 1;
+}
+
+/* Touch screens have no hover: keep the button visible */
+@media (hover: none) {
+  .code-copy { opacity: 1; }
 }
 
 pre {
@@ -38,6 +99,8 @@ pre {
   line-height: 1.6;
   tab-size: 4;
   -moz-tab-size: 4;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
 
   code {
     padding: 0;
