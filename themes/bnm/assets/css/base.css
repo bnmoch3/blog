@@ -240,3 +240,15 @@ kbd {
     scroll-behavior: auto !important;
   }
 }
+
+/* Superscripts and subscripts must not open up the line spacing */
+sub,
+sup {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }

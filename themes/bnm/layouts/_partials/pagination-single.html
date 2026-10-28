@@ -1,33 +1,10 @@
 {{ if or .NextInSection .PrevInSection }}
-
-<div class="single-pagination">
-  <hr />
-
-  <div class="flex">
-    <div class="single-pagination-next">
-      {{ with .NextInSection }}
-      <div class="single-pagination-container-next">
-        <div class="single-pagination-text">←</div>
-        <div class="single-pagination-text">
-          <a href="{{ .RelPermalink }}"> {{ .Title }} </a>
-        </div>
-      </div>
-      {{ end }}
-    </div>
-
-    <div class="single-pagination-prev">
-      {{ with .PrevInSection }}
-      <div class="single-pagination-container-prev">
-        <div class="single-pagination-text">
-          <a href="{{ .RelPermalink }}"> {{ .Title }} </a>
-        </div>
-        <div class="single-pagination-text">→</div>
-      </div>
-      {{ end }}
-    </div>
-  </div>
-
-  <hr />
-</div>
-
+<nav class="post-nav" aria-label="Adjacent pages">
+  {{ with .NextInSection }}
+  <a class="post-nav-newer" href="{{ .RelPermalink }}"><span aria-hidden="true">←</span> {{ .Title }}</a>
+  {{ else }}<span></span>{{ end }}
+  {{ with .PrevInSection }}
+  <a class="post-nav-older" href="{{ .RelPermalink }}">{{ .Title }} <span aria-hidden="true">→</span></a>
+  {{ end }}
+</nav>
 {{ end }}

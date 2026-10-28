@@ -93,9 +93,50 @@
   }
 }
 
+/* Footnotes: references are quiet; the list is the fallback for sidenotes */
+.footnote-ref {
+  padding-inline: 0.1em;
+  border-radius: var(--radius-sm);
+  font-variant-numeric: lining-nums;
+  text-decoration: none;
+
+  &:hover,
+  &.is-linked {
+    background: var(--color-accent-soft);
+  }
+}
+
 .footnotes {
   margin-top: var(--space-7);
   font-size: var(--text-sm);
 
   hr { margin: 0 0 var(--space-4); }
+}
+
+.has-sidenotes .footnotes {
+  display: none;
+}
+
+/* Sidenotes: absolutely placed in the notes column by js/footnotes.js */
+.sidenote {
+  position: absolute;
+  inset-inline: 0;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--color-muted);
+  transition: color var(--transition);
+
+  p { margin: 0; }
+  p + p { margin-top: 0.5em; }
+
+  &.is-linked,
+  &:focus {
+    color: var(--color-text);
+    outline: none;
+  }
+}
+
+.sidenote-number {
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--color-accent-text);
 }

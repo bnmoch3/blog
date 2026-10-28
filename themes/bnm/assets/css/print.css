@@ -2,7 +2,8 @@
   :root { --text-base: 11pt; }
 
   body { background: #fff; color: #000; display: block; }
-  .header, footer, .toc, .giscus, .back-to-top, .single-pagination, .skip-link { display: none !important; }
+  .header, body > footer, .article-foot, .toc, .giscus, .back-to-top, .post-nav, .skip-link, .sidenotes { display: none !important; }
+  .has-sidenotes .footnotes { display: block; }
   .main { width: 100%; padding: 0; }
   a { color: inherit; text-decoration: underline; }
   .single-content a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; word-break: break-all; }

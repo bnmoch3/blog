@@ -61,7 +61,7 @@
   }
 }
 
-footer {
+body > footer {
   flex-shrink: 0;
   width: min(100%, var(--page-width));
   margin-inline: auto;
@@ -111,7 +111,7 @@ footer {
 
 .article-head { grid-area: head; }
 .toc { grid-area: toc; }
-.article-body { grid-area: body; min-width: 0; }
+.article-body { grid-area: body; min-width: 0; align-self: start; }
 .sidenotes { grid-area: notes; display: none; }
 .article-foot { grid-area: foot; min-width: 0; }
 

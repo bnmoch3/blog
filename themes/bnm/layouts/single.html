@@ -76,7 +76,7 @@
 </script>
 {{ end }}
 
-{{ $js := slice (resources.Get "js/toc.js") | resources.Concat "js/article.js" | minify | fingerprint }}
+{{ $js := slice (resources.Get "js/toc.js") (resources.Get "js/footnotes.js") | resources.Concat "js/article.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 
 {{ end }}
