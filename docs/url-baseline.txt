@@ -1,0 +1,553 @@
+## paths
+./404.html
+./about/index.html
+./android-chrome-192x192.png
+./android-chrome-512x512.png
+./apple-touch-icon.png
+./assets/combined.min.HASH.css
+./favicon-16x16.png
+./favicon-32x32.png
+./favicon.ico
+./fonts/Literata/Literata-LightItalic.woff2
+./fonts/Literata/Literata-Light.woff2
+./fonts/Literata/Literata-SemiBoldItalic.woff2
+./fonts/Literata/Literata-SemiBold.woff2
+./fonts/Monaspace/MonaspaceArgon-Regular.woff
+./fonts/Monaspace/MonaspaceArgon-SemiBold.woff
+./.gitkeep
+./index.html
+./index.xml
+./notes/2019/airline-tx-postgres-isolation-levels/index.html
+./notes/2019/array-rotation/images/image1.png
+./notes/2019/array-rotation/images/image2.png
+./notes/2019/array-rotation/index.html
+./notes/2019/go-custom-logger-pg-leveldb/index.html
+./notes/2019/js-let-const-var/index.html
+./notes/2019/sql-bank-txs-v1/index.html
+./notes/2019/sql-bank-txs-v2/index.html
+./notes/2019/trace-ids-logging-nodejs/index.html
+./notes/2020/bugs-c-operator-associativity/index.html
+./notes/2020/go-btree-data-structure/index.html
+./notes/2020/go-channels-concurrency-sync/index.html
+./notes/2020/pg-unique-constraints/index.html
+./notes/2020/sql-gotcha-now/index.html
+./notes/2022/distributed-reference-counting/index.html
+./notes/2022/end-to-end-arguments-in-system-design/index.html
+./notes/2022/malloc-excess/images/fig_all.png
+./notes/2022/malloc-excess/images/fig_zoomed.png
+./notes/2022/malloc-excess/index.html
+./notes/2023/duckdb-arrow-data-types/index.html
+./notes/2023/getting-started-tla/index.html
+./notes/2023/goroutine-panics/index.html
+./notes/2023/sqlite-benchmarking-writes/index.html
+./notes/2024/anti-caching/images/figure_10_doubly_linked_list_vs.png
+./notes/2024/anti-caching/images/figure_5.png
+./notes/2024/anti-caching/images/figure_8_merge_strategies.png
+./notes/2024/anti-caching/images/storage_manager.svg
+./notes/2024/anti-caching/images/table_eviction.svg
+./notes/2024/anti-caching/index.html
+./notes/2024/efficient-os-paging-hot-cold-db/images/figure_1.png
+./notes/2024/efficient-os-paging-hot-cold-db/images/figure_2_system_architecture.png
+./notes/2024/efficient-os-paging-hot-cold-db/images/figure_4.png
+./notes/2024/efficient-os-paging-hot-cold-db/index.html
+./notes/2024/hyper-compaction/images/figure_1.png
+./notes/2024/hyper-compaction/images/figure_3.png
+./notes/2024/hyper-compaction/images/figure_9.png
+./notes/2024/hyper-compaction/index.html
+./notes/2024/large-scale-analysis-caching-twitter/index.html
+./notes/2024/lru-vs-fifo/images/quick_demotion.svg
+./notes/2024/lru-vs-fifo/index.html
+./notes/2024/pg-arrays-constraints-immutable-functions/index.html
+./notes/2024/pg-create-read-only-group/index.html
+./notes/2024/pg-kill-connection/index.html
+./notes/2024/pg-schemas-namespacing/index.html
+./notes/2024/pointer-swizzling/images/figure_10.png
+./notes/2024/pointer-swizzling/images/figure_11.png
+./notes/2024/pointer-swizzling/index.html
+./notes/2024/project-siberia-hot-cold-id/index.html
+./notes/2024/two-tree/images/two_tree.png
+./notes/2024/two-tree/index.html
+./notes/2025/cors-overview/index.html
+./notes/2025/creating-duckdb-table-function-extension/index.html
+./notes/2025/postgres-iceberg-sync-duckdb/index.html
+./notes/index.html
+./notes/index.xml
+./notes/page/1/index.html
+./p/cache-control-instrs/index.html
+./p/data-placement-optimization/index.html
+./p/dbms-hybrid-locking/images/figure_5.png
+./p/dbms-hybrid-locking/index.html
+./p/duckdb-jit-udfs-numba/images/all.svg
+./p/duckdb-jit-udfs-numba/images/export_to_numpy.svg
+./p/duckdb-jit-udfs-numba/images/pure_sql.svg
+./p/duckdb-jit-udfs-numba/images/py_native.svg
+./p/duckdb-jit-udfs-numba/images/vec_numba_rust.svg
+./p/duckdb-jit-udfs-numba/images/vec_numba.svg
+./p/duckdb-jit-udfs-numba/index.html
+./p/facility-location-problem/index.html
+./p/facility-location-problem-p2/index.html
+./p/guided-local-search-flp/index.html
+./p/hybrid-search-rrf/index.html
+./p/js-prototypes-inheritance/index.html
+./p/larger-than-mem-intro/images/oltp_through_the_looking_glass.png
+./p/larger-than-mem-intro/index.html
+./p/leanstore/images/figure_1_leanstore_datastructures.png
+./p/leanstore/images/figure_3_possible_states_of_a_page.png
+./p/leanstore/images/in_mem_scalability.png
+./p/leanstore/images/larger_than_memory.png
+./p/leanstore/images/mt_tpc_100_warehouses.png
+./p/leanstore/images/single_threaded_tpc_100_warehouses.png
+./p/leanstore/index.html
+./p/logging/index.html
+./p/matrix-mult-and-caching/images/AB.svg
+./p/matrix-mult-and-caching/images/AC.svg
+./p/matrix-mult-and-caching/images/BC.svg
+./p/matrix-mult-and-caching/images/loop_directions.svg
+./p/matrix-mult-and-caching/images/matrix_multiplication_diagram.png
+./p/matrix-mult-and-caching/images/matrix_multiplication_formula.svg
+./p/matrix-mult-and-caching/images/per_iter_res.png
+./p/matrix-mult-and-caching/images/sum_by_row_vs_by_col.svg
+./p/matrix-mult-and-caching/images/total_res.png
+./p/matrix-mult-and-caching/images/traversals.svg
+./p/matrix-mult-and-caching/index.html
+./p/mem-cache-details/images/cache_size_vs_associativity.png
+./p/mem-cache-details/images/lstopo_output.png
+./p/mem-cache-details/index.html
+./p/microbenchmarking-c/index.html
+./posts/index.html
+./posts/index.xml
+./posts/page/1/index.html
+./p/parquet-zstd/images/query_comparison.png
+./p/parquet-zstd/images/size_comparison.png
+./p/parquet-zstd/images/speed_comparison.png
+./p/parquet-zstd/index.html
+./p/pg-multitenancy-models/index.html
+./p/pg-parquet-archive-timeseries/index.html
+./p/postgres-roles-users-groups-privileges/index.html
+./p/postgres-row-level-security/index.html
+./p/range-difference-search-availability/images/image1.png
+./p/range-difference-search-availability/images/image2.png
+./p/range-difference-search-availability/images/image3.png
+./p/range-difference-search-availability/images/image4.png
+./p/range-difference-search-availability/index.html
+./p/rust-duckdb-py-udf/index.html
+./p/sql-asof-joins/index.html
+./p/sql-cypher-flights/images/schema_flights.png
+./p/sql-cypher-flights/index.html
+./p/sql-grouping-sets/index.html
+./p/sql-joins-p1/index.html
+./p/sql-joins-p2/index.html
+./p/sql-lateral-joins/index.html
+./p/timeseries-filling-missing-values/index.html
+./p/vector-search-duckdb-fastembed/index.html
+./p/vss-duckdb-caveats/index.html
+./p/wrangling-json-with-duckdb/index.html
+./sitemap.xml
+./tags/cache-systems/index.html
+./tags/cache-systems/index.xml
+./tags/cache-systems/page/1/index.html
+./tags/computer-systems/index.html
+./tags/computer-systems/index.xml
+./tags/computer-systems/page/1/index.html
+./tags/database-internals/index.html
+./tags/database-internals/index.xml
+./tags/database-internals/page/1/index.html
+./tags/discrete-optimization/index.html
+./tags/discrete-optimization/index.xml
+./tags/discrete-optimization/page/1/index.html
+./tags/distributed-systems/index.html
+./tags/distributed-systems/index.xml
+./tags/distributed-systems/page/1/index.html
+./tags/duckdb/index.html
+./tags/duckdb/index.xml
+./tags/duckdb/page/1/index.html
+./tags/golang/index.html
+./tags/golang/index.xml
+./tags/golang/page/1/index.html
+./tags/index.html
+./tags/index.xml
+./tags/javascript/index.html
+./tags/javascript/index.xml
+./tags/javascript/page/1/index.html
+./tags/misc/index.html
+./tags/misc/index.xml
+./tags/misc/page/1/index.html
+./tags/node.js/index.html
+./tags/node.js/index.xml
+./tags/node.js/page/1/index.html
+./tags/page/1/index.html
+./tags/paper-review/index.html
+./tags/paper-review/index.xml
+./tags/paper-review/page/1/index.html
+./tags/postgresql/index.html
+./tags/postgresql/index.xml
+./tags/postgresql/page/1/index.html
+./tags/python/index.html
+./tags/python/index.xml
+./tags/python/page/1/index.html
+./tags/rag/index.html
+./tags/rag/index.xml
+./tags/rag/page/1/index.html
+./tags/sql/index.html
+./tags/sql/index.xml
+./tags/sql/page/1/index.html
+./tags/timeseries/index.html
+./tags/timeseries/index.xml
+./tags/timeseries/page/1/index.html
+./tags/web/index.html
+./tags/web/index.xml
+./tags/web/page/1/index.html
+## sitemap and rss
+<loc>https://bnmoch3.org/about/</loc>
+<loc>https://bnmoch3.org/</loc>
+<loc>https://bnmoch3.org/notes/2019/airline-tx-postgres-isolation-levels/</loc>
+<loc>https://bnmoch3.org/notes/2019/array-rotation/</loc>
+<loc>https://bnmoch3.org/notes/2019/go-custom-logger-pg-leveldb/</loc>
+<loc>https://bnmoch3.org/notes/2019/js-let-const-var/</loc>
+<loc>https://bnmoch3.org/notes/2019/sql-bank-txs-v1/</loc>
+<loc>https://bnmoch3.org/notes/2019/sql-bank-txs-v2/</loc>
+<loc>https://bnmoch3.org/notes/2019/trace-ids-logging-nodejs/</loc>
+<loc>https://bnmoch3.org/notes/2020/bugs-c-operator-associativity/</loc>
+<loc>https://bnmoch3.org/notes/2020/go-btree-data-structure/</loc>
+<loc>https://bnmoch3.org/notes/2020/go-channels-concurrency-sync/</loc>
+<loc>https://bnmoch3.org/notes/2020/pg-unique-constraints/</loc>
+<loc>https://bnmoch3.org/notes/2020/sql-gotcha-now/</loc>
+<loc>https://bnmoch3.org/notes/2022/distributed-reference-counting/</loc>
+<loc>https://bnmoch3.org/notes/2022/end-to-end-arguments-in-system-design/</loc>
+<loc>https://bnmoch3.org/notes/2022/malloc-excess/</loc>
+<loc>https://bnmoch3.org/notes/2023/duckdb-arrow-data-types/</loc>
+<loc>https://bnmoch3.org/notes/2023/getting-started-tla/</loc>
+<loc>https://bnmoch3.org/notes/2023/goroutine-panics/</loc>
+<loc>https://bnmoch3.org/notes/2023/sqlite-benchmarking-writes/</loc>
+<loc>https://bnmoch3.org/notes/2024/anti-caching/</loc>
+<loc>https://bnmoch3.org/notes/2024/efficient-os-paging-hot-cold-db/</loc>
+<loc>https://bnmoch3.org/notes/2024/hyper-compaction/</loc>
+<loc>https://bnmoch3.org/notes/2024/large-scale-analysis-caching-twitter/</loc>
+<loc>https://bnmoch3.org/notes/2024/lru-vs-fifo/</loc>
+<loc>https://bnmoch3.org/notes/2024/pg-arrays-constraints-immutable-functions/</loc>
+<loc>https://bnmoch3.org/notes/2024/pg-create-read-only-group/</loc>
+<loc>https://bnmoch3.org/notes/2024/pg-kill-connection/</loc>
+<loc>https://bnmoch3.org/notes/2024/pg-schemas-namespacing/</loc>
+<loc>https://bnmoch3.org/notes/2024/pointer-swizzling/</loc>
+<loc>https://bnmoch3.org/notes/2024/project-siberia-hot-cold-id/</loc>
+<loc>https://bnmoch3.org/notes/2024/two-tree/</loc>
+<loc>https://bnmoch3.org/notes/2025/cors-overview/</loc>
+<loc>https://bnmoch3.org/notes/2025/creating-duckdb-table-function-extension/</loc>
+<loc>https://bnmoch3.org/notes/2025/postgres-iceberg-sync-duckdb/</loc>
+<loc>https://bnmoch3.org/notes/</loc>
+<loc>https://bnmoch3.org/p/cache-control-instrs/</loc>
+<loc>https://bnmoch3.org/p/data-placement-optimization/</loc>
+<loc>https://bnmoch3.org/p/dbms-hybrid-locking/</loc>
+<loc>https://bnmoch3.org/p/duckdb-jit-udfs-numba/</loc>
+<loc>https://bnmoch3.org/p/facility-location-problem/</loc>
+<loc>https://bnmoch3.org/p/facility-location-problem-p2/</loc>
+<loc>https://bnmoch3.org/p/guided-local-search-flp/</loc>
+<loc>https://bnmoch3.org/p/hybrid-search-rrf/</loc>
+<loc>https://bnmoch3.org/p/js-prototypes-inheritance/</loc>
+<loc>https://bnmoch3.org/p/larger-than-mem-intro/</loc>
+<loc>https://bnmoch3.org/p/leanstore/</loc>
+<loc>https://bnmoch3.org/p/logging/</loc>
+<loc>https://bnmoch3.org/p/matrix-mult-and-caching/</loc>
+<loc>https://bnmoch3.org/p/mem-cache-details/</loc>
+<loc>https://bnmoch3.org/p/microbenchmarking-c/</loc>
+<loc>https://bnmoch3.org/posts/</loc>
+<loc>https://bnmoch3.org/p/parquet-zstd/</loc>
+<loc>https://bnmoch3.org/p/pg-multitenancy-models/</loc>
+<loc>https://bnmoch3.org/p/pg-parquet-archive-timeseries/</loc>
+<loc>https://bnmoch3.org/p/postgres-roles-users-groups-privileges/</loc>
+<loc>https://bnmoch3.org/p/postgres-row-level-security/</loc>
+<loc>https://bnmoch3.org/p/range-difference-search-availability/</loc>
+<loc>https://bnmoch3.org/p/rust-duckdb-py-udf/</loc>
+<loc>https://bnmoch3.org/p/sql-asof-joins/</loc>
+<loc>https://bnmoch3.org/p/sql-cypher-flights/</loc>
+<loc>https://bnmoch3.org/p/sql-grouping-sets/</loc>
+<loc>https://bnmoch3.org/p/sql-joins-p1/</loc>
+<loc>https://bnmoch3.org/p/sql-joins-p2/</loc>
+<loc>https://bnmoch3.org/p/sql-lateral-joins/</loc>
+<loc>https://bnmoch3.org/p/timeseries-filling-missing-values/</loc>
+<loc>https://bnmoch3.org/p/vector-search-duckdb-fastembed/</loc>
+<loc>https://bnmoch3.org/p/vss-duckdb-caveats/</loc>
+<loc>https://bnmoch3.org/p/wrangling-json-with-duckdb/</loc>
+<loc>https://bnmoch3.org/tags/cache-systems/</loc>
+<loc>https://bnmoch3.org/tags/computer-systems/</loc>
+<loc>https://bnmoch3.org/tags/database-internals/</loc>
+<loc>https://bnmoch3.org/tags/discrete-optimization/</loc>
+<loc>https://bnmoch3.org/tags/distributed-systems/</loc>
+<loc>https://bnmoch3.org/tags/duckdb/</loc>
+<loc>https://bnmoch3.org/tags/golang/</loc>
+<loc>https://bnmoch3.org/tags/javascript/</loc>
+<loc>https://bnmoch3.org/tags/</loc>
+<loc>https://bnmoch3.org/tags/misc/</loc>
+<loc>https://bnmoch3.org/tags/node.js/</loc>
+<loc>https://bnmoch3.org/tags/paper-review/</loc>
+<loc>https://bnmoch3.org/tags/postgresql/</loc>
+<loc>https://bnmoch3.org/tags/python/</loc>
+<loc>https://bnmoch3.org/tags/rag/</loc>
+<loc>https://bnmoch3.org/tags/sql/</loc>
+<loc>https://bnmoch3.org/tags/timeseries/</loc>
+<loc>https://bnmoch3.org/tags/web/</loc>
+<link>https://bnmoch3.org/about/</link>
+<link>https://bnmoch3.org/</link>
+<link>https://bnmoch3.org/notes/2019/airline-tx-postgres-isolation-levels/</link>
+<link>https://bnmoch3.org/notes/2019/array-rotation/</link>
+<link>https://bnmoch3.org/notes/2019/go-custom-logger-pg-leveldb/</link>
+<link>https://bnmoch3.org/notes/2019/js-let-const-var/</link>
+<link>https://bnmoch3.org/notes/2019/sql-bank-txs-v1/</link>
+<link>https://bnmoch3.org/notes/2019/sql-bank-txs-v2/</link>
+<link>https://bnmoch3.org/notes/2019/trace-ids-logging-nodejs/</link>
+<link>https://bnmoch3.org/notes/2020/bugs-c-operator-associativity/</link>
+<link>https://bnmoch3.org/notes/2020/go-btree-data-structure/</link>
+<link>https://bnmoch3.org/notes/2020/go-channels-concurrency-sync/</link>
+<link>https://bnmoch3.org/notes/2020/pg-unique-constraints/</link>
+<link>https://bnmoch3.org/notes/2020/sql-gotcha-now/</link>
+<link>https://bnmoch3.org/notes/2022/distributed-reference-counting/</link>
+<link>https://bnmoch3.org/notes/2022/end-to-end-arguments-in-system-design/</link>
+<link>https://bnmoch3.org/notes/2022/malloc-excess/</link>
+<link>https://bnmoch3.org/notes/2023/duckdb-arrow-data-types/</link>
+<link>https://bnmoch3.org/notes/2023/getting-started-tla/</link>
+<link>https://bnmoch3.org/notes/2023/goroutine-panics/</link>
+<link>https://bnmoch3.org/notes/2023/sqlite-benchmarking-writes/</link>
+<link>https://bnmoch3.org/notes/2024/anti-caching/</link>
+<link>https://bnmoch3.org/notes/2024/efficient-os-paging-hot-cold-db/</link>
+<link>https://bnmoch3.org/notes/2024/hyper-compaction/</link>
+<link>https://bnmoch3.org/notes/2024/large-scale-analysis-caching-twitter/</link>
+<link>https://bnmoch3.org/notes/2024/lru-vs-fifo/</link>
+<link>https://bnmoch3.org/notes/2024/pg-arrays-constraints-immutable-functions/</link>
+<link>https://bnmoch3.org/notes/2024/pg-create-read-only-group/</link>
+<link>https://bnmoch3.org/notes/2024/pg-kill-connection/</link>
+<link>https://bnmoch3.org/notes/2024/pg-schemas-namespacing/</link>
+<link>https://bnmoch3.org/notes/2024/pointer-swizzling/</link>
+<link>https://bnmoch3.org/notes/2024/project-siberia-hot-cold-id/</link>
+<link>https://bnmoch3.org/notes/2024/two-tree/</link>
+<link>https://bnmoch3.org/notes/2025/cors-overview/</link>
+<link>https://bnmoch3.org/notes/2025/creating-duckdb-table-function-extension/</link>
+<link>https://bnmoch3.org/notes/2025/postgres-iceberg-sync-duckdb/</link>
+<link>https://bnmoch3.org/p/cache-control-instrs/</link>
+<link>https://bnmoch3.org/p/data-placement-optimization/</link>
+<link>https://bnmoch3.org/p/dbms-hybrid-locking/</link>
+<link>https://bnmoch3.org/p/duckdb-jit-udfs-numba/</link>
+<link>https://bnmoch3.org/p/facility-location-problem/</link>
+<link>https://bnmoch3.org/p/facility-location-problem-p2/</link>
+<link>https://bnmoch3.org/p/guided-local-search-flp/</link>
+<link>https://bnmoch3.org/p/hybrid-search-rrf/</link>
+<link>https://bnmoch3.org/p/js-prototypes-inheritance/</link>
+<link>https://bnmoch3.org/p/larger-than-mem-intro/</link>
+<link>https://bnmoch3.org/p/leanstore/</link>
+<link>https://bnmoch3.org/p/logging/</link>
+<link>https://bnmoch3.org/p/matrix-mult-and-caching/</link>
+<link>https://bnmoch3.org/p/mem-cache-details/</link>
+<link>https://bnmoch3.org/p/microbenchmarking-c/</link>
+<link>https://bnmoch3.org/p/parquet-zstd/</link>
+<link>https://bnmoch3.org/p/pg-multitenancy-models/</link>
+<link>https://bnmoch3.org/p/pg-parquet-archive-timeseries/</link>
+<link>https://bnmoch3.org/p/postgres-roles-users-groups-privileges/</link>
+<link>https://bnmoch3.org/p/postgres-row-level-security/</link>
+<link>https://bnmoch3.org/p/range-difference-search-availability/</link>
+<link>https://bnmoch3.org/p/rust-duckdb-py-udf/</link>
+<link>https://bnmoch3.org/p/sql-asof-joins/</link>
+<link>https://bnmoch3.org/p/sql-cypher-flights/</link>
+<link>https://bnmoch3.org/p/sql-grouping-sets/</link>
+<link>https://bnmoch3.org/p/sql-joins-p1/</link>
+<link>https://bnmoch3.org/p/sql-joins-p2/</link>
+<link>https://bnmoch3.org/p/sql-lateral-joins/</link>
+<link>https://bnmoch3.org/p/timeseries-filling-missing-values/</link>
+<link>https://bnmoch3.org/p/vector-search-duckdb-fastembed/</link>
+<link>https://bnmoch3.org/p/vss-duckdb-caveats/</link>
+<link>https://bnmoch3.org/p/wrangling-json-with-duckdb/</link>
+## canonical and og:url
+property="og:url" content="https://bnmoch3.org/"
+property="og:url" content="https://bnmoch3.org/about/"
+property="og:url" content="https://bnmoch3.org/notes/"
+property="og:url" content="https://bnmoch3.org/notes/2019/airline-tx-postgres-isolation-levels/"
+property="og:url" content="https://bnmoch3.org/notes/2019/array-rotation/"
+property="og:url" content="https://bnmoch3.org/notes/2019/go-custom-logger-pg-leveldb/"
+property="og:url" content="https://bnmoch3.org/notes/2019/js-let-const-var/"
+property="og:url" content="https://bnmoch3.org/notes/2019/sql-bank-txs-v1/"
+property="og:url" content="https://bnmoch3.org/notes/2019/sql-bank-txs-v2/"
+property="og:url" content="https://bnmoch3.org/notes/2019/trace-ids-logging-nodejs/"
+property="og:url" content="https://bnmoch3.org/notes/2020/bugs-c-operator-associativity/"
+property="og:url" content="https://bnmoch3.org/notes/2020/go-btree-data-structure/"
+property="og:url" content="https://bnmoch3.org/notes/2020/go-channels-concurrency-sync/"
+property="og:url" content="https://bnmoch3.org/notes/2020/pg-unique-constraints/"
+property="og:url" content="https://bnmoch3.org/notes/2020/sql-gotcha-now/"
+property="og:url" content="https://bnmoch3.org/notes/2022/distributed-reference-counting/"
+property="og:url" content="https://bnmoch3.org/notes/2022/end-to-end-arguments-in-system-design/"
+property="og:url" content="https://bnmoch3.org/notes/2022/malloc-excess/"
+property="og:url" content="https://bnmoch3.org/notes/2023/duckdb-arrow-data-types/"
+property="og:url" content="https://bnmoch3.org/notes/2023/getting-started-tla/"
+property="og:url" content="https://bnmoch3.org/notes/2023/goroutine-panics/"
+property="og:url" content="https://bnmoch3.org/notes/2023/sqlite-benchmarking-writes/"
+property="og:url" content="https://bnmoch3.org/notes/2024/anti-caching/"
+property="og:url" content="https://bnmoch3.org/notes/2024/efficient-os-paging-hot-cold-db/"
+property="og:url" content="https://bnmoch3.org/notes/2024/hyper-compaction/"
+property="og:url" content="https://bnmoch3.org/notes/2024/large-scale-analysis-caching-twitter/"
+property="og:url" content="https://bnmoch3.org/notes/2024/lru-vs-fifo/"
+property="og:url" content="https://bnmoch3.org/notes/2024/pg-arrays-constraints-immutable-functions/"
+property="og:url" content="https://bnmoch3.org/notes/2024/pg-create-read-only-group/"
+property="og:url" content="https://bnmoch3.org/notes/2024/pg-kill-connection/"
+property="og:url" content="https://bnmoch3.org/notes/2024/pg-schemas-namespacing/"
+property="og:url" content="https://bnmoch3.org/notes/2024/pointer-swizzling/"
+property="og:url" content="https://bnmoch3.org/notes/2024/project-siberia-hot-cold-id/"
+property="og:url" content="https://bnmoch3.org/notes/2024/two-tree/"
+property="og:url" content="https://bnmoch3.org/notes/2025/cors-overview/"
+property="og:url" content="https://bnmoch3.org/notes/2025/creating-duckdb-table-function-extension/"
+property="og:url" content="https://bnmoch3.org/notes/2025/postgres-iceberg-sync-duckdb/"
+property="og:url" content="https://bnmoch3.org/p/cache-control-instrs/"
+property="og:url" content="https://bnmoch3.org/p/data-placement-optimization/"
+property="og:url" content="https://bnmoch3.org/p/dbms-hybrid-locking/"
+property="og:url" content="https://bnmoch3.org/p/duckdb-jit-udfs-numba/"
+property="og:url" content="https://bnmoch3.org/p/facility-location-problem/"
+property="og:url" content="https://bnmoch3.org/p/facility-location-problem-p2/"
+property="og:url" content="https://bnmoch3.org/p/guided-local-search-flp/"
+property="og:url" content="https://bnmoch3.org/p/hybrid-search-rrf/"
+property="og:url" content="https://bnmoch3.org/p/js-prototypes-inheritance/"
+property="og:url" content="https://bnmoch3.org/p/larger-than-mem-intro/"
+property="og:url" content="https://bnmoch3.org/p/leanstore/"
+property="og:url" content="https://bnmoch3.org/p/logging/"
+property="og:url" content="https://bnmoch3.org/p/matrix-mult-and-caching/"
+property="og:url" content="https://bnmoch3.org/p/mem-cache-details/"
+property="og:url" content="https://bnmoch3.org/p/microbenchmarking-c/"
+property="og:url" content="https://bnmoch3.org/posts/"
+property="og:url" content="https://bnmoch3.org/p/parquet-zstd/"
+property="og:url" content="https://bnmoch3.org/p/pg-multitenancy-models/"
+property="og:url" content="https://bnmoch3.org/p/pg-parquet-archive-timeseries/"
+property="og:url" content="https://bnmoch3.org/p/postgres-roles-users-groups-privileges/"
+property="og:url" content="https://bnmoch3.org/p/postgres-row-level-security/"
+property="og:url" content="https://bnmoch3.org/p/range-difference-search-availability/"
+property="og:url" content="https://bnmoch3.org/p/rust-duckdb-py-udf/"
+property="og:url" content="https://bnmoch3.org/p/sql-asof-joins/"
+property="og:url" content="https://bnmoch3.org/p/sql-cypher-flights/"
+property="og:url" content="https://bnmoch3.org/p/sql-grouping-sets/"
+property="og:url" content="https://bnmoch3.org/p/sql-joins-p1/"
+property="og:url" content="https://bnmoch3.org/p/sql-joins-p2/"
+property="og:url" content="https://bnmoch3.org/p/sql-lateral-joins/"
+property="og:url" content="https://bnmoch3.org/p/timeseries-filling-missing-values/"
+property="og:url" content="https://bnmoch3.org/p/vector-search-duckdb-fastembed/"
+property="og:url" content="https://bnmoch3.org/p/vss-duckdb-caveats/"
+property="og:url" content="https://bnmoch3.org/p/wrangling-json-with-duckdb/"
+property="og:url" content="https://bnmoch3.org/tags/"
+property="og:url" content="https://bnmoch3.org/tags/cache-systems/"
+property="og:url" content="https://bnmoch3.org/tags/computer-systems/"
+property="og:url" content="https://bnmoch3.org/tags/database-internals/"
+property="og:url" content="https://bnmoch3.org/tags/discrete-optimization/"
+property="og:url" content="https://bnmoch3.org/tags/distributed-systems/"
+property="og:url" content="https://bnmoch3.org/tags/duckdb/"
+property="og:url" content="https://bnmoch3.org/tags/golang/"
+property="og:url" content="https://bnmoch3.org/tags/javascript/"
+property="og:url" content="https://bnmoch3.org/tags/misc/"
+property="og:url" content="https://bnmoch3.org/tags/node.js/"
+property="og:url" content="https://bnmoch3.org/tags/paper-review/"
+property="og:url" content="https://bnmoch3.org/tags/postgresql/"
+property="og:url" content="https://bnmoch3.org/tags/python/"
+property="og:url" content="https://bnmoch3.org/tags/rag/"
+property="og:url" content="https://bnmoch3.org/tags/sql/"
+property="og:url" content="https://bnmoch3.org/tags/timeseries/"
+property="og:url" content="https://bnmoch3.org/tags/web/"
+rel=canonical href=https://bnmoch3.org/
+rel=canonical href=https://bnmoch3.org/about/
+rel=canonical href=https://bnmoch3.org/notes/
+rel=canonical href=https://bnmoch3.org/notes/
+rel=canonical href=https://bnmoch3.org/notes/2019/airline-tx-postgres-isolation-levels/
+rel=canonical href=https://bnmoch3.org/notes/2019/array-rotation/
+rel=canonical href=https://bnmoch3.org/notes/2019/go-custom-logger-pg-leveldb/
+rel=canonical href=https://bnmoch3.org/notes/2019/js-let-const-var/
+rel=canonical href=https://bnmoch3.org/notes/2019/sql-bank-txs-v1/
+rel=canonical href=https://bnmoch3.org/notes/2019/sql-bank-txs-v2/
+rel=canonical href=https://bnmoch3.org/notes/2019/trace-ids-logging-nodejs/
+rel=canonical href=https://bnmoch3.org/notes/2020/bugs-c-operator-associativity/
+rel=canonical href=https://bnmoch3.org/notes/2020/go-btree-data-structure/
+rel=canonical href=https://bnmoch3.org/notes/2020/go-channels-concurrency-sync/
+rel=canonical href=https://bnmoch3.org/notes/2020/pg-unique-constraints/
+rel=canonical href=https://bnmoch3.org/notes/2020/sql-gotcha-now/
+rel=canonical href=https://bnmoch3.org/notes/2022/distributed-reference-counting/
+rel=canonical href=https://bnmoch3.org/notes/2022/end-to-end-arguments-in-system-design/
+rel=canonical href=https://bnmoch3.org/notes/2022/malloc-excess/
+rel=canonical href=https://bnmoch3.org/notes/2023/duckdb-arrow-data-types/
+rel=canonical href=https://bnmoch3.org/notes/2023/getting-started-tla/
+rel=canonical href=https://bnmoch3.org/notes/2023/goroutine-panics/
+rel=canonical href=https://bnmoch3.org/notes/2023/sqlite-benchmarking-writes/
+rel=canonical href=https://bnmoch3.org/notes/2024/anti-caching/
+rel=canonical href=https://bnmoch3.org/notes/2024/efficient-os-paging-hot-cold-db/
+rel=canonical href=https://bnmoch3.org/notes/2024/hyper-compaction/
+rel=canonical href=https://bnmoch3.org/notes/2024/large-scale-analysis-caching-twitter/
+rel=canonical href=https://bnmoch3.org/notes/2024/lru-vs-fifo/
+rel=canonical href=https://bnmoch3.org/notes/2024/pg-arrays-constraints-immutable-functions/
+rel=canonical href=https://bnmoch3.org/notes/2024/pg-create-read-only-group/
+rel=canonical href=https://bnmoch3.org/notes/2024/pg-kill-connection/
+rel=canonical href=https://bnmoch3.org/notes/2024/pg-schemas-namespacing/
+rel=canonical href=https://bnmoch3.org/notes/2024/pointer-swizzling/
+rel=canonical href=https://bnmoch3.org/notes/2024/project-siberia-hot-cold-id/
+rel=canonical href=https://bnmoch3.org/notes/2024/two-tree/
+rel=canonical href=https://bnmoch3.org/notes/2025/cors-overview/
+rel=canonical href=https://bnmoch3.org/notes/2025/creating-duckdb-table-function-extension/
+rel=canonical href=https://bnmoch3.org/notes/2025/postgres-iceberg-sync-duckdb/
+rel=canonical href=https://bnmoch3.org/p/cache-control-instrs/
+rel=canonical href=https://bnmoch3.org/p/data-placement-optimization/
+rel=canonical href=https://bnmoch3.org/p/dbms-hybrid-locking/
+rel=canonical href=https://bnmoch3.org/p/duckdb-jit-udfs-numba/
+rel=canonical href=https://bnmoch3.org/p/facility-location-problem/
+rel=canonical href=https://bnmoch3.org/p/facility-location-problem-p2/
+rel=canonical href=https://bnmoch3.org/p/guided-local-search-flp/
+rel=canonical href=https://bnmoch3.org/p/hybrid-search-rrf/
+rel=canonical href=https://bnmoch3.org/p/js-prototypes-inheritance/
+rel=canonical href=https://bnmoch3.org/p/larger-than-mem-intro/
+rel=canonical href=https://bnmoch3.org/p/leanstore/
+rel=canonical href=https://bnmoch3.org/p/logging/
+rel=canonical href=https://bnmoch3.org/p/matrix-mult-and-caching/
+rel=canonical href=https://bnmoch3.org/p/mem-cache-details/
+rel=canonical href=https://bnmoch3.org/p/microbenchmarking-c/
+rel=canonical href=https://bnmoch3.org/posts/
+rel=canonical href=https://bnmoch3.org/posts/
+rel=canonical href=https://bnmoch3.org/p/parquet-zstd/
+rel=canonical href=https://bnmoch3.org/p/pg-multitenancy-models/
+rel=canonical href=https://bnmoch3.org/p/pg-parquet-archive-timeseries/
+rel=canonical href=https://bnmoch3.org/p/postgres-roles-users-groups-privileges/
+rel=canonical href=https://bnmoch3.org/p/postgres-row-level-security/
+rel=canonical href=https://bnmoch3.org/p/range-difference-search-availability/
+rel=canonical href=https://bnmoch3.org/p/rust-duckdb-py-udf/
+rel=canonical href=https://bnmoch3.org/p/sql-asof-joins/
+rel=canonical href=https://bnmoch3.org/p/sql-cypher-flights/
+rel=canonical href=https://bnmoch3.org/p/sql-grouping-sets/
+rel=canonical href=https://bnmoch3.org/p/sql-joins-p1/
+rel=canonical href=https://bnmoch3.org/p/sql-joins-p2/
+rel=canonical href=https://bnmoch3.org/p/sql-lateral-joins/
+rel=canonical href=https://bnmoch3.org/p/timeseries-filling-missing-values/
+rel=canonical href=https://bnmoch3.org/p/vector-search-duckdb-fastembed/
+rel=canonical href=https://bnmoch3.org/p/vss-duckdb-caveats/
+rel=canonical href=https://bnmoch3.org/p/wrangling-json-with-duckdb/
+rel=canonical href=https://bnmoch3.org/tags/
+rel=canonical href=https://bnmoch3.org/tags/
+rel=canonical href=https://bnmoch3.org/tags/cache-systems/
+rel=canonical href=https://bnmoch3.org/tags/cache-systems/
+rel=canonical href=https://bnmoch3.org/tags/computer-systems/
+rel=canonical href=https://bnmoch3.org/tags/computer-systems/
+rel=canonical href=https://bnmoch3.org/tags/database-internals/
+rel=canonical href=https://bnmoch3.org/tags/database-internals/
+rel=canonical href=https://bnmoch3.org/tags/discrete-optimization/
+rel=canonical href=https://bnmoch3.org/tags/discrete-optimization/
+rel=canonical href=https://bnmoch3.org/tags/distributed-systems/
+rel=canonical href=https://bnmoch3.org/tags/distributed-systems/
+rel=canonical href=https://bnmoch3.org/tags/duckdb/
+rel=canonical href=https://bnmoch3.org/tags/duckdb/
+rel=canonical href=https://bnmoch3.org/tags/golang/
+rel=canonical href=https://bnmoch3.org/tags/golang/
+rel=canonical href=https://bnmoch3.org/tags/javascript/
+rel=canonical href=https://bnmoch3.org/tags/javascript/
+rel=canonical href=https://bnmoch3.org/tags/misc/
+rel=canonical href=https://bnmoch3.org/tags/misc/
+rel=canonical href=https://bnmoch3.org/tags/node.js/
+rel=canonical href=https://bnmoch3.org/tags/node.js/
+rel=canonical href=https://bnmoch3.org/tags/paper-review/
+rel=canonical href=https://bnmoch3.org/tags/paper-review/
+rel=canonical href=https://bnmoch3.org/tags/postgresql/
+rel=canonical href=https://bnmoch3.org/tags/postgresql/
+rel=canonical href=https://bnmoch3.org/tags/python/
+rel=canonical href=https://bnmoch3.org/tags/python/
+rel=canonical href=https://bnmoch3.org/tags/rag/
+rel=canonical href=https://bnmoch3.org/tags/rag/
+rel=canonical href=https://bnmoch3.org/tags/sql/
+rel=canonical href=https://bnmoch3.org/tags/sql/
+rel=canonical href=https://bnmoch3.org/tags/timeseries/
+rel=canonical href=https://bnmoch3.org/tags/timeseries/
+rel=canonical href=https://bnmoch3.org/tags/web/
+rel=canonical href=https://bnmoch3.org/tags/web/
