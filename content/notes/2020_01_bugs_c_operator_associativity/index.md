@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "bugs-c-operator-associativity"
+aliases = ["/blog/bugs-c-operator-associativity/"]
 +++
 
 This is a quick post and it's here more or less to serve as a reminder to

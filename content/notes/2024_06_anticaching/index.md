@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "anti-caching"
+aliases = ["/blog/anti-caching/"]
 +++
 
 ## Overview

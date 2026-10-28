@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "pg-kill-connection"
+aliases = ["/blog/pg-kill-connection/"]
 +++
 
 First, for demonstration purposes, let's create a user with maximum connection

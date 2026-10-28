@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "go-btree-data-structure"
+aliases = ["/blog/go-btree-data-structure/"]
 +++
 
 I've been studying B-Tree implementations in Golang of late and the first one I

@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "array-rotation"
+aliases = ["/blog/array-rotation/"]
 +++
 
 Just began working through

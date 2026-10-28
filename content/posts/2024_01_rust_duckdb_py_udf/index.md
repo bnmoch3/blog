@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "rust-duckdb-py-udf"
+aliases = ["/blog/rust-duckdb-py-udf/"]
 +++
 
 The title's quite a mouthful but the gist of this post is how to implement

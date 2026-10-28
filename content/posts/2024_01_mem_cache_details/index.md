@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "mem-cache-details"
+aliases = ["/blog/mem-cache-details/"]
 +++
 
 This post will go over various tools for retrieving memory and cache info in

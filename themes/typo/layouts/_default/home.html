@@ -1,0 +1,48 @@
+{{ define "main" }}
+
+{{ .Content }}
+
+{{/* Intro summary section */}}
+
+{{ if or .Site.Params.homeIntroTitle .Site.Params.homeIntroContent }}
+<div class="intro">
+    {{ with .Site.Params.homeIntroTitle }}
+    <h1>{{ . }}</h1>
+    {{ end }}
+
+    {{ with .Site.Params.homeIntroContent }}
+    <p>{{ . | markdownify }}</p>
+    {{ end }}
+</div>
+{{ end }}
+
+{{/* Fetch entries from both posts and notes */}}
+{{ $posts := where .Site.RegularPages "Section" "posts" }}
+{{ $notes := where .Site.RegularPages "Section" "notes" }}
+
+
+<div class="list-container">
+    <h2>Latest</h2>
+
+    {{ $latestEntries := sort (
+        first 5 ($posts) | union (first 3  ($notes))
+    ) "Date" "desc" }}
+
+    {{ range $index, $page := $latestEntries }}
+        {{ partial "home-entry.html" $page }}
+    {{ end }}
+
+    <h2>Featured</h2>
+    {{ $allEntries := $posts | union $notes  }}
+    {{ $featuredEntries :=
+        sort (where $allEntries ".Params.Featured" true) "Date" "desc"
+    }}
+
+    {{ range $index, $page := $featuredEntries }}
+        {{ partial "home-entry.html" $page }}
+    {{ end }}
+
+</div>
+
+
+{{ end }}

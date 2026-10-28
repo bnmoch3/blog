@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "dbms-hybrid-locking"
+aliases = ["/blog/dbms-hybrid-locking/"]
 +++
 
 ## Intro

@@ -10,6 +10,7 @@ autonumber = false
 showTags = false
 featured = true
 slug = "duckdb-jit-udfs-numba"
+aliases = ["/blog/duckdb-jit-udfs-numba/"]
 +++
 
 DuckDB's Python API supports extending its core functionality with user-defined

@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "vss-duckdb-caveats"
+aliases = ["/blog/vss-duckdb-caveats/"]
 +++
 
 ## Overview

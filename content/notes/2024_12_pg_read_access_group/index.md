@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "pg-create-read-only-group"
+aliases = ["/blog/pg-create-read-only-group/"]
 +++
 
 Suppose we've got a role `some_user` and want to give it read access to all the

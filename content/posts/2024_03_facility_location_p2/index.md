@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "facility-location-problem-p2"
+aliases = ["/blog/facility-location-problem-p2/"]
 +++
 
 This post picks up from where I left off in my previous post:

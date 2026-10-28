@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "sql-grouping-sets"
+aliases = ["/blog/sql-grouping-sets/"]
 +++
 
 Let's motivate grouping sets with an example. Both the dataset and prompt are

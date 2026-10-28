@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = true
 slug = "sql-asof-joins"
+aliases = ["/blog/sql-asof-joins/"]
 +++
 
 ## Overview

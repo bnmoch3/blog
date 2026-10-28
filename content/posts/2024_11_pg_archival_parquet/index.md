@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = true
 slug = "pg-parquet-archive-timeseries"
+aliases = ["/blog/pg-parquet-archive-timeseries/"]
 +++
 
 With time-series and real-time analytics, we usually query recent data rather

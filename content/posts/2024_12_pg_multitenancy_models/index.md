@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = true
 slug = "pg-multitenancy-models"
+aliases = ["/blog/pg-multitenancy-models/"]
 +++
 
 Case scenario, you've got multiple customers and you need to figure out how

@@ -10,6 +10,7 @@ autonumber = false
 showTags = false
 featured = true
 slug = "parquet-zstd"
+aliases = ["/blog/parquet-zstd/"]
 +++
 
 Here's the executive summary: if you're looking for a dataset format to use

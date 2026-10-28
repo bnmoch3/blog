@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "cache-control-instrs"
+aliases = ["/blog/cache-control-instrs/"]
 +++
 
 Traditionally, the L1, L2 and L3 SRAM caches are meant to be managed solely by

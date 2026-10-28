@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "pointer-swizzling"
+aliases = ["/blog/pointer-swizzling/"]
 +++
 
 Today's paper is

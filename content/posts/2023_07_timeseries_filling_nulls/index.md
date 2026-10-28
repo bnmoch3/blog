@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "timeseries-filling-missing-values"
+aliases = ["/blog/timeseries-filling-missing-values/"]
 +++
 
 ## Overview

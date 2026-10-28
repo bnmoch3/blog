@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "pg-unique-constraints"
+aliases = ["/blog/pg-unique-constraints/"]
 +++
 
 Using hash indexes over Btree indexes for equality lookups should be faster:

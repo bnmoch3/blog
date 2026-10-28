@@ -10,6 +10,7 @@ autonumber = false
 showTags = false
 featured = true
 slug = "larger-than-mem-intro"
+aliases = ["/blog/larger-than-mem-intro/"]
 +++
 
 According to [1], the ideal DBMS is one that "has high performance,

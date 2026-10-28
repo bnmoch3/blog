@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "js-let-const-var"
+aliases = ["/blog/js-let-const-var/"]
 +++
 
 Of all the programming languages I've worked with so far, javascript is the one

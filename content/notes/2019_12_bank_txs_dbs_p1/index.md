@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "sql-bank-txs-v1"
+aliases = ["/blog/sql-bank-txs-v1/"]
 +++
 
 The following is a not-so-brief overview of my solution to the

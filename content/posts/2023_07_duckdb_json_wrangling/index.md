@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "wrangling-json-with-duckdb"
+aliases = ["/blog/wrangling-json-with-duckdb/"]
 +++
 
 ## Setting up the data

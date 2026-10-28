@@ -10,6 +10,7 @@ autonumber = true
 showTags = true
 featured = true
 slug = "postgres-row-level-security"
+aliases = ["/blog/postgres-row-level-security/"]
 +++
 
 ## Intro

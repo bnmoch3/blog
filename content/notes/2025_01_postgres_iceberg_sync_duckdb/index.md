@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = true
 slug = "postgres-iceberg-sync-duckdb"
+aliases = ["/blog/postgres-iceberg-sync-duckdb/"]
 +++
 
 Why sync from Postgres to Iceberg: you want an analytics optimized snapshot of

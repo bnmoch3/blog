@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "end-to-end-arguments-in-system-design"
+aliases = ["/blog/end-to-end-arguments-in-system-design/"]
 +++
 
 The classic paper

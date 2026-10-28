@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "sqlite-benchmarking-writes"
+aliases = ["/blog/sqlite-benchmarking-writes/"]
 +++
 
 ## Overview

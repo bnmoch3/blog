@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "hybrid-search-rrf"
+aliases = ["/blog/hybrid-search-rrf/"]
 +++
 
 After experimenting around with lexical/keyword vs semantic search, I became

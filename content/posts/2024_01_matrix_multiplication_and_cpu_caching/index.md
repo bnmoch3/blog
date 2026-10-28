@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "matrix-mult-and-caching"
+aliases = ["/blog/matrix-mult-and-caching/"]
 +++
 
 ## Introduction

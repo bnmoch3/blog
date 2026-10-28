@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "project-siberia-hot-cold-id"
+aliases = ["/blog/project-siberia-hot-cold-id/"]
 +++
 
 Hekaton is Microsoft's SQL Server's take on in-memory databases systems. With

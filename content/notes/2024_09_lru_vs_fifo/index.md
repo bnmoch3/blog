@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "lru-vs-fifo"
+aliases = ["/blog/lru-vs-fifo/"]
 +++
 
 Today's paper is

@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "range-difference-search-availability"
+aliases = ["/blog/range-difference-search-availability/"]
 +++
 
 Amongst the interesting data-types offered in Postgres are the Range Types, such

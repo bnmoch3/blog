@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "go-custom-logger-pg-leveldb"
+aliases = ["/blog/go-custom-logger-pg-leveldb/"]
 +++
 
 Golang's standard library provides the handy [log](https://golang.org/pkg/log/)

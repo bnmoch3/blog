@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "duckdb-arrow-data-types"
+aliases = ["/blog/duckdb-arrow-data-types/"]
 +++
 
 DuckDB's python client already provides a straightforward API for interacting

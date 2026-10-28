@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "go-channels-concurrency-sync"
+aliases = ["/blog/go-channels-concurrency-sync/"]
 +++
 
 Still new to Go, I often find myself reaching out for locks and waitgroups where

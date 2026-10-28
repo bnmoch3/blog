@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "hyper-compaction"
+aliases = ["/blog/hyper-compaction/"]
 +++
 
 Compression is often avoided in memory-resident OLTP databases since it reduces

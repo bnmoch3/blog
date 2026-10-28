@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "large-scale-analysis-caching-twitter"
+aliases = ["/blog/large-scale-analysis-caching-twitter/"]
 +++
 
 The following are my key take-aways from the paper

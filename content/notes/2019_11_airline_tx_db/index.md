@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "airline-tx-postgres-isolation-levels"
+aliases = ["/blog/airline-tx-postgres-isolation-levels/"]
 +++
 
 The following is a quick write-up of my solution to the

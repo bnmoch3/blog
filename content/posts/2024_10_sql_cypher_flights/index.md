@@ -10,6 +10,7 @@ autonumber = false
 showTags = false
 featured = true
 slug = "sql-cypher-flights"
+aliases = ["/blog/sql-cypher-flights/"]
 +++
 
 Egor Rogov (author of one of my favourite book, PostgreSQL Internals) wrote this

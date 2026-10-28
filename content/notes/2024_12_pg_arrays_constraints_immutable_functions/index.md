@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = true
 slug = "pg-arrays-constraints-immutable-functions"
+aliases = ["/blog/pg-arrays-constraints-immutable-functions/"]
 +++
 
 TIL you can use immutable functions in Postgres check constraints. I learnt this

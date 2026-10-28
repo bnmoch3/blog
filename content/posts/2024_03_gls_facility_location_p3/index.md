@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "guided-local-search-flp"
+aliases = ["/blog/guided-local-search-flp/"]
 +++
 
 ## Introduction

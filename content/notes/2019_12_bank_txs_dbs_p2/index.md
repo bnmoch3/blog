@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "sql-bank-txs-v2"
+aliases = ["/blog/sql-bank-txs-v2/"]
 +++
 
 ### DB DESIGN

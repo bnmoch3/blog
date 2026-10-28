@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "microbenchmarking-c"
+aliases = ["/blog/microbenchmarking-c/"]
 +++
 
 ## Intro

@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "leanstore"
+aliases = ["/blog/leanstore/"]
 +++
 
 ## Overview

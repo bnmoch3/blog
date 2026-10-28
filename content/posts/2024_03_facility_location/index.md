@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "facility-location-problem"
+aliases = ["/blog/facility-location-problem/"]
 +++
 
 The facility location problem is as follows: we've got customers at different

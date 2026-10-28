@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "sql-joins-p1"
+aliases = ["/blog/sql-joins-p1/"]
 +++
 
 Mental models help us navigate complex ideas. However, forming one own's mental

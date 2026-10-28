@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "data-placement-optimization"
+aliases = ["/blog/data-placement-optimization/"]
 +++
 
 In distributed OLAP database systems, tables and indices are partitioned into

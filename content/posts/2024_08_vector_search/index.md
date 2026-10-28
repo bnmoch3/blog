@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "vector-search-duckdb-fastembed"
+aliases = ["/blog/vector-search-duckdb-fastembed/"]
 +++
 
 ## Overview

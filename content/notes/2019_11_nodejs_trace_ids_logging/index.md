@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "trace-ids-logging-nodejs"
+aliases = ["/blog/trace-ids-logging-nodejs/"]
 +++
 
 Let's talk about logging with tracing in web application servers, particularly

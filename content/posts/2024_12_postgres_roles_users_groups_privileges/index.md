@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = true
 slug = "postgres-roles-users-groups-privileges"
+aliases = ["/blog/postgres-roles-users-groups-privileges/"]
 +++
 
 Postgres handles DB access permissions through roles which can own database

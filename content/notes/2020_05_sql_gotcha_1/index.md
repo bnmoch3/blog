@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "sql-gotcha-now"
+aliases = ["/blog/sql-gotcha-now/"]
 +++
 
 Here's something new I learnt from [Korban's](https://korban.net/postgres/book/)

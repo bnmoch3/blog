@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "distributed-reference-counting"
+aliases = ["/blog/distributed-reference-counting/"]
 +++
 
 ## Reference counting basics

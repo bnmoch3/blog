@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "pg-schemas-namespacing"
+aliases = ["/blog/pg-schemas-namespacing/"]
 +++
 
 Postgres offers schemas as a means for organizing objects (tables, views,

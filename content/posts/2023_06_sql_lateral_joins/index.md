@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "sql-lateral-joins"
+aliases = ["/blog/sql-lateral-joins/"]
 +++
 
 First thing's first, lateral joins are not quite a different type of joins -

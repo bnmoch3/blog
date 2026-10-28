@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "getting-started-tla"
+aliases = ["/blog/getting-started-tla/"]
 +++
 
 I've been picking up some TLA+. Partly to learn writing my own specifications

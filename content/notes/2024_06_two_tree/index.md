@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "two-tree"
+aliases = ["/blog/two-tree/"]
 +++
 
 Paper:

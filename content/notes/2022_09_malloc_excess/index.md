@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "malloc-excess"
+aliases = ["/blog/malloc-excess/"]
 +++
 
 `malloc` is used to allocate space in C. If successful (for sizes greater

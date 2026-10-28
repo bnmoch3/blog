@@ -10,6 +10,7 @@ autonumber = false
 showTags = false
 featured = true
 slug = "sql-joins-p2"
+aliases = ["/blog/sql-joins-p2/"]
 +++
 
 Now, I've written [previously](/p/sql-joins-p1/) on how, when learning SQL, I

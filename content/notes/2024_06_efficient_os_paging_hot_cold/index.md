@@ -9,6 +9,7 @@ readTime = true
 autonumber = false
 showTags = false
 slug = "efficient-os-paging-hot-cold-db"
+aliases = ["/blog/efficient-os-paging-hot-cold-db/"]
 +++
 
 The problem: In OLTP databases designed for main-memory, the datasets might
