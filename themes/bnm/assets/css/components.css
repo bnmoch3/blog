@@ -249,6 +249,25 @@ figure.image {
     margin-inline: auto;
     border-radius: var(--radius-sm);
   }
+
+  /* SVG diagrams: natural size (their text is sized for it), never height-capped
+     (a cap scales the whole diagram down, text included). Narrow screens scroll
+     the figure instead of shrinking it. */
+  img[src$=".svg"] {
+    max-height: none;
+  }
+
+  @media (max-width: 37.5rem) {
+    > div:has(> img[src$=".svg"]) {
+      justify-content: flex-start;
+      overflow-x: auto;
+    }
+
+    img[src$=".svg"] {
+      max-width: none;
+      margin-inline: 0;
+    }
+  }
 }
 
 figcaption {
