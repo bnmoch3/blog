@@ -84,9 +84,9 @@ As for the time slot, we will use a
 `[time](https://neon.tech/postgresql/postgresql-tutorial/postgresql-time)` data
 type. The time slot could be stored in two separate `time` fields (`start_at`,
 `end_at`). Better yet, we can use ranges. Only problem is that by default,
-Postgres does provide us with time ranges. We will have to create time ranges
-ourselves (relying on Postgres' extensibility that let's us define new kinds of
-range, see the
+Postgres does not provide us with time ranges. We will have to create time
+ranges ourselves (relying on Postgres' extensibility that let's us define new
+kinds of range, see the
 [Defining New Range Types](https://www.postgresql.org/docs/current/rangetypes.html#RANGETYPES-DEFINING)
 section of the PG docs).
 
@@ -119,34 +119,34 @@ important reason, which will come in handy later on. From the docs:
 
 The difference between any two `time` values is an interval:
 
-```
-> select diff, pg_typeof(diff)
-  from (values ('10:30 am'::time - '8:00 am'::time)) v(diff)
+```sql
+select diff, pg_typeof(diff)
+from (values ('10:30 am'::time - '8:00 am'::time)) v(diff)
 
-   diff   │ pg_typeof
-══════════╪═══════════
- 02:30:00 │ interval
+--    diff   │ pg_typeof
+-- ══════════╪═══════════
+--  02:30:00 │ interval
 ```
 
 Intervals can be negative too:
 
-```
-> select ('10:00 am'::time - '10:00 pm'::time) as diff
+```sql
+select ('10:00 am'::time - '10:00 pm'::time) as diff
 
-   diff
-═══════════
- -12:00:00
+--    diff
+-- ═══════════
+--  -12:00:00
 ```
 
 If we extract epoch from an interval, we get the total number of seconds within
 that interval:
 
-```
-> select extract(epoch from '1 hour 20 minutes'::interval) as secs;
+```sql
+select extract(epoch from '1 hour 20 minutes'::interval) as secs;
 
-    secs
-═════════════
- 4800.000000
+--     secs
+-- ═════════════
+--  4800.000000
 ```
 
 `time_range_subtype_diff` then combines the ability to subtract one time value
@@ -187,8 +187,7 @@ room, on the same date, with the time slots overlapping.
 
 Recall that we check whether ranges overlap using the `&&` operator:
 
-```
->
+```sql
 select r1, r2, r1 && r2 as overlaps
 from (values
     ('[00,10)'::int4range, '[10,20)'::int4range),
@@ -197,12 +196,12 @@ from (values
     ('[10,20)'::int4range, '[15,30)'::int4range)
 ) v(r1,r2)
 
-   r1    │   r2    │ overlaps
-═════════╪═════════╪══════════
- [0,10)  │ [10,20) │ f
- [10,20) │ [20,30) │ f
- [10,20) │ [10,20) │ t
- [10,20) │ [15,30) │ t
+--    r1    │   r2    │ overlaps
+-- ═════════╪═════════╪══════════
+--  [0,10)  │ [10,20) │ f
+--  [10,20) │ [20,30) │ f
+--  [10,20) │ [10,20) │ t
+--  [10,20) │ [15,30) │ t
 ```
 
 Let's add the exclusion constraint:
@@ -220,9 +219,17 @@ alter table bookings
     );
 ```
 
-GiST indexes let us index multi-dimensional data (such as ranges). `btree_gist`,
-let's us index both multi-dimensional fields (such as ranges) and
-uni-dimensional fields (such as room IDs or dates).
+GiST natively handles ranges but can't index scalar types like int or date for
+exclusion purposes. `btree_gist` adds that capability so you can mix scalars
+(such as room IDs or dates) and ranges in the same exclusion constraint.
+
+Note that two concurrent transactions can both pass the exclusion contraint
+check before either commits. One will succeed and the other will fail with a
+constraint violation on commit. Failing means the correct behaviour is preserved
+but the application will have to handle that error and present it as 'slot just
+taken'. An alternative is to do a `select ... for updates` on the room row
+before inserting, which serialized concurrent booking attempts at the
+application level.
 
 There is an additional constraint we could add though it is not as needed: let
 us ensure that for all ranges inserted, the lower bound is inclusive and the
@@ -256,8 +263,8 @@ insert into bookings(room_id, day, time_slot) values
 When a user wants to make a booking, we first have to provide them all the
 available slots.
 
-First, let's start with the opposite, finding all the booked slots for room 1
-for a given day
+Let's start with the opposite, finding all the booked slots for room 1 for a
+given day
 
 ```sql
 select id, time_slot
@@ -490,7 +497,7 @@ end;
 $$ language plpgsql;
 
 create trigger enforce_booking_within_operating_period
-before insert on bookings
+before insert or update on bookings
 for each row execute function check_booking_within_operating_period();
 
 commit;
@@ -644,6 +651,13 @@ Which should output:
  2024-11-21 │ {[10:00:00,11:00:00),[14:00:00,16:00:00)}
  2024-11-19 │ {[08:00:00,12:30:00)}
 ```
+
+Note that the bookings SQL uses an inner join rather than left join so days with
+zero bookings are dropped entirely from the result. This is intentional, we will
+handle for days with no bookings when calculating available time slots using
+`coalesce(booked.time_slots, '{}')` to substitute an empty multirange for any
+day that has no bookings. Without coalesce, those days could come out as null
+rather than fully available.
 
 Now that we have both bookings and closed periods, we can calculate the
 available periods that were or are open for bookings:

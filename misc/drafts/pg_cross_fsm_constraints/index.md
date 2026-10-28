@@ -1,8 +1,14 @@
 ## Enforcing Cross-FSM Constraints in Postgres
 
-Suppose you've got multiple independent DB-based state machines and you have to
-coordinate state changes across them and keep them consistent. Specifically, a
-transition in one state machine necessitates a transition in another.
+Buiding one FSM in Postgres? That's straightforward: triggers, constraints and
+all that - we've covered it before (TODO add link here). But the moment you need
+_two_ or more FSMs that depend on each other (order + payments flow, approvals +
+deployments etc) you're now in a diff territory.
+
+To restate, suppose you've got multiple independent DB-based state machines and
+you have to coordinate state changes across them and keep them consistent.
+Specifically, a transition in one state machine necessitates a transition in
+another.
 
 For example, consider the following:
 
