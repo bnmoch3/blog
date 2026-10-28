@@ -15,7 +15,7 @@
   <header class="article-head">
     {{ partial "breadcrumbs.html" . }}
 
-    <h1 class="single-title">{{ .Title }}</h1>
+    {{ with .Title }}<h1 class="single-title">{{ . }}</h1>{{ end }}
 
     <p class="single-readtime">
       {{ with .Date }}

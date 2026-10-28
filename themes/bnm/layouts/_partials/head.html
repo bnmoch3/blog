@@ -20,7 +20,7 @@
 {{- end }}
 
 <title>
-    {{ if .IsHome }}
+    {{ if or .IsHome (not .Title) }}
     {{ site.Title }}
     {{ else }}
     {{ printf "%s | %s" .Title site.Title }}
