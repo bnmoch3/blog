@@ -7,11 +7,15 @@ the reason behind a rule is unclear).
 ## Commands
 
 ```sh
-make dev            # hugo server -D (drafts, live reload)
-hugo --minify       # production build into build/main (separate repo, do not touch)
+make dev            # hugo server --renderToMemory -D (drafts, live reload, writes nothing)
 make build-dev      # hugo -D into build/dev, for inspecting final HTML
 scripts/urldiff.sh  # rebuild to a temp dir and diff URLs against docs/url-baseline.txt
+make publish CONFIRM=1  # owner only: builds into build/main and pushes the deploy repo
 ```
+
+Safety: never run `make publish`, never commit or push in `build/main`, and never run `hugo`
+without `-d <scratch dir>` or `--renderToMemory` (plain `hugo` / `hugo server` write into
+`build/main`). `make publish` refuses to run without `CONFIRM=1`.
 
 Hugo version: **0.148.x**. The **standard (non-extended)** edition must build the site. The theme's
 `hugo.toml` enforces `min = "0.148.0"`.
