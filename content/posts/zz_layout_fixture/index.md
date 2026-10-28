@@ -5,6 +5,7 @@ summary = "Throwaway draft used to exercise the theme: long TOC, many footnotes,
 tags = ["Misc", "PostgreSQL", "Golang"]
 type = "post"
 toc = true
+tocDepth = 3
 readTime = true
 autonumber = true
 showTags = true

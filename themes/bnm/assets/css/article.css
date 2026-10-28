@@ -68,6 +68,16 @@
   }
 }
 
+/* With autonumber, the TOC repeats the heading numbers */
+.autonumber .toc {
+  ul { counter-reset: toc-item; }
+  li { counter-increment: toc-item; }
+  a::before {
+    content: counters(toc-item, ".") "\00a0\00a0";
+    font-variant-numeric: tabular-nums;
+  }
+}
+
 @media (min-width: 77.5rem) {
   .toc {
     margin: 0;
