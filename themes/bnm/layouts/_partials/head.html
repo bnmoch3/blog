@@ -34,6 +34,10 @@
 {{ partial "head/font-preload.html" . }}
 {{ partialCached "head/css.html" . }}
 
+{{ if or (.Param "math") (.Store.Get "hasMath") }}
+{{ partial "math.html" . }}
+{{ end }}
+
 {{ if hugo.IsProduction }}
 {{ partial "google_analytics.html" . }}
 

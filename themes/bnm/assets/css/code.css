@@ -157,3 +157,8 @@ pre {
   overflow-y: hidden;
   scrollbar-width: thin;
 }
+
+/* Display math from ```math fences (render-codeblock-math.html) */
+.math-display {
+  margin: var(--space-5) 0;
+}

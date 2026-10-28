@@ -23,10 +23,6 @@
       {{ partial "footer.html" . }}
     </footer>
 
-    {{ if .Param "math" }}
-    {{ partialCached "math.html" . }}
-    {{ end }}
-
     {{ if and hugo.IsProduction site.Params.simpleAnalytics.enable }}
     <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     {{ end }}

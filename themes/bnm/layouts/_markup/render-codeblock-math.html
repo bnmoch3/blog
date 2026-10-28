@@ -1,0 +1,8 @@
+{{- /* ```math fences: rendered at build time by transform.ToMath (KaTeX, works in
+  standard Hugo). Sets hasMath so head.html loads the KaTeX stylesheet. */ -}}
+{{- .Page.Store.Set "hasMath" true -}}
+{{- /* KaTeX lacks \mbox (used in existing posts); map it to \text */ -}}
+{{- $opts := dict "displayMode" true "output" "htmlAndMathml" "macros" (dict "\\mbox" "\\text{#1}") -}}
+<div class="math-display">
+  {{- transform.ToMath .Inner $opts -}}
+</div>
