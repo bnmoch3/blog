@@ -253,7 +253,63 @@ And an unknown type, which must fall back to the same plain blockquote:
 > This should render as an ordinary blockquote.
 
 > [!CAUTION] Directly before a heading
-> This callout is followed immediately by the next h2.
+> This callout is followed immediately by the next heading.
+
+### Margin callouts
+
+Margin callouts sit in the right margin beside the paragraph that follows them on wide screens, and in the column otherwise.
+
+> [!NOTE margin]
+> A short aside beside the paragraph on wide screens.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+> [!TIP margin] Optional title
+> Titles work too, and `inline code` and [links](https://example.com) wrap without overflowing the margin.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+A margin callout next to a footnote reference:
+
+> [!NOTE margin] Beside a footnote
+> This one shares its paragraph with a footnote, so the two must stack without overlapping.
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.[^14] Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.[^15]
+
+Three in quick succession:
+
+> [!NOTE margin]
+> First of three margin callouts.
+
+> [!TIP margin]
+> Second of three; it is pushed below the first.
+
+> [!NOTE margin] Third
+> Third of three; it is pushed below the second, in document order.
+
+Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+
+A margin callout with a code block falls back to the column:
+
+> [!NOTE margin] Has code
+> Stays in the column:
+>
+> ```sql
+> select 1;
+> ```
+
+A margin-marked WARNING always stays in the column:
+
+> [!WARNING margin]
+> The marker is ignored for warnings.
+
+Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+
+> [!TIP margin] A long one
+> This margin callout is deliberately long so that it exceeds eight lines in the narrow notes column and therefore falls back to the column. It keeps going with more words, and more words, and more words, until the wrapped text is clearly taller than the limit that the script allows for margin callouts.
+
+> [!NOTE margin] Directly before a heading
+> The next block is the heading below.
 
 ## Closing section
 
@@ -280,3 +336,5 @@ exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 [^11]: Note eleven.
 [^12]: Note twelve, adjacent to eleven.
 [^13]: A footnote defined in the normal place, referenced from inside a callout.
+[^14]: First footnote next to a margin callout.
+[^15]: Second footnote in the same paragraph.

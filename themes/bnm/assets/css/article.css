@@ -191,3 +191,16 @@
 .callout-sep { margin-inline: 0.35em; }
 
 .callout-title { font-weight: 400; }
+
+/* Margin callouts: js/footnotes.js adds .is-margin on wide screens (never without JS) and
+   offsets the aside into the notes column; it stays in the article DOM and reading order. */
+.has-sidenotes .article-body { position: relative; }
+
+.callout.is-margin {
+  position: absolute;
+  left: calc(100% + var(--gutter));
+  width: var(--note-width);
+  margin: 0;
+  font-size: 0.85em;
+  line-height: 1.4;
+}

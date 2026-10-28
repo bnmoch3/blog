@@ -77,6 +77,29 @@ custom title is regular weight. Three tones: neutral
 (note, tip), accent (important, update, correction), warn (warning, caution). Blocks, lists and
 footnotes work inside; sidenotes are unaffected.
 
+### Margin callouts
+
+```md
+> [!NOTE margin]
+> A short aside beside the paragraph on wide screens.
+
+> [!TIP margin] Optional title
+> Titles work the same way.
+```
+
+Only NOTE and TIP can be margin callouts; the marker is accepted but ignored on the other types, which
+always stay in the column. Hugo's alert parser only accepts `[!LETTERS]` (`[!NOTE margin]` and
+`[!NOTE-MARGIN]` both fall through as plain blockquotes), so the hook parses the first line of
+`.Text` itself. Other renderers show it as a plain blockquote.
+
+The markup is the same aside plus a `callout-margin` class and is never duplicated or moved in the
+DOM. At the 77.5rem breakpoint `js/footnotes.js` adds `is-margin` and offsets the aside into the notes
+column, top-aligned with the block that follows it. It stacks with the marginal footnotes in order of
+anchor, so nothing overlaps or sits above its anchor. Below the breakpoint, or without JS, it is an
+ordinary in-column callout. A margin callout with code, a list, a table, an image or a footnote
+reference, or longer than 8 lines at the margin width, stays in the column; under `hugo server`
+(`data-dev` on the layout) the console warns when that happens.
+
 The breakpoint is written only in CSS (media queries cannot read custom properties). JS reads the
 layout's `--wide` custom property instead of repeating it. If the body size, measure, `--toc-width`,
 `--note-width`, `--gutter` or `--page-pad` change, recompute it (formula in `layout.css`) and update

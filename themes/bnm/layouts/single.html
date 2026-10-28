@@ -10,7 +10,7 @@
 {{ if not (strings.Contains $tocHTML "<li") }}{{ $tocHTML = "" }}{{ end }}
 {{ end }}
 
-<div class="article-layout{{ if .Param "autonumber" }} autonumber{{ end }}">
+<div class="article-layout{{ if .Param "autonumber" }} autonumber{{ end }}"{{ if hugo.IsServer }} data-dev{{ end }}>
 
   <header class="article-head">
     {{ partial "breadcrumbs.html" . }}

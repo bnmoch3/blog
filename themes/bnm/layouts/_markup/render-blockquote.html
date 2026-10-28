@@ -2,7 +2,14 @@
   update and correction, which Hugo passes through as AlertType like any other
   word. Anything else, and plain blockquotes, render as an ordinary <blockquote>.
   The label is capitalised here, not by CSS, and is real text so screen
-  readers announce it. */ -}}
+  readers announce it.
+
+  Margin variant: > [!NOTE margin] Optional title. Hugo's alert parser only
+  accepts [!LETTERS], so this arrives as a regular blockquote and the first line
+  of .Text is parsed here. Only note and tip get the callout-margin class (js/footnotes.js
+  moves it into the right margin on wide screens); the marker is accepted but
+  ignored on the other types. Markup is otherwise identical, so without JS or
+  below the breakpoint it is an ordinary in-column callout. */ -}}
 {{- $labels := dict
   "note" "Note"
   "tip" "Tip"
@@ -12,11 +19,29 @@
   "update" "Update"
   "correction" "Correction"
 -}}
-{{- if and (eq .Type "alert") (isset $labels .AlertType) -}}
-<aside class="callout callout-{{ .AlertType }}" role="note">
-  <p class="callout-label"><span class="callout-type">{{ index $labels .AlertType }}</span>{{ with .AlertTitle }} <span class="callout-sep" aria-hidden="true">·</span> <span class="callout-title">{{ . }}</span>{{ end }}</p>
+{{- $type := "" -}}
+{{- $title := "" -}}
+{{- $text := .Text -}}
+{{- $margin := false -}}
+{{- if eq .Type "alert" -}}
+  {{- $type = .AlertType -}}
+  {{- $title = .AlertTitle -}}
+{{- else -}}
+  {{- with findRESubmatch `(?i)^<p>\[!(note|tip|important|warning|caution|update|correction) margin\][ \t]*(.*?)(?:</p>|\n)` (string .Text) 1 -}}
+    {{- $m := index . 0 -}}
+    {{- $type = lower (index $m 1) -}}
+    {{- $title = index $m 2 -}}
+    {{- $rest := strings.TrimPrefix (index $m 0) (string $.Text) -}}
+    {{- if strings.HasSuffix (index $m 0) "\n" }}{{ $rest = printf "<p>%s" $rest }}{{ end -}}
+    {{- $text = $rest -}}
+    {{- $margin = in (slice "note" "tip") $type -}}
+  {{- end -}}
+{{- end -}}
+{{- if and $type (isset $labels $type) -}}
+<aside class="callout callout-{{ $type }}{{ if $margin }} callout-margin{{ end }}" role="note">
+  <p class="callout-label"><span class="callout-type">{{ index $labels $type }}</span>{{ with $title }} <span class="callout-sep" aria-hidden="true">·</span> <span class="callout-title">{{ . | safeHTML }}</span>{{ end }}</p>
   <div class="callout-body">
-    {{ .Text }}
+    {{ $text | safeHTML }}
   </div>
 </aside>
 {{- else -}}
