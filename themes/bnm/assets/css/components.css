@@ -47,11 +47,19 @@
   h2 { margin: 0; }
 }
 
+/* quiet line after the last Latest entry; same gap as between entries */
 .section-links {
   display: flex;
-  gap: var(--space-4);
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
   margin: 0;
   font-size: var(--text-sm);
+
+  a {
+    color: var(--color-muted);
+
+    &:hover { color: var(--color-accent-text); }
+  }
 }
 
 /* Entry rows: quiet date, then title, optional summary */

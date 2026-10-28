@@ -14,13 +14,7 @@
 
 <div class="home-cols">
   <section class="home-latest" aria-labelledby="latest">
-    <div class="section-head">
-      <h2 id="latest">Latest</h2>
-      <p class="section-links">
-        <a href="{{ "posts/" | relURL }}">All posts</a>
-        <a href="{{ "notes/" | relURL }}">All notes</a>
-      </p>
-    </div>
+    <div class="section-head"><h2 id="latest">Latest</h2></div>
     {{ $latest := first (or $home.latest 6) (sort (union $posts $notes) "Date" "desc") }}
     <ul class="entries">
       {{ range $latest }}
@@ -32,6 +26,10 @@
       </li>
       {{ end }}
     </ul>
+    <p class="section-links">
+      <a href="{{ "posts/" | relURL }}">All posts <span aria-hidden="true">→</span></a>
+      <a href="{{ "notes/" | relURL }}">All notes <span aria-hidden="true">→</span></a>
+    </p>
   </section>
 
   {{ $featured := sort (where (union $posts $notes) ".Params.featured" true) "Date" "desc" }}
