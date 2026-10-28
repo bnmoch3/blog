@@ -52,6 +52,7 @@ Hugo version: **0.148.x**. The **standard (non-extended)** edition must build th
 | Article JS (bundled, minified, fingerprinted in `single.html`) | `themes/bnm/assets/js/{toc,footnotes,code}.js` |
 | Code block markup (border label) / math fences (`transform.ToMath`) | `themes/bnm/layouts/_markup/render-codeblock{,-math}.html` |
 | Callouts (blockquote hook; styles at the end of `article.css`, tones in `tokens.css`) | `themes/bnm/layouts/_markup/render-blockquote.html` |
+| giscus theme CSS (served at `/giscus/bnm.css`) / comments widget | `themes/bnm/static/giscus/bnm.css` / `themes/bnm/layouts/_partials/comments.html` |
 | KaTeX stylesheet (pinned, SRI; only on pages with math) | `themes/bnm/layouts/_partials/math.html` |
 
 Article front matter: `toc = true` (optional `tocDepth = 1|2|3`, levels below h2, default 2),
@@ -104,6 +105,35 @@ The breakpoint is written only in CSS (media queries cannot read custom properti
 layout's `--wide` custom property instead of repeating it. If the body size, measure, `--toc-width`,
 `--note-width`, `--gutter` or `--page-pad` change, recompute it (formula in `layout.css`) and update
 both `@media (min-width: 77.5rem)` rules (`layout.css`, `article.css`).
+
+## Comments (giscus)
+
+`[params.giscus]` in `hugo.toml` configures the widget. `theme` is the absolute URL of the CSS giscus
+loads into its iframe, `https://bnmoch3.org/giscus/bnm.css`, served from
+`themes/bnm/static/giscus/bnm.css`. It must be absolute (the iframe lives on giscus.app) and is the
+same in every environment. If `theme` is empty the partial falls back to `noborder_light`.
+
+`bnm.css` is giscus' `styles/themes/light.css` (same variables) recolored with the palette in
+`tokens.css`, with the iframe's html/body/main background set to the exact page color
+(`--beige-0`), muted text at 5.7:1 and accent links at 4.8-5.3:1. The iframe cannot see the page's
+custom properties or fonts, so the values are copied into the file: update it when `tokens.css`
+changes. The font is `"Source Serif 4", Georgia, ui-serif, serif`; Source Serif 4 only applies on
+machines that have it installed, everyone else gets Georgia.
+
+Caveats:
+
+- **Deploy first.** The URL does not exist until the CSS is deployed, and giscus loads it from the live
+  site, so until then comments render with giscus' unthemed default. To work on the widget before
+  deploying, either set `theme = "noborder_light"`, or have Playwright serve the local file at the
+  production URL: `page.route('https://bnmoch3.org/giscus/bnm.css', r => r.fulfill({path:
+  'themes/bnm/static/giscus/bnm.css', contentType: 'text/css', headers: {'access-control-allow-origin':
+  '*'}}))`. The real iframe then loads it.
+- **CORS.** giscus requests the CSS with `crossorigin="anonymous"`, so the host must send
+  `Access-Control-Allow-Origin` for it. Check this after the first deploy.
+- **Caching.** The deploy matchers cache `*.css` for a year and the file is not fingerprinted. After
+  editing it, rename it (e.g. `bnm.2.css`) and update `theme`, or visitors keep the old copy.
+- Only the signed-out view was checked (reactions, comment box, sign-in button). Signed-in states,
+  rendered comments, code blocks and reaction pickers are untested.
 
 ## Typography spec
 

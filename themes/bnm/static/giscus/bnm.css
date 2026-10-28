@@ -1,0 +1,151 @@
+/*! giscus theme for the bnm Hugo theme.
+ * Structure and variable names from giscus' styles/themes/light.css
+ * (MIT, Copyright (c) 2018 GitHub Inc., https://github.com/primer/primitives/blob/main/LICENSE),
+ * with the colors replaced by the blog palette from themes/bnm/assets/css/tokens.css.
+ * giscus loads this inside its iframe, so it cannot use the page's custom properties,
+ * fonts or fingerprinted assets: values are copied here. Keep in sync with tokens.css.
+ * Served from /giscus/bnm.css and referenced by absolute URL (see docs/DEVELOPMENT.md).
+ */
+
+:root {
+  color-scheme: light;
+  /* the page: --beige-0 */
+  --bnm-bg: #f2ebd2;
+  /* code blocks, buttons, inset surfaces: --beige-1 */
+  --bnm-surface: #ebe1c4;
+  --bnm-surface-hover: #dfd4ae; /* --beige-25 */
+  --bnm-border: #c1b489; /* --beige-4 */
+  --bnm-border-soft: #d9cda6; /* --beige-3 */
+  --bnm-ink: #2a2a30; /* --ink-2, 11.9:1 on bg */
+  --bnm-muted: #5a5a61; /* --ink-3, 5.7:1 on bg, 5.2:1 on surface */
+  --bnm-accent: #904f23; /* --color-accent-text, 5.3:1 on bg, 4.8:1 on surface */
+  --bnm-accent-hover: #7a4119; /* 8.1:1 with white */
+  --bnm-warn: #8a2a1c; /* 7.2:1 on bg */
+  --bnm-font: "Source Serif 4", Georgia, ui-serif, serif;
+}
+
+/* The iframe document must be exactly the page color, or a seam shows around the widget. */
+html,
+body,
+main,
+.gsc-homepage-bg {
+  background: var(--bnm-bg);
+}
+
+main {
+  --color-prettylights-syntax-comment: #53666c;
+  --color-prettylights-syntax-constant: #ae3e0f;
+  --color-prettylights-syntax-entity: #0c6f67;
+  --color-prettylights-syntax-storage-modifier-import: #2a2a30;
+  --color-prettylights-syntax-entity-tag: #1b679e;
+  --color-prettylights-syntax-keyword: #b6266c;
+  --color-prettylights-syntax-string: #5b6900;
+  --color-prettylights-syntax-variable: #7d5e0e;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
+  --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
+  --color-prettylights-syntax-invalid-illegal-bg: #82071e;
+  --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+  --color-prettylights-syntax-carriage-return-bg: #cf222e;
+  --color-prettylights-syntax-string-regexp: #5b6900;
+  --color-prettylights-syntax-markup-list: #3b2300;
+  --color-prettylights-syntax-markup-heading: #1b679e;
+  --color-prettylights-syntax-markup-italic: #2a2a30;
+  --color-prettylights-syntax-markup-bold: #2a2a30;
+  --color-prettylights-syntax-markup-deleted-text: #82071e;
+  --color-prettylights-syntax-markup-deleted-bg: #f0d3c3;
+  --color-prettylights-syntax-markup-inserted-text: #1a6b30;
+  --color-prettylights-syntax-markup-inserted-bg: #d6e3b8;
+  --color-prettylights-syntax-markup-changed-text: #ae3e0f;
+  --color-prettylights-syntax-markup-changed-bg: #ecd0a6;
+  --color-prettylights-syntax-markup-ignored-text: #f2ebd2;
+  --color-prettylights-syntax-markup-ignored-bg: #1b679e;
+  --color-prettylights-syntax-meta-diff-range: #b6266c;
+  --color-prettylights-syntax-brackethighlighter-angle: #5a5a61;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #5a5a61;
+  --color-prettylights-syntax-constant-other-reference-link: #1b679e;
+  --color-btn-text: var(--bnm-ink);
+  --color-btn-bg: var(--bnm-surface);
+  --color-btn-border: var(--bnm-border);
+  --color-btn-shadow: none;
+  --color-btn-inset-shadow: none;
+  --color-btn-hover-bg: var(--bnm-surface-hover);
+  --color-btn-hover-border: var(--bnm-border);
+  --color-btn-active-bg: var(--bnm-surface-hover);
+  --color-btn-active-border: var(--bnm-border);
+  --color-btn-selected-bg: var(--bnm-surface-hover);
+  --color-btn-primary-text: #fff;
+  --color-btn-primary-bg: var(--bnm-accent);
+  --color-btn-primary-border: var(--bnm-accent);
+  --color-btn-primary-shadow: none;
+  --color-btn-primary-inset-shadow: none;
+  --color-btn-primary-hover-bg: var(--bnm-accent-hover);
+  --color-btn-primary-hover-border: var(--bnm-accent-hover);
+  --color-btn-primary-selected-bg: var(--bnm-accent-hover);
+  --color-btn-primary-selected-shadow: none;
+  --color-btn-primary-disabled-text: rgb(255 255 255 / 85%);
+  --color-btn-primary-disabled-bg: #b99a84;
+  --color-btn-primary-disabled-border: #b99a84;
+  --color-action-list-item-default-hover-bg: rgb(173 102 48 / 14%);
+  --color-segmented-control-bg: var(--bnm-surface);
+  --color-segmented-control-button-bg: var(--bnm-bg);
+  --color-segmented-control-button-selected-border: var(--bnm-border);
+  --color-fg-default: var(--bnm-ink);
+  --color-fg-muted: var(--bnm-muted);
+  --color-fg-subtle: var(--bnm-muted);
+  --color-canvas-default: var(--bnm-bg);
+  --color-canvas-overlay: var(--bnm-bg);
+  --color-canvas-inset: var(--bnm-surface);
+  --color-canvas-subtle: var(--bnm-surface);
+  --color-border-default: var(--bnm-border);
+  --color-border-muted: var(--bnm-border-soft);
+  --color-neutral-muted: rgb(60 40 10 / 7%);
+  --color-accent-fg: var(--bnm-accent);
+  --color-accent-emphasis: var(--bnm-accent);
+  --color-accent-muted: rgb(173 102 48 / 40%);
+  --color-accent-subtle: rgb(173 102 48 / 14%);
+  --color-success-fg: #1a6b30;
+  --color-attention-fg: #7a5500;
+  --color-attention-muted: rgb(122 85 0 / 40%);
+  --color-attention-subtle: rgb(122 85 0 / 12%);
+  --color-danger-fg: var(--bnm-warn);
+  --color-danger-muted: rgb(138 42 28 / 40%);
+  --color-danger-subtle: rgb(138 42 28 / 10%);
+  --color-primer-shadow-inset: none;
+  --color-scale-gray-1: var(--bnm-surface-hover);
+  --color-scale-blue-1: rgb(173 102 48 / 24%);
+
+  /*! Extensions from @primer/css/alerts/flash.scss */
+  --color-social-reaction-bg-hover: var(--color-scale-gray-1);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
+
+  font-family: var(--bnm-font);
+  color: var(--bnm-ink);
+}
+
+/* Prose and controls in the body face; code keeps giscus' monospace stack. */
+main .markdown-body,
+main button,
+main input,
+main textarea,
+main .gsc-comment-box-textarea {
+  font-family: var(--bnm-font);
+}
+
+/* giscus' default placeholder is #9ca3af, 1.95:1 on this surface */
+main textarea::placeholder,
+main input::placeholder {
+  color: var(--bnm-muted);
+  opacity: 1;
+}
+
+main .gsc-reactions-count {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+main .pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
+}
+
+main .gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
+}

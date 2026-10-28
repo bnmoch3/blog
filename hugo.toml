@@ -90,7 +90,9 @@ repoid = "R_kgDOIU86DQ"
 category = "General"
 categoryid = "DIC_kwDOIU86Dc4Clvgl"
 mapping = "pathname"
-theme = "gruvbox_light"
+# Absolute URL of the CSS giscus loads into its iframe (served from themes/bnm/static/giscus/bnm.css).
+# It exists only after a deploy; set to "noborder_light" (or any built-in) while testing.
+theme = "https://bnmoch3.org/giscus/bnm.css"
 
 # Home page: number of newest entries (posts and notes together) under "Latest"
 [params.home]
