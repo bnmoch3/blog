@@ -1,11 +1,22 @@
-/*! giscus theme for the bnm Hugo theme.
+/*! giscus theme for the bnm Hugo theme (sans-serif).
  * Structure and variable names from giscus' styles/themes/light.css
  * (MIT, Copyright (c) 2018 GitHub Inc., https://github.com/primer/primitives/blob/main/LICENSE),
  * with the colors replaced by the blog palette from themes/bnm/assets/css/tokens.css.
  * giscus loads this inside its iframe, so it cannot use the page's custom properties,
  * fonts or fingerprinted assets: values are copied here. Keep in sync with tokens.css.
- * Served from /giscus/bnm.css and referenced by absolute URL (see docs/DEVELOPMENT.md).
+ * Served from /giscus/bnm-3.css and referenced by absolute URL (see docs/DEVELOPMENT.md).
+ * Not fingerprinted and cached for a year: after editing, rename the file and update params.giscus.theme.
  */
+
+/* Widget headings only. The iframe cannot see the page's fonts, so load Outfit by absolute URL
+   (same path as the page's own copy, generated from [params.fonts.heading]). */
+@font-face {
+  font-family: "Outfit";
+  src: url("https://bnmoch3.org/fonts/outfit/outfit-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   color-scheme: light;
@@ -21,7 +32,8 @@
   --bnm-accent: #904f23; /* --color-accent-text, 5.3:1 on bg, 4.8:1 on surface */
   --bnm-accent-hover: #7a4119; /* 8.1:1 with white */
   --bnm-warn: #8a2a1c; /* 7.2:1 on bg */
-  --bnm-font: "Source Serif 4", Georgia, ui-serif, serif;
+  --bnm-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --bnm-font-heading: "Outfit", var(--bnm-font);
 }
 
 /* The iframe document must be exactly the page color, or a seam shows around the widget. */
@@ -119,16 +131,27 @@ main {
   --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
 
   font-family: var(--bnm-font);
+  line-height: 1.5;
   color: var(--bnm-ink);
 }
 
-/* Prose and controls in the body face; code keeps giscus' monospace stack. */
+/* Prose and controls use the system stack. Form controls do not inherit fonts by default and
+   giscus sets size and line-height through single-class utilities, so these selectors carry
+   an attribute selector to outrank them. Sizes stay at giscus' defaults; code keeps its monospace stack. */
 main .markdown-body,
 main button,
 main input,
-main textarea,
-main .gsc-comment-box-textarea {
+main textarea {
   font-family: var(--bnm-font);
+}
+
+main [class]:not(code, pre, svg, path) {
+  line-height: 1.5;
+}
+
+main .gsc-comments-count,
+main .gsc-reactions-count {
+  font-family: var(--bnm-font-heading);
 }
 
 /* giscus' default placeholder is #9ca3af, 1.95:1 on this surface */
