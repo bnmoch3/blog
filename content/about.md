@@ -1,4 +1,6 @@
-# About
++++
+title = 'About'
++++
 
 I am interested in SQL, Databases, Caching, Data intensive systems, Big Data,
 Small Data and everything in between. I also sometimes dabble in discrete
@@ -13,5 +15,4 @@ Contact me at:
 Tools used for this blog:
 
 - [Hugo - Golang static site generator](https://gohugo.io/)
-- [typo theme by @tomfran](https://github.com/tomfran/typo)
 - [Aspell - Open Source spell checker](http://aspell.net/)

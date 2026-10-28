@@ -1,6 +1,6 @@
 +++
 title = "DB-Enforced State Machines in PostgreSQL: State-Based vs Event Sourced"
-date = "2025-01-03"
+date = "2026-01-03"
 summary = "FSMs: Storing State vs Storing Events. Also invalid State Transitions shouldn't reach your DB"
 tags = ["PostgreSQL"]
 type = "post"
@@ -9,7 +9,6 @@ readTime = true
 autonumber = false
 showTags = true
 slug = "postgresql-state-machine-approaches"
-draft = true
 +++
 
 Let's consider the following problem, we want to track and manage the lifecycle
