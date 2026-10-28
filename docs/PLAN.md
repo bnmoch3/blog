@@ -6,8 +6,8 @@
 - [x] Phase 3: home and list pages, typography corrections, body font chosen (Source Serif 4)
 - [x] Phase 4: article layout (TOC, footnotes, code blocks, math): one breakpoint at 77.5rem (three
   columns above, single column + collapsible TOC + footnote list below), `b0293e6`..`dd19b51`
-- [ ] Phase 5: prune dead typo code
-- [ ] Phase 6: verification
+- [x] Phase 5: prune dead typo code (`92a2a61`); home page columns (`9d8ef89`)
+- [x] Phase 6: verification (URL diff, prod build, 6 widths x 10 pages, a11y, print, RSS/sitemap/OG)
 
 ## Context
 The live blog uses `themes/typo`, a git submodule of a typo fork. It has dark-mode leftovers, Literata/Monaspace fonts and several latent bugs:
