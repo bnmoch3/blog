@@ -46,6 +46,20 @@ Hugo version: **0.148.x**. The **standard (non-extended)** edition must build th
 | CSS bundle order | `themes/bnm/layouts/_partials/head/css.html` |
 | Code highlighting | `markup.highlight` in `hugo.toml` (class based), colors in `code.css` |
 | Site params (menu, analytics, giscus, home) | `hugo.toml` `[params]` |
+| Article grid and its single breakpoint (77.5rem, derivation in the comment) | `themes/bnm/assets/css/layout.css` |
+| TOC, footnotes, sidenotes, autonumber styles | `themes/bnm/assets/css/article.css` |
+| Article JS (bundled, minified, fingerprinted in `single.html`) | `themes/bnm/assets/js/{toc,footnotes,code}.js` |
+| Code block markup (border label) / math fences (`transform.ToMath`) | `themes/bnm/layouts/_markup/render-codeblock{,-math}.html` |
+| KaTeX stylesheet (pinned, SRI; only on pages with math) | `themes/bnm/layouts/_partials/math.html` |
+
+Article front matter: `toc = true` (optional `tocDepth = 1|2|3`, levels below h2, default 2),
+`autonumber`, `readTime`, `showTags`, `math = true` (opt-in client-side `$...$` rendering; not needed
+for ```` ```math ```` fences, which render at build time), `hidePagination`, `hideBackToTop`.
+
+The breakpoint is written only in CSS (media queries cannot read custom properties). JS reads the
+layout's `--wide` custom property instead of repeating it. If the body size, measure, `--toc-width`,
+`--note-width`, `--gutter` or `--page-pad` change, recompute it (formula in `layout.css`) and update
+both `@media (min-width: 77.5rem)` rules (`layout.css`, `article.css`).
 
 ## Typography spec
 

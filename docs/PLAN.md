@@ -4,7 +4,8 @@
 - [x] Phase 1: audit, URL baseline, submodule detached, /blog/ aliases, fixture post (`8c24bd1`)
 - [x] Phase 2: theme copy, tokens, fonts, dark mode removed (`f2b19f1`)
 - [x] Phase 3: home and list pages, typography corrections, body font chosen (Source Serif 4)
-- [ ] Phase 4: article layout (TOC, footnotes, code blocks, math)
+- [x] Phase 4: article layout (TOC, footnotes, code blocks, math): one breakpoint at 77.5rem (three
+  columns above, single column + collapsible TOC + footnote list below), `b0293e6`..`dd19b51`
 - [ ] Phase 5: prune dead typo code
 - [ ] Phase 6: verification
 
@@ -116,7 +117,7 @@ Audit facts that shape the plan:
 - **Math:** `_markup/render-codeblock-math.html` uses `transform.ToMath` (server-side KaTeX, which works in standard Hugo) in display mode and sets `.Store "hasMath"`. KaTeX CSS is then loaded only on those pages. The existing `math` param and the CDN auto-render partial are kept for inline `$…$`, with a pinned version.
 - **Mermaid:** keep the render hook and pin the mermaid version.
 - **Other:** giscus, read time, `showTags` and prev/next stay. The giscus theme becomes `light`, or a custom CSS URL later; `noborder_light` is the closest match to beige. Hover anchor links on headings stay.
-- **Test fixture:** the draft post `content/posts/zz_layout_fixture/index.md` is added in phase 1 (`draft = true`, never published). It has a long TOC (h2–h4, `toc = true`, `autonumber = true`), ~12 footnotes (some clustered close together), and code in several languages (sql, python, go, rust, bash, javascript, json), including wide lines and a `math` fence. It is used for screenshots via `hugo server -D`.
+- **Test fixture:** the draft post `content/posts/zz_layout_fixture/index.md` is added in phase 1 (`draft = true`, never published). It has a long TOC (h2–h4, `toc = true`, `autonumber = true`), ~12 footnotes (some clustered close together), and code in several languages (sql, python, go, rust, bash, javascript, json), including wide lines and a `math` fence. It is used for screenshots via a `hugo -D -d <scratch>` build (never `hugo server` without `--renderToMemory`).
 
 ## Phase 5: Prune
 - Delete the typo assets that are no longer used: `colors/*`, Literata, Monaspace (if not kept), `utils.css`, `custom.css`, `head/js.html`, the unused `svg.html` branches, and dead CSS such as `.social-icons` and `.img-dark`.
