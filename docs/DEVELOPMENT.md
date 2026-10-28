@@ -70,8 +70,10 @@ above and renders anything else (and plain `>` quotes) as an ordinary `<blockquo
 > The query was missing `for update`; the code below is corrected.
 ```
 
-The optional text after the type is shown next to the label, which always keeps the type name. Output is
-`<aside class="callout callout-update" role="note">` with a real-text label. Three tones: neutral
+The optional text after the type follows the label after a middle dot; the label always keeps the type
+name. Output is `<aside class="callout callout-update" role="note">` with a real-text label. The label
+is sentence case, capitalised in the hook (not by CSS), semibold at 0.9em with no letter-spacing; a
+custom title is regular weight. Three tones: neutral
 (note, tip), accent (important, update, correction), warn (warning, caution). Blocks, lists and
 footnotes work inside; sidenotes are unaffected.
 

@@ -148,7 +148,7 @@
   color: var(--color-accent-text);
 }
 
-/* Callouts (layouts/_markup/render-blockquote.html): a left rule and a small caps label, no box.
+/* Callouts (layouts/_markup/render-blockquote.html): a left rule and a small semibold label, no box.
    Three tones: neutral (note, tip), accent (important, update, correction), warn (warning, caution). */
 .callout {
   --callout-rule: var(--color-callout-neutral);
@@ -178,17 +178,16 @@
 
 .callout-label {
   margin: 0 0 var(--space-1);
-  font-size: var(--text-sm);
+  font-size: 0.9em;
   line-height: 1.3;
   color: var(--callout-label);
 }
 
 .callout-type {
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
 }
 
-.callout-title {
-  margin-left: 0.4em;
-}
+.callout-sep { margin-inline: 0.35em; }
+
+.callout-title { font-weight: 400; }
