@@ -1,8 +1,15 @@
 /* Page shell: header, main column, footer. */
 .page {
   --col: var(--page-width);
+  display: flex;
   flex: 1 0 auto;
+  flex-direction: column;
   width: 100%;
+}
+
+/* Home: two independent columns in a wider container; header and footer share its edges. */
+.page--home {
+  --col: calc(var(--home-width) + 2 * var(--page-pad));
 }
 
 /* Article pages use the text measure as their column. */
@@ -18,6 +25,7 @@
 }
 
 .main {
+  flex: 1 0 auto;
   padding-bottom: var(--space-7);
 }
 
@@ -61,9 +69,9 @@
   }
 }
 
-body > footer {
+.site-footer {
   flex-shrink: 0;
-  width: min(100%, var(--page-width));
+  width: min(100%, var(--col));
   margin-inline: auto;
   padding: var(--space-5) var(--page-pad) var(--space-6);
   color: var(--color-muted);

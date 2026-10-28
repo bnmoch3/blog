@@ -17,11 +17,11 @@
       <main id="main" class="main {{ block "main_class" . }}{{ end }}">
         {{ block "main" . }}{{ end }}
       </main>
-    </div>
 
-    <footer>
-      {{ partial "footer.html" . }}
-    </footer>
+      <footer class="site-footer">
+        {{ partial "footer.html" . }}
+      </footer>
+    </div>
 
     {{ if and hugo.IsProduction site.Params.simpleAnalytics.enable }}
     <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>

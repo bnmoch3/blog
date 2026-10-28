@@ -2,7 +2,7 @@
   :root { --text-base: 11pt; }
 
   body { background: #fff; color: #000; display: block; }
-  .header, body > footer, .article-foot, .toc, .giscus, .back-to-top, .post-nav, .skip-link, .sidenotes, .code-copy { display: none !important; }
+  .header, .site-footer, .article-foot, .toc, .giscus, .back-to-top, .post-nav, .skip-link, .sidenotes, .code-copy { display: none !important; }
   .has-sidenotes .footnotes { display: block; }
   .main { width: 100%; padding: 0; }
   a { color: inherit; text-decoration: underline; }

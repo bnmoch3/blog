@@ -79,7 +79,8 @@
   --space-8: 4.5rem;
 
   /* Layout */
-  --page-width: 46rem; /* home and list column */
+  --page-width: 46rem; /* list column */
+  --home-width: 64rem; /* home: Latest and Featured columns */
   --toc-width: 15rem;
   --note-width: 15rem;
   --gutter: 2.5rem;

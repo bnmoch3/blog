@@ -72,8 +72,15 @@
 .autonumber .toc {
   ul { counter-reset: toc-item; }
   li { counter-increment: toc-item; }
+  /* number in its own column so wrapped titles hang under the title, not the number */
+  a {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 0.6em;
+  }
+
   a::before {
-    content: counters(toc-item, ".") "\00a0\00a0";
+    content: counters(toc-item, ".");
     font-variant-numeric: tabular-nums;
   }
 }

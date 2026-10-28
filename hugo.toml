@@ -34,7 +34,7 @@ listDateFormatInYear = 'Jan 02' # lists grouped under a year heading
 breadcrumbs = true
 
 showFooter = true
-footerContent = "..."
+footerContent = ""
 
 # Main menu pages
 [[params.menu]]
@@ -92,10 +92,9 @@ categoryid = "DIC_kwDOIU86Dc4Clvgl"
 mapping = "pathname"
 theme = "gruvbox_light"
 
-# Home page: how many of each section appear under "Latest"
+# Home page: number of newest entries (posts and notes together) under "Latest"
 [params.home]
-latestPosts = 5
-latestNotes = 3
+latest = 6
 
 # Analytics (loaded in production builds only)
 [params.simpleAnalytics]
