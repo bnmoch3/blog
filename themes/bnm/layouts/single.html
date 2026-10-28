@@ -2,96 +2,78 @@
 
 {{ define "main" }}
 
-{{/* Breadcrumbs */}}
-
-{{ if not .IsHome }}
-{{ partial "breadcrumbs.html" . }}
+{{/* TOC: front matter toc = true; tocDepth (1-3, default params.tocDepth or 2) counts levels from h2 */}}
+{{ $tocHTML := "" }}
+{{ if .Param "toc" }}
+{{ $depth := int (.Param "tocDepth" | default 2) }}
+{{ $tocHTML = .Fragments.ToHTML 2 (add 1 $depth) false }}
+{{ if not (strings.Contains $tocHTML "<li") }}{{ $tocHTML = "" }}{{ end }}
 {{ end }}
 
-<div {{ if .Param "autonumber" }} class="autonumber" {{ end }}>
+<div class="article-layout{{ if .Param "autonumber" }} autonumber{{ end }}">
 
-  <div class="single-intro-container">
+  <header class="article-head">
+    {{ partial "breadcrumbs.html" . }}
 
-    {{/* Title and Summary */}}
     <h1 class="single-title">{{ .Title }}</h1>
-
-    {{/* Reading Time */}}
 
     <p class="single-readtime">
       {{ with .Date }}
       {{ $dateMachine := . | time.Format "2006-01-02T15:04:05-07:00" }}
-      {{ $dateHuman := . | time.Format (default ":date_long" $.Site.Params.singleDateFormat) }}
+      {{ $dateHuman := . | time.Format (default ":date_long" site.Params.singleDateFormat) }}
       <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-      {{end}}
-
+      {{ end }}
       {{ if .Param "readTime" }}
-      &nbsp; · &nbsp;
-      {{ .ReadingTime }} min read
-      {{end }}
+      &nbsp; · &nbsp; {{ .ReadingTime }} min read
+      {{ end }}
     </p>
 
-  </div>
-
-  {{ if .Param "showTags" }}
-
-  {{ $taxonomy := "tags" }}
-  {{ with .Param $taxonomy }}
-
-  <div class="single-tags">
-    {{ range $index, $tag := . }}
-    {{ with $.Site.GetPage (printf "/%s/%s" $taxonomy $tag) -}}
-    <span>
-      <a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
-    </span>
+    {{ if .Param "showTags" }}
+    {{ with .GetTerms "tags" }}
+    <p class="single-tags">
+      {{ range . }}<a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a> {{ end }}
+    </p>
     {{ end }}
     {{ end }}
-  </div>
+  </header>
 
-  {{ end }}
-  {{ end }}
-
-  {{/* Table of Content */}}
-
-  {{ if .Param "toc" }}
+  {{ with $tocHTML }}
   <aside class="toc">
-    <p><strong>Table of contents</strong></p>
-    {{ .TableOfContents }}
+    <details class="toc-details">
+      <summary>Contents</summary>
+      {{ replace . `<nav id="TableOfContents">` `<nav id="TableOfContents" aria-label="Table of contents">` | safeHTML }}
+    </details>
   </aside>
   {{ end }}
 
-  {{/* Page content */}}
-
-  <div class="single-content">
+  <div class="article-body single-content">
     {{ .Content }}
-    {{ if .Site.Params.giscus.enable }}
+  </div>
+
+  {{/* Filled by js/footnotes.js on wide screens; the footnote list stays the fallback */}}
+  <div class="sidenotes"></div>
+
+  <footer class="article-foot">
+    {{ if site.Params.giscus.enable }}
     {{ partial "comments.html" . }}
     {{ end }}
-  </div>
 
-  {{ if .Store.Get "hasMermaid" }}
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true });
-  </script>
-  {{ end }}
+    {{ if not (.Param "hidePagination") }}
+    {{ partial "pagination-single.html" . }}
+    {{ end }}
 
-
-  {{/* Next prev controls */}}
-
-  {{ if not (.Param "hidePagination") }}
-  {{ partial "pagination-single.html" . }}
-  {{ end }}
-
-  {{/* Back to top */}}
-
-  {{ if not (.Param "hideBackToTop") }}
-  <div class="back-to-top">
-    <a href="#top">
-      back to top
-    </a>
-  </div>
-  {{ end }}
+    {{ if not (.Param "hideBackToTop") }}
+    <p class="back-to-top"><a href="#top">back to top</a></p>
+    {{ end }}
+  </footer>
 
 </div>
+
+{{ if .Store.Get "hasMermaid" }}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
+{{ end }}
 
 {{ end }}

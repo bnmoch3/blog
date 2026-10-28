@@ -1,4 +1,4 @@
-/* Article body: heading anchors, autonumbering. TOC, notes and grid are added in the article phase. */
+/* Article body: heading anchors, autonumbering, TOC, footnotes and sidenotes. Grid: layout.css. */
 .heading {
   a {
     visibility: hidden;
@@ -28,13 +28,59 @@
   h4::before { content: counter(h2-counter) "." counter(h3-counter) "." counter(h4-counter) "\00a0\00a0"; }
 }
 
+/* TOC: a collapsible block above the article; a sticky sidebar when wide */
 .toc {
-  margin: var(--space-6) 0;
+  margin: 0 0 var(--space-6);
   font-size: var(--text-sm);
-  line-height: 1.5;
+  line-height: 1.4;
 
-  ul { margin: 0.1rem 0; }
-  li { margin: 0.1rem 0; }
+  summary {
+    width: fit-content;
+    color: var(--color-muted);
+    cursor: pointer;
+  }
+
+  summary:hover { color: var(--color-strong); }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul ul { padding-left: 0.9em; }
+
+  li { margin: 0; }
+
+  nav > ul { margin-top: var(--space-3); }
+
+  a {
+    display: block;
+    padding-block: 0.2em;
+    color: var(--color-muted);
+    text-decoration: none;
+
+    &:hover { color: var(--color-strong); }
+  }
+
+  a[aria-current] {
+    color: var(--color-accent-text);
+  }
+}
+
+@media (min-width: 77.5rem) {
+  .toc {
+    margin: 0;
+  }
+
+  .toc-details {
+    position: sticky;
+    top: var(--space-5);
+    max-height: calc(100vh - 2 * var(--space-5));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
 }
 
 .footnotes {

@@ -90,3 +90,52 @@ footer {
     margin-inline: 0.5em;
   }
 }
+
+/*
+ * Article grid. One column below the breakpoint: head, collapsible TOC,
+ * body (with the footnote list), foot. Three columns only when TOC, the full
+ * measure and the notes all fit:
+ *   2 * --toc-width/--note-width (15rem) + 2 * --gutter (2.5rem)
+ *   + --measure (33em at 18px = 37.125rem) + 2 * --page-pad (2rem) = 76.125rem,
+ * plus ~1.4rem for a classic scrollbar = 77.5rem. Recompute if those tokens or
+ * the body font size/measure in hugo.toml change (media queries cannot read
+ * custom properties). JS reads --wide instead of repeating the number.
+ */
+.article-layout {
+  --wide: 0;
+  display: grid;
+  grid-template-columns: minmax(0, var(--measure));
+  grid-template-areas: "head" "toc" "body" "foot";
+  justify-content: center;
+}
+
+.article-head { grid-area: head; }
+.toc { grid-area: toc; }
+.article-body { grid-area: body; min-width: 0; }
+.sidenotes { grid-area: notes; display: none; }
+.article-foot { grid-area: foot; min-width: 0; }
+
+@media (min-width: 77.5rem) {
+  .page--article .main {
+    width: 100%;
+  }
+
+  .article-layout {
+    --wide: 1;
+    grid-template-columns: var(--toc-width) minmax(0, var(--measure)) var(--note-width);
+    grid-template-areas:
+      "toc head notes"
+      "toc body notes"
+      ".   foot .";
+    column-gap: var(--gutter);
+  }
+
+  .sidenotes {
+    display: block;
+    position: relative;
+  }
+}
+
+.article-body > :first-child {
+  margin-top: 0;
+}
