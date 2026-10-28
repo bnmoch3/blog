@@ -9,11 +9,14 @@ init:
 	git submodule init
 	git submodule update
 
-# builds into build/main and pushes the deploy repo; refuses unless CONFIRM=1
+# builds into build/main, checks for dev-server leftovers, pushes the deploy repo,
+# then records the new pointer. Refuses unless CONFIRM=1.
 publish:
-	if [ "$(CONFIRM)" != "1" ]; then echo "refusing to publish: run 'make publish CONFIRM=1'"; exit 1; fi
-	hugo --minify # build public site
-	cd build/main && git add . && git commit -m "Update site" && git push # publish
+	@if [ "$(CONFIRM)" != "1" ]; then echo "refusing to publish: run 'make publish CONFIRM=1'"; exit 1; fi
+	hugo --minify
+	@if grep -r -q -E "localhost:1313|livereload|127\.0\.0\.1:1313" build/main --include='*.html'; then echo "dev-server leftovers found, aborting"; exit 1; fi
+	cd build/main && git add -A && git commit -m "Update site" && git push
+	git add build/main && git commit -m "Update build/main pointer" && git push
 
 # runs local HTTP server, renders pages in memory only (never writes to
 # build/main), watches files and hot-reloads on change, includes drafts (-D)
