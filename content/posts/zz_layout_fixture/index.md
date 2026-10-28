@@ -171,6 +171,90 @@ with no language label
 \displaystyle \sum_{i=1}^{n} i = \frac{n(n+1)}{2}
 ```
 
+## Callouts
+
+> [!NOTE]
+> Callouts directly after a heading should sit at the normal heading gap. This one is a plain note.
+
+> [!TIP]
+> Run `make dev` while writing; it renders drafts in memory and writes nothing to disk.
+
+> [!IMPORTANT]
+> The trigger only protects the table it is attached to. Writers that bypass it, such as a superuser disabling triggers, can still create invalid states.
+
+> [!WARNING]
+> Running `truncate` on the events table skips row-level triggers. Do it only in a maintenance window.
+
+> [!CAUTION]
+> This migration rewrites the whole table and takes an exclusive lock. Do not run it during peak traffic.
+
+> [!UPDATE]
+> The benchmark numbers above were re-run on a larger instance; the ratios are unchanged.
+
+> [!CORRECTION]
+> An earlier version of this post said the default isolation level is repeatable read. It is read committed.
+
+With custom titles:
+
+> [!UPDATE] Fixed after publishing
+> The function now locks the parent row instead of the latest event. The code below is corrected.
+
+> [!CORRECTION] Concurrency fix
+> `select ... for update` on an empty set locks nothing, so the first event for an invoice could race.
+
+A callout containing a fenced code block:
+
+> [!NOTE] Locking the parent row
+> Lock the invoice before reading its latest event:
+>
+> ```sql
+> create function invoice_events_trigger_func()
+> returns trigger language plpgsql as $$
+> begin
+>     perform 1 from invoices where id = NEW.invoice_id for update;
+>     return NEW;
+> end $$;
+> ```
+
+A callout containing a list, inline code and a link:
+
+> [!TIP]
+> Before changing the schema, check:
+>
+> - the `invoice_events` foreign key to `invoices(id)`
+> - that every writer runs inside a transaction
+> - the [PostgreSQL docs on explicit locking](https://www.postgresql.org/docs/current/explicit-locking.html)
+
+A callout containing a footnote reference:
+
+> [!IMPORTANT]
+> Row locks are released at the end of the transaction, not the statement.[^13] Keep transactions short.
+
+A very long callout:
+
+> [!WARNING] A long one
+> Concurrent writers are the hard part of any event-sourced design. Two transactions can read the same latest event, compute their next states independently, and both insert, leaving a history that no single sequential execution could have produced. Locking the parent row serialises them, but only if every code path takes the lock in the same order; a path that locks events first and invoices second can deadlock against one that does the reverse. Test with many parallel sessions, not one, and look at the resulting event sequences rather than only the final state.
+
+Two back to back:
+
+> [!NOTE]
+> First of two adjacent callouts.
+
+> [!TIP]
+> Second of two adjacent callouts, with only the paragraph gap between them.
+
+For comparison, a plain blockquote:
+
+> A regular blockquote with no alert syntax. It should keep its existing look: indented, slightly smaller, no rule.
+
+And an unknown type, which must fall back to the same plain blockquote:
+
+> [!BOGUS]
+> This should render as an ordinary blockquote.
+
+> [!CAUTION] Directly before a heading
+> This callout is followed immediately by the next h2.
+
 ## Closing section
 
 Some trailing text with the last few notes[^10]. A closing paragraph carries
@@ -195,3 +279,4 @@ exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 [^10]: Note ten.
 [^11]: Note eleven.
 [^12]: Note twelve, adjacent to eleven.
+[^13]: A footnote defined in the normal place, referenced from inside a callout.
