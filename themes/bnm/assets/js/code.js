@@ -4,7 +4,7 @@
   if (!navigator.clipboard) return;
   for (const figure of document.querySelectorAll("figure.code")) {
     const tools = figure.querySelector(".code-tools");
-    const code = figure.querySelector(".lntd:last-child pre code") || figure.querySelector("pre code");
+    const code = figure.querySelector("pre code");
     if (!tools || !code) continue;
 
     const button = document.createElement("button");

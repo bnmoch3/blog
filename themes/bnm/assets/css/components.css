@@ -188,10 +188,6 @@
   color: var(--color-muted);
 }
 
-.single-summary {
-  color: var(--color-muted);
-}
-
 .single-content {
   margin-bottom: var(--space-8);
 }
@@ -256,8 +252,6 @@ figcaption {
 .caption-container {
   display: flex;
 }
-
-.img-small img { transform: scale(0.8); }
 
 /* 404 */
 .not-found {

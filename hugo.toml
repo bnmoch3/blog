@@ -113,9 +113,8 @@ weight = "100 900"
 style = "normal"
 preload = true
 
-# Body font. Candidates are kept below; swap by replacing this block with one of them
-# (files are in themes/bnm/static/fonts/). size, leading and measure are per font because
-# the same size looks different in different faces. measure is the article column width.
+# Body font. size, leading and measure are per font because the same size looks different in
+# different faces. measure is the article column width.
 [params.fonts.body]
 family = "Source Serif 4"
 dir = "source-serif-4"
@@ -132,42 +131,6 @@ preload = true
 file = "source-serif-4-latin-wght-italic.woff2"
 weight = "200 900"
 style = "italic"
-
-# Candidate: Inter (neutral sans)
-# [params.fonts.body]
-# family = "Inter"
-# dir = "inter"
-# fallback = "ui-sans-serif, system-ui, sans-serif"
-# size = "1.0625rem"
-# leading = 1.45
-# measure = "35em"
-# [[params.fonts.body.files]]
-# file = "inter-latin-wght-normal.woff2"
-# weight = "100 900"
-# style = "normal"
-# preload = true
-# [[params.fonts.body.files]]
-# file = "inter-latin-wght-italic.woff2"
-# weight = "100 900"
-# style = "italic"
-
-# Candidate: Literata (the old body font)
-# [params.fonts.body]
-# family = "Literata"
-# dir = "literata"
-# fallback = "Georgia, ui-serif, serif"
-# size = "1.0625rem"
-# leading = 1.45
-# measure = "34em"
-# [[params.fonts.body.files]]
-# file = "literata-latin-wght-normal.woff2"
-# weight = "200 900"
-# style = "normal"
-# preload = true
-# [[params.fonts.body.files]]
-# file = "literata-latin-wght-italic.woff2"
-# weight = "200 900"
-# style = "italic"
 
 [params.fonts.mono]
 family = "Google Sans Code"

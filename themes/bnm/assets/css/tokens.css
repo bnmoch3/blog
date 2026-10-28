@@ -11,7 +11,6 @@
   /* Palette: warm off-white from tania_rascia/src/styles/style.css, darkened ~5 points of lightness */
   --beige-0: #f2ebd2;
   --beige-1: #ebe1c4;
-  --beige-2: #e7dcbb;
   --beige-25: #dfd4ae;
   --beige-3: #d9cda6;
   --beige-4: #c1b489;
@@ -21,14 +20,12 @@
 
   /* Roles */
   --color-bg: var(--beige-0);
-  --color-surface: var(--beige-1);
-  --color-surface-2: var(--beige-2);
   --color-border: var(--beige-25);
   --color-border-strong: var(--beige-4);
   --color-text: var(--ink-2);
   --color-strong: var(--ink-1);
   --color-muted: var(--ink-3);
-  /* accent: decoration and focus rings. accent-text: links, >=4.5:1 on bg, surface and surface-2 */
+  /* accent: decoration and focus rings. accent-text: links, >=4.5:1 on bg and code bg */
   --color-accent: #ad6630;
   --color-accent-text: #904f23;
   --color-accent-soft: rgb(173 102 48 / 0.14);
@@ -51,9 +48,6 @@
   --code-tag: #1b679e;
   --code-variable: #0e2a35;
   --code-error: #bc2729;
-  --code-inserted: #2a702d;
-  --code-deleted: #bc2729;
-  --code-line-hl: rgb(173 102 48 / 0.14);
 
   /* Body text first (overridden per font from params.fonts.body) */
   --text-base: 1.125rem;
