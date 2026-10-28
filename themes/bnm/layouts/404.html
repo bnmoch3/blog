@@ -1,12 +1,12 @@
 {{ define "main" }}
-
 <div class="not-found">
-
-    <div>
-        <h1> typo? </h1>
-        <p> Click <a href="/"> here </a> to return to home </p>
-    </div>
-
+  <h1>Page not found</h1>
+  <p>This address doesn't match a page. It may have moved, or the link may be mistyped.</p>
+  <ul class="not-found-links">
+    <li><a href="{{ "/" | relURL }}">Home</a></li>
+    <li><a href="{{ "posts/" | relURL }}">Posts</a></li>
+    <li><a href="{{ "notes/" | relURL }}">Notes</a></li>
+    <li><a href="{{ "tags/" | relURL }}">Tags</a></li>
+  </ul>
 </div>
-
 {{ end }}

@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{ $size := cond (gt site.Params.paginationSize 0) site.Params.paginationSize 1 }}
+{{ $paginator := .Paginate .Pages.ByTitle $size }}
+
+{{ partial "breadcrumbs.html" . }}
+<h1 class="list-title">{{ .Title }}</h1>
+{{ with .Content }}<div class="list-intro">{{ . }}</div>{{ end }}
+
+<ul class="tag-list">
+  {{ range $paginator.Pages }}
+  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="count">{{ len .Pages }}</span></li>
+  {{ end }}
+</ul>
+
+{{ partial "pagination-controls.html" $paginator }}
+{{ end }}

@@ -1,65 +1,190 @@
-/* Lists, pagination, single-page chrome, figures, 404. */
+/* Home, lists, pagination, single-page chrome, figures, 404. */
 
-/* Post lists */
-.post-line,
-.tag-line {
-  display: flex;
-  align-items: baseline;
-  margin-bottom: var(--space-3);
-
-  p { margin: 0; }
+/* Home */
+.intro {
+  margin-bottom: var(--space-7);
 }
 
-.line-date {
-  min-width: 7.5rem;
-  max-width: 7.5rem;
-  padding-right: var(--space-4);
-  text-align: right;
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: var(--color-muted);
+.intro-title {
+  margin: 0 0 var(--space-3);
 }
 
-.line-title,
-.tag-title {
+.intro-lead {
   margin: 0;
+  max-width: 24ch;
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 1.2rem + 3vw, 2.9rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-strong);
+  text-wrap: balance;
 }
 
-.line-summary {
-  margin-top: 0.2rem !important;
+.home-section {
+  margin-bottom: var(--space-7);
+}
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-5);
+  margin-bottom: var(--space-4);
+
+  h2 { margin: 0; }
+}
+
+.section-links {
+  display: flex;
+  gap: var(--space-4);
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+/* Entry rows: quiet date column, title, optional summary */
+.entries {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  column-gap: var(--space-4);
+  margin: 0 0 var(--space-4);
+
+  &::marker { content: none; }
+}
+
+.entry-date {
+  padding-top: 0.2em;
+  font-size: var(--text-sm);
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--color-muted);
+}
+
+.entry-title {
+  color: var(--color-strong);
+  font-weight: 500;
+  text-decoration-color: transparent;
+
+  &:hover {
+    color: var(--color-accent-text);
+    text-decoration-color: currentColor;
+  }
+}
+
+.entry-kind {
+  margin-left: 0.5em;
   font-size: var(--text-sm);
   color: var(--color-muted);
 }
 
-.list-container {
-  padding-bottom: var(--space-6);
+.entry-summary {
+  margin: 0.15em 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+
+/* Featured and projects: text only, separated by whitespace */
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-6);
+}
+
+.feature {
+  h3 {
+    margin: 0 0 0.2em;
+    font-family: var(--font-body);
+    font-size: 1em;
+    font-weight: 500;
+    text-wrap: pretty;
+  }
+
+  h3 a {
+    color: var(--color-strong);
+    text-decoration-color: transparent;
+
+    &:hover { color: var(--color-accent-text); text-decoration-color: currentColor; }
+  }
+
+  p {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: 1.45;
+    color: var(--color-muted);
+  }
+
+  .feature-links { margin-top: 0.3em; }
+}
+
+.archives,
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li { margin: 0; }
+  li::marker { content: none; }
+}
+
+.count {
+  margin-left: 0.25em;
+  font-size: var(--text-sm);
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--color-muted);
+}
+
+/* List pages: year in the left column, entries on the right */
+.list-title {
+  margin-bottom: var(--space-6);
+}
+
+.list-intro {
+  margin-bottom: var(--space-6);
+}
+
+.year-group {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  column-gap: var(--space-4);
+  margin-bottom: var(--space-5);
+
+  .entry { grid-template-columns: 4.5rem 1fr; }
+}
+
+.year {
+  margin: 0;
+  padding-top: 0.05em;
+  font-size: var(--text-h3);
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--color-muted);
 }
 
 /* Pagination */
 .pagination {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: var(--space-4);
-}
-
-.pagination-control,
-.page-number {
-  min-width: 3rem;
-  margin-inline: var(--space-2);
-  text-align: center;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: var(--space-6);
+  font-size: var(--text-sm);
 }
 
 .page-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
+  color: var(--color-muted);
 }
 
 /* Single page chrome */
 .single-intro-container {
-  margin: var(--space-4) 0 var(--space-6);
+  margin: 0 0 var(--space-6);
 }
 
 .single-title {
@@ -68,8 +193,8 @@
 
 .single-readtime {
   margin: 0;
-  color: var(--color-muted);
   font-size: var(--text-sm);
+  color: var(--color-muted);
 }
 
 .single-summary {
@@ -82,13 +207,14 @@
 
 .single-tags {
   margin-bottom: var(--space-4);
+  font-size: var(--text-sm);
 
-  span { margin-right: var(--space-2); }
-  a { font-family: var(--font-mono); font-size: var(--text-sm); }
+  span { margin-right: var(--space-3); }
 }
 
 .single-pagination {
   margin: var(--space-7) 0;
+  font-size: var(--text-sm);
 
   hr { margin: 0; }
   a { margin-inline: 0.4rem; }
@@ -121,8 +247,6 @@
 
 .back-to-top {
   margin-bottom: var(--space-6);
-  text-align: center;
-  font-family: var(--font-mono);
   font-size: var(--text-sm);
 }
 
@@ -150,33 +274,39 @@ figure {
 
 figcaption {
   margin-block: var(--space-3);
-  padding-inline: var(--space-2);
-  text-align: center;
   font-size: var(--text-sm);
   color: var(--color-muted);
 }
 
 .caption-container {
   display: flex;
-  justify-content: center;
 }
 
 .img-small img { transform: scale(0.8); }
 
 /* 404 */
 .not-found {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  max-width: 28rem;
 
-  h1 {
-    margin-bottom: var(--space-6);
-    font-size: 6rem;
-  }
+  p { color: var(--color-muted); }
 }
 
-@media (max-width: 640px) {
-  .post-line { flex-direction: column; }
-  .line-date { min-width: 0; max-width: none; padding: 0; text-align: left; }
+.not-found-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li::marker { content: none; }
+}
+
+@media (max-width: 40rem) {
+  .features { grid-template-columns: 1fr; }
+  .year-group,
+  .entry,
+  .year-group .entry { grid-template-columns: 1fr; }
+  .year-group { row-gap: var(--space-2); }
+  .entry-date { padding-top: 0; }
 }

@@ -1,7 +1,9 @@
 {{/*
 Returns CSS: @font-face rules plus --font-<role> custom properties, generated
 from [params.fonts.<role>] (family, fallback, dir, files[{file, weight, style, preload}]).
-Files live in static/fonts/<dir>/ (theme or site).
+The body font may also carry its own type settings, because the same size looks
+different in different faces: size -> --text-base, leading -> --leading,
+measure -> --measure. Files live in static/fonts/<dir>/ (theme or site).
 */}}
 {{- $faces := "" -}}
 {{- $vars := "" -}}
@@ -11,5 +13,10 @@ Files live in static/fonts/<dir>/ (theme or site).
     {{- $faces = printf `%s@font-face{font-family:%q;src:url(%q) format("woff2");font-weight:%s;font-style:%s;font-display:swap}%s` $faces $f.family $url (.weight | default "400") (.style | default "normal") "\n" -}}
   {{- end -}}
   {{- $vars = printf "%s--font-%s:%q,%s;" $vars $role $f.family $f.fallback -}}
+  {{- if eq $role "body" -}}
+    {{- with $f.size }}{{ $vars = printf "%s--text-base:%s;" $vars . }}{{ end -}}
+    {{- with $f.leading }}{{ $vars = printf "%s--leading:%v;" $vars . }}{{ end -}}
+    {{- with $f.measure }}{{ $vars = printf "%s--measure:%s;" $vars . }}{{ end -}}
+  {{- end -}}
 {{- end -}}
 {{- return (printf "%s:root{%s}\n" $faces $vars) -}}

@@ -9,6 +9,7 @@ kbd,
 samp {
   font-family: var(--font-mono);
   font-feature-settings: "liga" 1, "calt" 1;
+  font-variant-numeric: tabular-nums;
 }
 
 /* Inline code */

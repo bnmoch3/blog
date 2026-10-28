@@ -27,6 +27,10 @@ body {
   line-height: var(--leading);
   color: var(--color-text);
   background: var(--color-bg);
+  text-align: left;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures contextual;
+  font-variant-numeric: lining-nums proportional-nums;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -35,50 +39,82 @@ body {
   background: var(--color-selection);
 }
 
+/* Headings: three visually distinct levels (h1, h2, h3 = h3-h6), whitespace does the work. */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  margin: var(--space-6) 0 var(--space-3);
   font-family: var(--font-heading);
   font-weight: 600;
-  line-height: var(--leading-tight);
-  letter-spacing: -0.01em;
+  line-height: var(--leading-heading);
   color: var(--color-strong);
   text-wrap: balance;
+  text-transform: none;
+  text-decoration: none;
+  hyphens: none;
 }
 
-h1 { font-size: var(--text-h1); }
-h2 { font-size: var(--text-h2); }
-h3 { font-size: var(--text-h3); }
+h1 { margin: 0 0 0.5em; font-size: var(--text-h1); letter-spacing: -0.015em; }
+h2 { margin: 2.2em 0 0.55em; font-size: var(--text-h2); letter-spacing: -0.01em; }
+h3,
 h4,
 h5,
-h6 { font-size: var(--text-h4); }
+h6 { margin: 1.7em 0 0.4em; font-size: var(--text-h3); }
 
 p,
 ul,
 ol,
 dl,
-table,
 blockquote,
-figure {
-  margin: 0 0 var(--space-4);
+figure,
+table {
+  margin: 0 0 var(--para-space);
 }
 
+/* Lists: small, quiet markers */
 ul,
 ol {
-  padding-left: var(--space-5);
+  padding-left: 1.4em;
 }
 
 li {
-  margin-block: var(--space-1);
+  margin-block: 0.25em;
+
+  &::marker {
+    color: var(--color-muted);
+    font-size: 0.85em;
+  }
 }
 
 li > ul,
 li > ol {
   margin-bottom: 0;
+}
+
+/* Emphasis: bold OR italic, never both. Underline is for links only. */
+strong,
+b {
+  font-weight: 600;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+strong em,
+em strong,
+b i,
+i b {
+  font-style: normal;
+}
+
+abbr,
+ins,
+u {
+  text-decoration: none;
 }
 
 a {
@@ -95,11 +131,6 @@ a {
   }
 }
 
-strong,
-b {
-  font-weight: 600;
-}
-
 hr {
   border: 0;
   height: 1px;
@@ -114,35 +145,42 @@ video {
   height: auto;
 }
 
+/* Block quotes: slightly smaller, indented, no marks, no box */
 blockquote {
-  padding: var(--space-1) var(--space-4);
-  border-left: 3px solid var(--color-accent);
-  background: var(--color-surface);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  color: var(--color-text);
+  margin-left: 2.5em;
+  font-size: 0.95em;
+  quotes: none;
 
   > :last-child { margin-bottom: 0; }
+
+  &::before,
+  &::after { content: none; }
 }
 
+/* Tables: whitespace and alignment first, light horizontal rules only */
 table {
   display: block;
   max-width: 100%;
   overflow-x: auto;
   border-collapse: collapse;
-  font-size: var(--text-sm);
-  line-height: 1.5;
+  font-size: 0.95em;
+  line-height: 1.4;
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 th,
 td {
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-border-strong);
+  padding: 0.55em 1.1em 0.55em 0;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
   text-align: left;
+  vertical-align: top;
 }
 
 th {
-  background: var(--color-surface);
   font-weight: 600;
+  color: var(--color-strong);
+  border-bottom-color: var(--color-border-strong);
 }
 
 mark {
@@ -152,11 +190,9 @@ mark {
 
 kbd {
   padding: 0.1em 0.4em;
-  border: 1px solid var(--color-border-strong);
-  border-bottom-width: 2px;
   border-radius: var(--radius-sm);
-  background: var(--color-surface);
-  font: 0.85em var(--font-mono);
+  background: var(--color-code-inline-bg);
+  font-size: 0.85em;
 }
 
 /* Accessibility */

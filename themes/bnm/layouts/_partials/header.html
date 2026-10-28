@@ -1,30 +1,22 @@
-{{/* Header */}}
-
+{{/* Site header: name on the left, menu from params.menu on the right. */}}
+{{ $page := . }}
+{{ if or (not (.Param "hideHeader")) .IsHome }}
 <div class="header">
+  <p class="site-name"><a href="{{ "/" | relURL }}">{{ site.Title }}</a></p>
 
-    {{ if or (not (.Param "hideHeader")) .IsHome }}
-
-    {{ if ne .Kind "page" }} 
-        <h1 class="header-title">
-            <a href="{{ site.BaseURL }}">{{ site.Title }}</a>
-        </h1>
+  {{ with site.Params.menu }}
+  <nav class="menu" aria-label="Main">
+    {{ range . }}
+    {{ $path := strings.TrimSuffix "/" .url }}
+    {{ $current := false }}
+    {{ if eq $path "" }}
+      {{ $current = $page.IsHome }}
+    {{ else }}
+      {{ $current = or (eq (strings.TrimSuffix "/" $page.RelPermalink) $path) (strings.HasPrefix $page.RelPermalink (printf "%s/" $path)) }}
     {{ end }}
-
-    <div class="flex">
-        {{ $currentPage := . }}
-
-        {{ with site.Params.menu }}
-        {{ range . }}
-      
-        <p class="small {{ if eq .name (lower $currentPage.Name) }} bold {{end}}">
-            <a href="{{ .url }}" {{ if and (isset . "newTab") .newTab }}target="_blank" rel="noopener noreferrer"{{ end }}>
-                /{{.name }}
-            </a>
-        </p>
-        {{ end }}
-        {{ end }}
-    </div>
-
+    <a href="{{ .url }}"{{ if $current }} aria-current="page"{{ end }}{{ if and (isset . "newTab") .newTab }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .name }}</a>
     {{ end }}
-
+  </nav>
+  {{ end }}
 </div>
+{{ end }}

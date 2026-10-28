@@ -1,17 +1,7 @@
 {{ if gt .TotalPages 1 }}
-<div class="pagination">
-  <div class="pagination-control">
-    {{ if .HasPrev }}
-    <a href="{{ .Prev.URL | absURL }}"> prev </a>
-    {{ end }}
-  </div>
-  <div class="page-number">
-    <p>{{ .PageNumber }}/{{ .TotalPages }}</p>
-  </div>
-  <div class="pagination-control">
-    {{ if .HasNext }}
-    <a href="{{ .Next.URL | absURL }}"> next </a>
-    {{ end }}
-  </div>
-</div>
+<nav class="pagination" aria-label="Pagination">
+  {{ if .HasPrev }}<a rel="prev" href="{{ .Prev.URL | absURL }}">Previous</a>{{ else }}<span></span>{{ end }}
+  <span class="page-number">Page {{ .PageNumber }} of {{ .TotalPages }}</span>
+  {{ if .HasNext }}<a rel="next" href="{{ .Next.URL | absURL }}">Next</a>{{ else }}<span></span>{{ end }}
+</nav>
 {{ end }}

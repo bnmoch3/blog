@@ -1,9 +1,8 @@
 {{ if .Site.Params.breadcrumbs }}
-<div class="breadcrumbs">
-    {{ range .Ancestors.Reverse }}
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    <span class="breadcrumbs-separator"> > </span>
-    {{ end }}
-    <a class="breadcrumbs-current" href="{{ .RelPermalink }}">{{ .Title }}</a>
-</div>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  {{ range .Ancestors.Reverse }}
+  <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  {{ end }}
+  <span aria-current="page">{{ .Title }}</span>
+</nav>
 {{ end }}

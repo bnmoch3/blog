@@ -1,48 +1,68 @@
 {{ define "main" }}
+{{ $home := site.Params.home | default dict }}
+{{ $dateFormat := site.Params.listDateFormat | default "2006 Jan 02" }}
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ $notes := where site.RegularPages "Section" "notes" }}
 
-{{ .Content }}
+<section class="intro">
+  <h1 class="{{ if not site.Params.homeIntroTitle }}visually-hidden{{ else }}intro-title{{ end }}">{{ site.Params.homeIntroTitle | default site.Title }}</h1>
+  {{ with site.Params.homeIntroContent }}<p class="intro-lead">{{ . | markdownify }}</p>{{ end }}
+  {{ .Content }}
+</section>
 
-{{/* Intro summary section */}}
+<section class="home-section" aria-labelledby="latest">
+  <div class="section-head">
+    <h2 id="latest">Latest</h2>
+    <p class="section-links">
+      <a href="{{ "posts/" | relURL }}">All posts</a>
+      <a href="{{ "notes/" | relURL }}">All notes</a>
+    </p>
+  </div>
+  {{ $latest := sort (union (first (or $home.latestposts 5) $posts) (first (or $home.latestnotes 3) $notes)) "Date" "desc" }}
+  <ul class="entries">
+    {{ range $latest }}{{ partial "entry.html" (dict "page" . "dateFormat" $dateFormat "kind" true) }}{{ end }}
+  </ul>
+</section>
 
-{{ if or .Site.Params.homeIntroTitle .Site.Params.homeIntroContent }}
-<div class="intro">
-    {{ with .Site.Params.homeIntroTitle }}
-    <h1>{{ . }}</h1>
+{{ $featured := sort (where (union $posts $notes) ".Params.featured" true) "Date" "desc" }}
+{{ if $featured }}
+<section class="home-section" aria-labelledby="featured">
+  <div class="section-head"><h2 id="featured">Featured</h2></div>
+  <div class="features">
+    {{ range $featured }}
+    <article class="feature">
+      <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+    </article>
     {{ end }}
-
-    {{ with .Site.Params.homeIntroContent }}
-    <p>{{ . | markdownify }}</p>
-    {{ end }}
-</div>
+  </div>
+</section>
 {{ end }}
 
-{{/* Fetch entries from both posts and notes */}}
-{{ $posts := where .Site.RegularPages "Section" "posts" }}
-{{ $notes := where .Site.RegularPages "Section" "notes" }}
-
-
-<div class="list-container">
-    <h2>Latest</h2>
-
-    {{ $latestEntries := sort (
-        first 5 ($posts) | union (first 3  ($notes))
-    ) "Date" "desc" }}
-
-    {{ range $index, $page := $latestEntries }}
-        {{ partial "home-entry.html" $page }}
+{{ with site.Params.projects }}
+<section class="home-section" aria-labelledby="projects">
+  <div class="section-head"><h2 id="projects">Projects</h2></div>
+  <div class="features">
+    {{ range . }}
+    <article class="feature">
+      <h3>{{ if .url }}<a href="{{ .url }}">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}</h3>
+      {{ with .description }}<p>{{ . }}</p>{{ end }}
+      {{ with .repo }}<p class="feature-links"><a href="{{ . }}">Source</a></p>{{ end }}
+    </article>
     {{ end }}
+  </div>
+</section>
+{{ end }}
 
-    <h2>Featured</h2>
-    {{ $allEntries := $posts | union $notes  }}
-    {{ $featuredEntries :=
-        sort (where $allEntries ".Params.Featured" true) "Date" "desc"
-    }}
-
-    {{ range $index, $page := $featuredEntries }}
-        {{ partial "home-entry.html" $page }}
+<section class="home-section" aria-labelledby="archives">
+  <div class="section-head"><h2 id="archives">Archives</h2></div>
+  <ul class="archives">
+    {{ range site.Sections }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="count">{{ len .RegularPages }}</span></li>
     {{ end }}
-
-</div>
-
-
+    {{ with site.Taxonomies.tags }}
+    <li><a href="{{ "tags/" | relURL }}">Tags</a> <span class="count">{{ len . }}</span></li>
+    {{ end }}
+  </ul>
+</section>
 {{ end }}

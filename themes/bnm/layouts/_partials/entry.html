@@ -1,0 +1,12 @@
+{{/* One list row. Context: dict "page" <page> "dateFormat" <layout> "kind" <bool: label notes> */}}
+{{ $p := .page }}
+<li class="entry">
+  <time class="entry-date" datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date | time.Format .dateFormat }}</time>
+  <div class="entry-body">
+    <a class="entry-title" href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+    {{ if and .kind (eq $p.Type "note") }}<span class="entry-kind">note</span>{{ end }}
+    {{ if and site.Params.listSummaries $p.Summary }}
+    <p class="entry-summary">{{ $p.Summary }}</p>
+    {{ end }}
+  </div>
+</li>

@@ -1,5 +1,13 @@
 # Plan: redesign bnmoch3.org's Hugo theme as `themes/bnm`
 
+## Status
+- [x] Phase 1: audit, URL baseline, submodule detached, /blog/ aliases, fixture post (`8c24bd1`)
+- [x] Phase 2: theme copy, tokens, fonts, dark mode removed (`f2b19f1`)
+- [x] Phase 3: home and list pages, typography corrections, body font chosen (Source Serif 4)
+- [ ] Phase 4: article layout (TOC, footnotes, code blocks, math)
+- [ ] Phase 5: prune dead typo code
+- [ ] Phase 6: verification
+
 ## Context
 The live blog uses `themes/typo`, a git submodule of a typo fork. It has dark-mode leftovers, Literata/Monaspace fonts and several latent bugs:
 - giscus reads `utteranc.category`, so `data-category` is empty.

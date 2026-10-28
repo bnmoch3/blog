@@ -1,32 +1,20 @@
 {{ define "main" }}
+{{ $size := cond (gt site.Params.paginationSize 0) site.Params.paginationSize 1 }}
+{{ $paginator := .Paginate .Pages $size }}
+{{ $short := site.Params.listDateFormatInYear | default "Jan 02" }}
 
-<div class="list-container">
+{{ partial "breadcrumbs.html" . }}
+<h1 class="list-title">{{ .Title }}</h1>
+{{ with .Content }}<div class="list-intro">{{ . }}</div>{{ end }}
 
-    {{ partial "breadcrumbs.html" . }}
+{{ range $paginator.Pages.GroupByDate "2006" }}
+<section class="year-group">
+  <h2 class="year">{{ .Key }}</h2>
+  <ul class="entries">
+    {{ range .Pages }}{{ partial "entry.html" (dict "page" . "dateFormat" $short "kind" true) }}{{ end }}
+  </ul>
+</section>
+{{ end }}
 
-    <h1>{{ .Title }}</h1>
-    {{ .Content }}
-
-    {{ $tagsPage := eq .Title "Tags"}}
-
-    {{ $paginationSize := 1}}
-    {{ if (gt .Site.Params.paginationSize 0) }}
-    {{ $paginationSize = .Site.Params.paginationSize }}
-    {{ end }}
-
-    {{ $paginator := .Paginate (.Pages) $paginationSize }}
-
-    {{ range $index, $page := $paginator.Pages }}
-
-    {{ if $tagsPage }}
-    {{ partial "tag-entry.html" $page}}
-    {{ else }}
-    {{ partial "post-entry.html" $page}}
-    {{ end }}
-
-    {{ end }}
-
-    {{ partial "pagination-controls.html" $paginator}}
-
-</div>
+{{ partial "pagination-controls.html" $paginator }}
 {{ end }}
