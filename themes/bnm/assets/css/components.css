@@ -14,9 +14,9 @@
   max-width: 24ch;
   font-family: var(--font-heading);
   font-size: clamp(1.9rem, 1.2rem + 3vw, 2.9rem);
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   color: var(--color-strong);
   text-wrap: balance;
 }

@@ -15,7 +15,7 @@
   <header class="article-head">
     {{ partial "breadcrumbs.html" . }}
 
-    {{ with .Title }}<h1 class="single-title">{{ . }}</h1>{{ end }}
+    {{ with .Title }}<h1 class="single-title">{{ . | htmlEscape | replaceRE `[\p{L}\p{N}]+(?:-[\p{L}\p{N}]+)+` `<span class="nowrap">$0</span>` | safeHTML }}</h1>{{ end }}
 
     <p class="single-readtime">
       {{ with .Date }}
