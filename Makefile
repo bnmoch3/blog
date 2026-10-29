@@ -15,8 +15,10 @@ publish:
 	@if [ "$(CONFIRM)" != "1" ]; then echo "refusing to publish: run 'make publish CONFIRM=1'"; exit 1; fi
 	hugo --minify
 	@if grep -r -q -E "localhost:1313|livereload|127\.0\.0\.1:1313" build/main --include='*.html'; then echo "dev-server leftovers found, aborting"; exit 1; fi
-	cd build/main && git add -A && git commit -m "Update site" && git push
-	git add build/main && git commit -m "Update build/main pointer" && git push
+	@if [ ! -f build/main/CNAME ]; then echo "build/main/CNAME missing, aborting"; exit 1; fi
+	@if [ "$$(git -C build/main rev-parse --show-toplevel)" != "$$(pwd)/build/main" ]; then echo "build/main is not its own git repo, aborting"; exit 1; fi
+	cd build/main && git add -A && (git diff --cached --quiet || git commit -m "Update site") && git push
+	git add build/main && (git diff --cached --quiet || git commit -m "Update build/main pointer") && git push
 
 # runs local HTTP server, renders pages in memory only (never writes to
 # build/main), watches files and hot-reloads on change, includes drafts (-D)
