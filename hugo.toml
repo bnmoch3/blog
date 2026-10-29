@@ -90,9 +90,9 @@ repoid = "R_kgDOIU86DQ"
 category = "General"
 categoryid = "DIC_kwDOIU86Dc4Clvgl"
 mapping = "pathname"
-# Absolute URL of the CSS giscus loads into its iframe (served from themes/bnm/static/giscus/bnm-3.css).
+# Absolute URL of the CSS giscus loads into its iframe (served from themes/bnm/static/giscus/bnm-4.css).
 # It exists only after a deploy; set to "noborder_light" (or any built-in) while testing.
-theme = "https://bnmoch3.org/giscus/bnm-3.css"
+theme = "https://bnmoch3.org/giscus/bnm-4.css"
 
 # Home page: number of newest posts and notes under "Latest"
 [params.home]

@@ -8,11 +8,11 @@
  * Not fingerprinted and cached for a year: after editing, rename the file and update params.giscus.theme.
  */
 
-/* Widget headings only. The iframe cannot see the page's fonts, so load Outfit by absolute URL
+/* Widget headings only. The iframe cannot see the page's fonts, so load Hanken Grotesk by absolute URL
    (same path as the page's own copy, generated from [params.fonts.heading]). */
 @font-face {
-  font-family: "Outfit";
-  src: url("https://bnmoch3.org/fonts/outfit/outfit-latin-wght-normal.woff2") format("woff2");
+  font-family: "Hanken Grotesk";
+  src: url("https://bnmoch3.org/fonts/hanken-grotesk/hanken-grotesk-latin-wght-normal.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -33,7 +33,7 @@
   --bnm-accent-hover: #7a4119; /* 8.1:1 with white */
   --bnm-warn: #8a2a1c; /* 7.2:1 on bg */
   --bnm-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --bnm-font-heading: "Outfit", var(--bnm-font);
+  --bnm-font-heading: "Hanken Grotesk", var(--bnm-font);
 }
 
 /* The iframe document must be exactly the page color, or a seam shows around the widget. */
@@ -152,6 +152,7 @@ main [class]:not(code, pre, svg, path) {
 main .gsc-comments-count,
 main .gsc-reactions-count {
   font-family: var(--bnm-font-heading);
+  font-weight: 600;
 }
 
 /* giscus' default placeholder is #9ca3af, 1.95:1 on this surface */
