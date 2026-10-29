@@ -115,10 +115,6 @@ file = "hanken-grotesk-latin-wght-normal.woff2"
 weight = "100 900"
 style = "normal"
 preload = true
-# Previous heading font (files kept in themes/bnm/static/fonts/outfit/):
-# family = "Outfit"
-# dir = "outfit"
-# file = "outfit-latin-wght-normal.woff2"
 
 # Body font. size, leading and measure are per font because the same size looks different in
 # different faces. measure is the article column width.
