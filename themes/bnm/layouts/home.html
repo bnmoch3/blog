@@ -15,21 +15,28 @@
 <div class="home-cols">
   <section class="home-latest" aria-labelledby="latest">
     <div class="section-head"><h2 id="latest">Latest</h2></div>
-    {{ $latest := first (or $home.latest 6) (sort (union $posts $notes) "Date" "desc") }}
-    <ul class="entries">
-      {{ range $latest }}
+    <p class="sub-label" id="latest-posts">Posts</p>
+    <ul class="entries" aria-labelledby="latest-posts">
+      {{ range first (or $home.latestPosts 3) (sort $posts "Date" "desc") }}
       <li class="entry">
         <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format $dateFormat }}</time>
         <a class="entry-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-        {{ if eq .Section "notes" }}<span class="entry-kind">note</span>
-        {{ else }}{{ with .Summary }}<p class="entry-summary">{{ . }}</p>{{ end }}{{ end }}
+        {{ with .Summary }}<p class="entry-summary">{{ . }}</p>{{ end }}
       </li>
       {{ end }}
     </ul>
-    <p class="section-links">
-      <a href="{{ "posts/" | relURL }}">All posts <span aria-hidden="true">→</span></a>
-      <a href="{{ "notes/" | relURL }}">All notes <span aria-hidden="true">→</span></a>
-    </p>
+    <p class="section-links"><a href="{{ "posts/" | relURL }}">All posts <span aria-hidden="true">→</span></a></p>
+
+    <p class="sub-label sub-label--notes" id="latest-notes">Notes</p>
+    <ul class="entries entries--compact" aria-labelledby="latest-notes">
+      {{ range first (or $home.latestNotes 5) (sort $notes "Date" "desc") }}
+      <li class="entry">
+        <time class="entry-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format $dateFormat }}</time>
+        <a class="entry-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </li>
+      {{ end }}
+    </ul>
+    <p class="section-links"><a href="{{ "notes/" | relURL }}">All notes <span aria-hidden="true">→</span></a></p>
   </section>
 
   {{ $featured := sort (where (union $posts $notes) ".Params.featured" true) "Date" "desc" }}

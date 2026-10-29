@@ -46,7 +46,7 @@ Hugo version: **0.148.x**. The **standard (non-extended)** edition must build th
 | CSS bundle order | `themes/bnm/layouts/_partials/head/css.html` |
 | Code highlighting | `markup.highlight` in `hugo.toml` (class based), colors in `code.css` |
 | Site params (menu, analytics, giscus, home) | `hugo.toml` `[params]` |
-| Home: Latest count (`[params.home] latest`), Featured (`featured = true` front matter), Projects (`[[params.projects]]`, max 5, hidden when empty) | `hugo.toml`, `themes/bnm/layouts/home.html` |
+| Home: Latest counts (`[params.home] latestPosts`, `latestNotes`), Featured (`featured = true` front matter), Projects (`[[params.projects]]`, max 5, hidden when empty) | `hugo.toml`, `themes/bnm/layouts/home.html` |
 | Article grid and its single breakpoint (77.5rem, derivation in the comment) | `themes/bnm/assets/css/layout.css` |
 | TOC, footnotes, sidenotes, autonumber styles | `themes/bnm/assets/css/article.css` |
 | Article JS (bundled, minified, fingerprinted in `single.html`) | `themes/bnm/assets/js/{toc,footnotes,code}.js` |

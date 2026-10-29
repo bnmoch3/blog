@@ -94,9 +94,10 @@ mapping = "pathname"
 # It exists only after a deploy; set to "noborder_light" (or any built-in) while testing.
 theme = "https://bnmoch3.org/giscus/bnm-3.css"
 
-# Home page: number of newest entries (posts and notes together) under "Latest"
+# Home page: number of newest posts and notes under "Latest"
 [params.home]
-latest = 6
+latestPosts = 3
+latestNotes = 5
 
 # Analytics (loaded in production builds only)
 [params.simpleAnalytics]
