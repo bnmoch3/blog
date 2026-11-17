@@ -32,12 +32,44 @@
     if (wide !== wasWide) {
       details.open = wide;
       wasWide = wide;
+      syncSections();
+    }
+  };
+
+  // Sections: h2 entries with h3/h4 children. On wide screens only the section
+  // holding the current entry is open; the others are collapsed by CSS
+  // (.is-tree, article.css) and made inert so their links leave the tab order
+  // and the accessibility tree. A section whose children hold focus stays
+  // open, so scrolling with the keyboard never drops focus to body. Narrow
+  // screens and no-JS show the whole tree.
+  const nav = toc.querySelector("nav");
+  const sections = [...nav.querySelectorAll(":scope > ul > li")]
+    .map((li) => [li, li.querySelector(":scope > ul")])
+    .filter(([, list]) => list);
+  nav.classList.add("is-tree");
+
+  let current = null;
+  const syncSections = () => {
+    const wide = isWide();
+    for (const [li, list] of sections) {
+      const open = !wide || li.contains(current) || list.contains(document.activeElement);
+      li.classList.toggle("is-open", open);
+      list.inert = !open;
+    }
+  };
+
+  // Keep the current link visible inside a scrolling sidebar without moving the page.
+  const reveal = () => {
+    if (!current || details.scrollHeight <= details.clientHeight) return;
+    const l = current.getBoundingClientRect();
+    const d = details.getBoundingClientRect();
+    if (l.top < d.top || l.bottom > d.bottom) {
+      details.scrollTop += l.top - d.top - d.height / 3;
     }
   };
 
   // A clicked link stays active until the reader's next input, even when the
   // next heading also lands above the line (very short sections).
-  let current = null;
   let pinned = null;
   const setActive = () => {
     const line = window.innerHeight * 0.2;
@@ -51,21 +83,18 @@
     if (active === current) return;
     if (current) current.removeAttribute("aria-current");
     current = active;
-    if (!active) return;
-    active.setAttribute("aria-current", "location");
-
-    // Keep the active link visible inside a scrolling sidebar without moving the page.
-    if (details.scrollHeight > details.clientHeight) {
-      const l = active.getBoundingClientRect();
-      const d = details.getBoundingClientRect();
-      if (l.top < d.top || l.bottom > d.bottom) {
-        details.scrollTop += l.top - d.top - d.height / 3;
-      }
-    }
+    if (active) active.setAttribute("aria-current", "location");
+    syncSections();
+    reveal();
   };
 
-  syncOpen();
+  syncOpen(); // also syncs the sections
   window.addEventListener("resize", syncOpen);
+  document.addEventListener("focusin", syncSections);
+  // Sections change height over a short transition; re-check once it ends.
+  nav.addEventListener("transitionend", (event) => {
+    if (event.propertyName === "grid-template-rows") reveal();
+  });
 
   // Sidebar title: shown once the h1 is above the viewport (CSS hides it when narrow).
   const title = toc.querySelector(".toc-title");

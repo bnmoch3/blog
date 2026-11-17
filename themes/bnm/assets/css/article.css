@@ -152,6 +152,36 @@
     scrollbar-width: thin;
   }
 
+  /* Collapsible sections (js/toc.js adds .is-tree, .is-open and inert): each
+     h2 entry is a two-row grid, link over children, and the children's row
+     animates between 0fr and 1fr. visibility hides collapsed children from
+     assistive tech once the transition ends. The 4px padding, cancelled by the
+     negative margin, keeps focus rings from being clipped by overflow. */
+  .toc .is-tree > ul > li:has(> ul) {
+    display: grid;
+    grid-template-rows: auto 0fr;
+    transition: grid-template-rows 0.2s ease;
+
+    > ul {
+      min-height: 0;
+      margin: -4px -4px -4px 0;
+      padding-block: 4px;
+      padding-right: 4px;
+      overflow: hidden;
+      visibility: hidden;
+      transition: visibility 0s linear 0.2s;
+    }
+
+    &.is-open {
+      grid-template-rows: auto 1fr;
+
+      > ul {
+        visibility: visible;
+        transition-delay: 0s;
+      }
+    }
+  }
+
   /* Space is reserved so the tree never moves when the title appears.
      js/toc.js adds .is-shown once the h1 has scrolled above the viewport. */
   .toc-title {
@@ -181,6 +211,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .toc-title { translate: none; }
+
+  .toc .is-tree li,
+  .toc .is-tree ul { transition: none !important; }
 }
 
 /* Footnotes: references are quiet; the list is the fallback for sidenotes */
