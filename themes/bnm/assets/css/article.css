@@ -132,9 +132,23 @@
 /* Sidebar title: a repeat of the h1, wide screens only */
 .toc-title { display: none; }
 
-/* Reading progress (js/toc.js): below the tree on wide screens only. The fill
-   is scaled, never transitioned; rAF updates are the only motion. */
-.toc-meta { display: none; }
+/* Reading progress (js/toc.js). Narrow: a 2px accent bar fixed to the top of
+   the viewport, text visually hidden, no read time. Wide: below the tree. The
+   fill is scaled, never transitioned; rAF updates are the only motion. */
+.toc-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 10;
+  pointer-events: none;
+
+  &[hidden] { display: none; }
+}
+
+.toc-bar {
+  display: block;
+  height: 2px;
+  overflow: hidden;
+}
 
 .toc-bar-fill {
   display: block;
@@ -143,6 +157,17 @@
   transform: scaleX(0);
   transform-origin: left;
 }
+
+.toc-pct {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.toc-readtime { display: none; }
 
 @media (min-width: 77.5rem) {
   .toc {
@@ -157,11 +182,18 @@
     max-height: calc(100vh - 2 * var(--space-5));
   }
 
+  /* The tree scrolls inside the sticky box when taller than the viewport; title
+     and progress stay put. js/toc.js keeps the current entry in view. The 4px
+     padding, cancelled by the negative margin, keeps focus rings unclipped. */
   .toc-details {
+    --sb-track: var(--color-bg);
     min-height: 0;
+    margin: -4px;
+    padding: 4px;
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-width: thin;
+    scrollbar-color: var(--color-scrollbar-thumb) var(--sb-track);
   }
 
   /* Collapsible sections (js/toc.js adds .is-tree, .is-open and inert): each
@@ -195,13 +227,13 @@
   }
 
   .toc-meta {
-    display: block;
     flex: none;
     margin-top: var(--space-5);
     color: var(--color-muted);
   }
 
   .toc-progress {
+    position: static;
     display: flex;
     align-items: center;
     gap: var(--space-3);
@@ -213,17 +245,22 @@
     flex: 1;
     height: 3px;
     border-radius: 2px;
-    overflow: hidden;
     background: var(--color-progress-track);
   }
 
   .toc-pct {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
     min-width: 4ch;
     text-align: right;
     font-variant-numeric: tabular-nums;
   }
 
   .toc-readtime {
+    display: block;
     margin: var(--space-1) 0 0;
   }
 
