@@ -57,7 +57,7 @@ Hugo version: **0.148.x**. The **standard (non-extended)** edition must build th
 | KaTeX stylesheet (pinned, SRI; only on pages with math) | `themes/bnm/layouts/_partials/math.html` |
 
 Article front matter: `toc = true` (optional `tocDepth = 1|2|3`, levels below h2, default 2),
-`autonumber`, `readTime`, `showTags`, `math = true` (opt-in client-side `$...$` rendering; not needed
+`autonumber`, `showTags`, `math = true` (opt-in client-side `$...$` rendering; not needed
 for ```` ```math ```` fences, which render at build time), `hidePagination`, `hideBackToTop`.
 
 ## Callouts
