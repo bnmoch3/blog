@@ -34,6 +34,10 @@
      warn is also the label color, 7.2:1 on bg */
   --color-callout-neutral: #9a9078;
   --color-warn: #8a2a1c;
+  /* scrollbars (page, code blocks, sidebar): warm gray thumb, 3:1 on bg; track is the surface behind it */
+  --color-scrollbar-thumb: #8f8670;
+  --color-scrollbar-thumb-hover: #7d7562;
+  --color-scrollbar-track: var(--color-bg);
 
   /* Code: New Moon adapted for light, each >=4.5:1 on --color-code-bg */
   --color-code-bg: var(--beige-1);

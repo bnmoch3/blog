@@ -9,7 +9,28 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-padding-top: var(--space-5);
+  /* page scrollbar on the page color, not the UA's white track */
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
 }
+
+/* Fallback for engines without scrollbar-color (Safari). Chrome and Firefox
+   ignore these once scrollbar-color is set. Code blocks and the sidebar set
+   their own track. */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 10px;
+  background: var(--sb-track, var(--color-scrollbar-track));
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid var(--sb-track, var(--color-scrollbar-track));
+  border-radius: 6px;
+  background: var(--color-scrollbar-thumb);
+
+  &:hover { background: var(--color-scrollbar-thumb-hover); }
+}
+
+::-webkit-scrollbar-corner { background: transparent; }
 
 @media (prefers-reduced-motion: no-preference) {
   html {

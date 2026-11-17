@@ -99,8 +99,9 @@ pre {
   line-height: 1.6;
   tab-size: 4;
   -moz-tab-size: 4;
+  --sb-track: var(--color-code-bg);
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border-strong) transparent;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--sb-track);
 
   code {
     padding: 0;
@@ -145,6 +146,7 @@ pre {
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: thin;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
 }
 
 /* Display math from ```math fences (render-codeblock-math.html) */
