@@ -38,6 +38,8 @@
   --color-scrollbar-thumb: #8f8670;
   --color-scrollbar-thumb-hover: #7d7562;
   --color-scrollbar-track: var(--color-bg);
+  /* TOC tree connectors: decoration only */
+  --color-toc-rule: var(--color-border-strong);
 
   /* Code: New Moon adapted for light, each >=4.5:1 on --color-code-bg */
   --color-code-bg: var(--beige-1);

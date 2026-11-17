@@ -48,14 +48,43 @@
     list-style: none;
   }
 
-  ul ul { padding-left: 0.9em; }
-
   li { margin: 0; }
 
   nav > ul { margin-top: var(--space-3); }
 
+  /* Tree: h2 entries flush left; h3/h4 hang off a connector drawn with
+     pseudo-elements (generated boxes with no text, so nothing is read aloud).
+     ::before is the elbow (└) to the entry's first line, ::after continues the
+     vertical rule past entries that have a sibling below (├). */
+  ul ul { padding-left: 0.3em; }
+
+  ul ul > li {
+    position: relative;
+    padding-left: 0.95em;
+
+    &::before,
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-left: 1px solid var(--color-toc-rule);
+    }
+
+    /* elbow ends at the middle of the first line: padding 0.2em + half of the 1.4 line */
+    &::before {
+      height: 0.9em;
+      width: 0.6em;
+      border-bottom: 1px solid var(--color-toc-rule);
+      border-bottom-left-radius: 2px;
+    }
+
+    &:not(:last-child)::after { bottom: 0; }
+  }
+
   a {
-    display: block;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
     padding-block: 0.2em;
     color: var(--color-muted);
     text-decoration: none;
@@ -64,7 +93,22 @@
   }
 
   a[aria-current] {
-    color: var(--color-accent-text);
+    color: var(--color-strong);
+    font-weight: 600;
+  }
+
+  /* js/toc.js wraps each label and stacks a hidden semibold copy in the same
+     cell, so an entry is always as tall as its semibold version: making it
+     current never rewraps it or moves the entries below. */
+  .toc-text,
+  .toc-bold {
+    grid-row: 1;
+    grid-column: -2;
+  }
+
+  .toc-bold {
+    visibility: hidden;
+    font-weight: 600;
   }
 }
 

@@ -12,6 +12,17 @@
     .map((link) => [link, document.getElementById(decodeURIComponent(link.hash.slice(1)))])
     .filter(([, heading]) => heading);
 
+  // Reserve each entry's semibold size (see .toc-bold in article.css).
+  for (const [link] of pairs) {
+    const text = document.createElement("span");
+    text.className = "toc-text";
+    text.append(...link.childNodes);
+    const bold = text.cloneNode(true);
+    bold.className = "toc-bold";
+    bold.setAttribute("aria-hidden", "true");
+    link.append(text, bold);
+  }
+
   // The breakpoint lives in CSS only; it sets --wide: 1 on the layout.
   const isWide = () => getComputedStyle(layout).getPropertyValue("--wide").trim() === "1";
 
