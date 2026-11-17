@@ -54,7 +54,7 @@ and build the img class string as "img-tag1 img-tag2 ..."
         <img loading="lazy" alt="{{ .Text }}" src="{{ $url }}"
         {{ with $imgResource }}
             {{ if ne .MediaType.SubType "svg" }}
-                width="{{ .Width }}px" height="{{ .Height }}px"
+                width="{{ .Width }}" height="{{ .Height }}"
             {{ else }}
                 {{/* SVGs without width/height attributes would stretch to the column; size them from the viewBox (inline style, since the theme's width:auto overrides the attribute).
                      The explicit aspect-ratio matters: CSS height:auto overrides the height attribute, and Chrome only counts a lazy image as
