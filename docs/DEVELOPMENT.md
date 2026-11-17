@@ -44,11 +44,12 @@ Hugo version: **0.148.x**. The **standard (non-extended)** edition must build th
 | Fonts (family, fallback, files, preload) | `hugo.toml` `[params.fonts.heading|body|mono]`; WOFF2 in `themes/bnm/static/fonts/<dir>/` |
 | `@font-face` and `--font-*` generation | `themes/bnm/layouts/_partials/head/fonts.html` |
 | CSS bundle order | `themes/bnm/layouts/_partials/head/css.html` |
+| Scrollbars (`--color-scrollbar-*` tokens; `scrollbar-color` on `html`, `pre` and the TOC scroller, `::-webkit-scrollbar` fallback for Safari) | `base.css`, `code.css`, `article.css` |
 | Code highlighting | `markup.highlight` in `hugo.toml` (class based), colors in `code.css` |
 | Site params (menu, analytics, giscus, home) | `hugo.toml` `[params]` |
 | Home: Latest counts (`[params.home] latestPosts`, `latestNotes`), Featured (`featured = true` front matter), Projects (`[[params.projects]]`, max 5, hidden when empty) | `hugo.toml`, `themes/bnm/layouts/home.html` |
 | Article grid and its single breakpoint (77.5rem, derivation in the comment) | `themes/bnm/assets/css/layout.css` |
-| TOC, footnotes, sidenotes, autonumber styles | `themes/bnm/assets/css/article.css` |
+| TOC sidebar (title, tree, progress), footnotes, sidenotes, autonumber styles | `themes/bnm/assets/css/article.css` |
 | Article JS (bundled, minified, fingerprinted in `single.html`) | `themes/bnm/assets/js/{toc,footnotes,code}.js` |
 | Code block markup (border label) / math fences (`transform.ToMath`) | `themes/bnm/layouts/_markup/render-codeblock{,-math}.html` |
 | Callouts (blockquote hook; styles at the end of `article.css`, tones in `tokens.css`) | `themes/bnm/layouts/_markup/render-blockquote.html` |
@@ -105,6 +106,42 @@ The breakpoint is written only in CSS (media queries cannot read custom properti
 layout's `--wide` custom property instead of repeating it. If the body size, measure, `--toc-width`,
 `--note-width`, `--gutter` or `--page-pad` change, recompute it (formula in `layout.css`) and update
 both `@media (min-width: 77.5rem)` rules (`layout.css`, `article.css`).
+
+## TOC sidebar
+
+Posts with `toc = true` get `aside.toc > .toc-sticky` (markup in `single.html`, styles in
+`article.css`, behavior in `js/toc.js`). From the 77.5rem breakpoint up it is a sticky flex column
+in the grid's TOC column, so it never changes the article, notes or margin-callout positions:
+
+- **Title** (`.toc-title`): the post title in the heading font, `aria-hidden` (it repeats the h1).
+  Its space is always reserved; an IntersectionObserver on `.single-title` adds `.is-shown` (fade and
+  small slide, slide dropped under reduced motion) once the h1 is above the viewport.
+- **Tree**: Hugo's `.TableOfContents` (`nav` with `aria-label="Table of contents"`, nested `ul/li`,
+  `tocDepth` as before) inside the `details`. h2 entries sit flush; deeper entries hang off connectors
+  drawn by `li::before` (elbow) and `li:not(:last-child)::after` (continuing rule) in
+  `--color-toc-rule`, so screen readers read nothing extra. Entries are `--text-sm` body font,
+  muted (5.7:1); the current one (`aria-current="location"`, same IntersectionObserver logic as
+  before) is `--color-strong` and semibold. JS wraps each label in `.toc-text` and stacks a hidden
+  semibold copy (`.toc-bold`, `aria-hidden`) in the same grid cell, so going semibold never rewraps an
+  entry.
+- **Collapse**: JS adds `.is-tree`; on wide screens only the h2 section holding the current entry has
+  `.is-open`, and the others' child `ul` is `inert` and `visibility: hidden`, collapsed with a 0.2s
+  `grid-template-rows` 0fr/1fr transition (none under reduced motion). A section whose children hold
+  focus stays open. Clicking or pressing Enter on an entry pins it as current, which opens its section.
+  Narrow screens and no-JS show the whole tree.
+- **Scrolling**: `.toc-details` is the only scroller (`max-height` on the sticky box, thin scrollbar
+  in the scrollbar tokens); title and progress stay put. JS scrolls the current entry into view,
+  again after a section finishes expanding.
+- **Progress** (`.toc-progress`, `hidden` until JS runs): a 3px `--color-accent` bar on
+  `--color-progress-track` plus the percentage, and `N min read` (`.ReadingTime`, shown even without
+  JS) below. Progress is 0 with the top of `.article-head` at the viewport top and 100 when the bottom
+  of `.article-body` (footnotes included, comments and footer excluded) reaches the viewport bottom,
+  clamped, updated once per animation frame, never transitioned. The bar is `aria-hidden`; the
+  percentage is plain, non-live text ("Reading progress: N%") rather than `role="progressbar"`, so
+  screen readers can find it but never announce or beep as the reader scrolls.
+- **Below the breakpoint**: the collapsible Contents block above the article as before; the progress
+  bar becomes a 2px fixed bar at the top of the viewport with the text visually hidden and no read
+  time; the title is not shown.
 
 ## Comments (giscus)
 

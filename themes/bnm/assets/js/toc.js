@@ -135,7 +135,8 @@
     const update = () => {
       frame = 0;
       const top = head.getBoundingClientRect().top;
-      const span = body.getBoundingClientRect().bottom - top - window.innerHeight;
+      // 1px slack: with subpixel layout the last scroll position can fall just short
+      const span = body.getBoundingClientRect().bottom - top - window.innerHeight - 1;
       const ratio = span > 0 ? Math.min(1, Math.max(0, -top / span)) : 1;
       fill.style.transform = `scaleX(${ratio})`;
       const percent = Math.floor(ratio * 100); // 100 only at the very end
