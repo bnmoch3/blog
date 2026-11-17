@@ -56,6 +56,15 @@
   syncOpen();
   window.addEventListener("resize", syncOpen);
 
+  // Sidebar title: shown once the h1 is above the viewport (CSS hides it when narrow).
+  const title = toc.querySelector(".toc-title");
+  const h1 = document.querySelector(".single-title");
+  if (title && h1) {
+    new IntersectionObserver(([entry]) => {
+      title.classList.toggle("is-shown", !entry.isIntersecting && entry.boundingClientRect.top < 0);
+    }).observe(h1);
+  }
+
   const observer = new IntersectionObserver(setActive, { rootMargin: "0% 0% -80% 0%" });
   pairs.forEach(([, heading]) => observer.observe(heading));
   toc.addEventListener("click", (event) => {

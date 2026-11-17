@@ -85,19 +85,58 @@
   }
 }
 
+/* Sidebar title: a repeat of the h1, wide screens only */
+.toc-title { display: none; }
+
 @media (min-width: 77.5rem) {
   .toc {
     margin: 0;
   }
 
-  .toc-details {
+  .toc-sticky {
     position: sticky;
     top: var(--space-5);
+    display: flex;
+    flex-direction: column;
     max-height: calc(100vh - 2 * var(--space-5));
+  }
+
+  .toc-details {
+    min-height: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-width: thin;
   }
+
+  /* Space is reserved so the tree never moves when the title appears.
+     js/toc.js adds .is-shown once the h1 has scrolled above the viewport. */
+  .toc-title {
+    display: block;
+    flex: none;
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-strong);
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 0.35rem;
+    transition: opacity 0.2s ease, translate 0.2s ease, visibility 0s linear 0.2s;
+
+    &.is-shown {
+      opacity: 1;
+      visibility: visible;
+      translate: none;
+      transition-delay: 0s;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toc-title { translate: none; }
 }
 
 /* Footnotes: references are quiet; the list is the fallback for sidenotes */

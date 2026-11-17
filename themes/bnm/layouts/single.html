@@ -39,10 +39,14 @@
 
   {{ with $tocHTML }}
   <aside class="toc">
-    <details class="toc-details">
-      <summary>Contents</summary>
-      {{ replace . `<nav id="TableOfContents">` `<nav id="TableOfContents" aria-label="Table of contents">` | safeHTML }}
-    </details>
+    <div class="toc-sticky">
+      {{/* Wide screens only: a visual repeat of the h1 (hence aria-hidden), shown by js/toc.js once the h1 scrolls away */}}
+      <p class="toc-title" aria-hidden="true">{{ $.Title }}</p>
+      <details class="toc-details">
+        <summary>Contents</summary>
+        {{ replace . `<nav id="TableOfContents">` `<nav id="TableOfContents" aria-label="Table of contents">` | safeHTML }}
+      </details>
+    </div>
   </aside>
   {{ end }}
 
