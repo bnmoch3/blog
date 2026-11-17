@@ -46,6 +46,15 @@
         <summary>Contents</summary>
         {{ replace . `<nav id="TableOfContents">` `<nav id="TableOfContents" aria-label="Table of contents">` | safeHTML }}
       </details>
+      <div class="toc-meta">
+        {{/* Shown by js/toc.js. The bar is decoration; the percentage is plain
+             (non-live) text so screen readers can find it without announcements */}}
+        <div class="toc-progress" hidden>
+          <span class="toc-bar" aria-hidden="true"><span class="toc-bar-fill"></span></span>
+          <span class="toc-pct"><span class="visually-hidden">Reading progress: </span><span class="toc-pct-value">0%</span></span>
+        </div>
+        <p class="toc-readtime">{{ $.ReadingTime }} min read</p>
+      </div>
     </div>
   </aside>
   {{ end }}

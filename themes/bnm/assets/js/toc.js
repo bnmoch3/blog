@@ -119,4 +119,33 @@
   }
   window.addEventListener("scrollend", setActive);
   setActive();
+
+  // Reading progress: 0 with the top of the article (head) at the top of the
+  // viewport, 100 when the end of the body (not the comments or footer)
+  // reaches its bottom. At most one update per frame; the text only changes
+  // when the whole percentage does.
+  const progress = toc.querySelector(".toc-progress");
+  const head = layout.querySelector(".article-head");
+  const body = layout.querySelector(".article-body");
+  if (progress && head && body) {
+    const fill = progress.querySelector(".toc-bar-fill");
+    const value = progress.querySelector(".toc-pct-value");
+    let frame = 0;
+    let shown = -1;
+    const update = () => {
+      frame = 0;
+      const top = head.getBoundingClientRect().top;
+      const span = body.getBoundingClientRect().bottom - top - window.innerHeight;
+      const ratio = span > 0 ? Math.min(1, Math.max(0, -top / span)) : 1;
+      fill.style.transform = `scaleX(${ratio})`;
+      const percent = Math.floor(ratio * 100); // 100 only at the very end
+      if (percent !== shown) value.textContent = `${(shown = percent)}%`;
+    };
+    const schedule = () => (frame ||= requestAnimationFrame(update));
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    new ResizeObserver(schedule).observe(body);
+    progress.hidden = false;
+    update();
+  }
 })();

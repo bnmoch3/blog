@@ -40,6 +40,8 @@
   --color-scrollbar-track: var(--color-bg);
   /* TOC tree connectors: decoration only */
   --color-toc-rule: var(--color-border-strong);
+  /* reading progress: --color-accent fill on this track */
+  --color-progress-track: var(--color-border);
 
   /* Code: New Moon adapted for light, each >=4.5:1 on --color-code-bg */
   --color-code-bg: var(--beige-1);

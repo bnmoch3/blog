@@ -132,6 +132,18 @@
 /* Sidebar title: a repeat of the h1, wide screens only */
 .toc-title { display: none; }
 
+/* Reading progress (js/toc.js): below the tree on wide screens only. The fill
+   is scaled, never transitioned; rAF updates are the only motion. */
+.toc-meta { display: none; }
+
+.toc-bar-fill {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
 @media (min-width: 77.5rem) {
   .toc {
     margin: 0;
@@ -180,6 +192,39 @@
         transition-delay: 0s;
       }
     }
+  }
+
+  .toc-meta {
+    display: block;
+    flex: none;
+    margin-top: var(--space-5);
+    color: var(--color-muted);
+  }
+
+  .toc-progress {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+
+    &[hidden] { display: none; }
+  }
+
+  .toc-bar {
+    flex: 1;
+    height: 3px;
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--color-progress-track);
+  }
+
+  .toc-pct {
+    min-width: 4ch;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .toc-readtime {
+    margin: var(--space-1) 0 0;
   }
 
   /* Space is reserved so the tree never moves when the title appears.
