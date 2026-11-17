@@ -3,7 +3,6 @@
 {{ $paginator := .Paginate .Pages $size }}
 {{ $short := site.Params.listDateFormatInYear | default "Jan 02" }}
 
-{{ partial "breadcrumbs.html" . }}
 <h1 class="list-title">{{ .Title }}</h1>
 {{ with .Content }}<div class="list-intro">{{ . }}</div>{{ end }}
 

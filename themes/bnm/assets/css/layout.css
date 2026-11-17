@@ -81,24 +81,6 @@
   a { color: inherit; }
 }
 
-.breadcrumbs {
-  margin-bottom: var(--space-4);
-  font-size: var(--text-sm);
-  color: var(--color-muted);
-
-  a {
-    color: inherit;
-    text-decoration: none;
-
-    &:hover { color: var(--color-strong); text-decoration: underline; }
-  }
-
-  a::after {
-    content: "/";
-    margin-inline: 0.5em;
-  }
-}
-
 /*
  * Article grid. One column below the breakpoint: head, collapsible TOC,
  * body (with the footnote list), foot. Three columns only when TOC, the full

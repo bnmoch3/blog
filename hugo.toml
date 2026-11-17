@@ -30,9 +30,6 @@ listSummaries = true
 listDateFormat = '2006 Jan 02'
 listDateFormatInYear = 'Jan 02' # lists grouped under a year heading
 
-# Breadcrumbs
-breadcrumbs = true
-
 showFooter = true
 footerContent = ""
 

@@ -13,7 +13,6 @@
 <div class="article-layout{{ if .Param "autonumber" }} autonumber{{ end }}"{{ if hugo.IsServer }} data-dev{{ end }}>
 
   <header class="article-head">
-    {{ partial "breadcrumbs.html" . }}
 
     {{ with .Title }}<h1 class="single-title">{{ . | htmlEscape | replaceRE `[\p{L}\p{N}]+(?:-[\p{L}\p{N}]+)+` `<span class="nowrap">$0</span>` | safeHTML }}</h1>{{ end }}
 
